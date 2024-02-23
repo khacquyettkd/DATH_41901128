@@ -32,13 +32,12 @@ client = speech.SpeechClient()
 os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "key_text_to_speech.json"
 client_texttospeech = texttospeech.TextToSpeechClient()
 #client openAI
-# client_openAI = OpenAI(api_key="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",)
-client_openAI = OpenAI(api_key="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",)
+client_openAI = OpenAI(api_key="your API here",)
 ###----------------------------------------------FLASK----------------------------------------------------
 app = Flask(__name__)
 socketio = SocketIO(app)
 CORS(app)
-app.secret_key = 'nánkackanckkakndc1297'
+app.secret_key = 'your secret key here'
 USER_CONST='Quyet'
 PASS_CONST='41901128'
 #### --------sound const------------
