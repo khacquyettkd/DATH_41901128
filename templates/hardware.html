@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- icon libaray -->
+    <script src="https://kit.fontawesome.com/96bfdff5ee.js" crossorigin="anonymous"></script>
+    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+    <title>Phần cứng</title>
+    <!-- css style -->
+    <link rel="icon" type="image/x-icon" href="../static/Picture/favicon.ico">
+    <link rel="stylesheet" href="../static/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../static/css/footer.css">
+    <link rel="stylesheet" href="../static/css/main.css">
+ <style>
+  body{
+    background-image: none;
+    background-color: #f3f3f3;
+  }
+  .BG{
+    background-image:url("../static/Picture/BG_hardware.jpg");
+    background-size: 100%;
+    height: 100%;
+    width: 100%;
+    background-repeat: no-repeat;
+    position: fixed;
+    top:0px;
+    opacity: 0.7;
+    z-index: -1;
+  }
+  .content{
+    margin: 50px 50px auto 50px;
+  }
+  #gr1, #gr2, #gr3{
+    background-color: rgba(255,255,255,1);
+    padding:20px;
+    border-radius: 20px;
+    margin: 20px auto;
+  }
+  #gr1{
+    border: 2px solid #86A789;
+  }
+  h1{
+    font-size: 36px;
+    text-align: center;
+  }
+  h2{
+    font-size: 20px;
+  }
+  p{
+    text-align: justify;
+  }
+  label{
+    padding: 10px 18px;
+    border-radius: 20%;
+    background-color: rgb(205, 202, 202);
+    border: none;
+  }
+  li{
+    text-align: justify;
+  }
+  #img_comm{
+    display: flex;
+    width: 50%;
+    height: auto;
+    margin: 40px auto 0px auto;
+  }
+  .flex_box1{
+    margin: 0px auto;
+    width: 80%;
+    height: auto;
+    display: flex;
+    justify-content: space-around;
+  }
+  .flex_box1 figure{
+    display: grid;
+    justify-content: center;
+  }
+  #flex1{
+    justify-self: center;
+    width: 50%;
+    height: auto;
+  }
+  #flex2{
+    justify-self: center;
+    width: 80%;
+    height: auto;
+  }
+  figcaption{
+    font-size: 14px;
+    font-style:italic;
+    text-align: center;
+  }
+  #table1{
+    width: 60%;
+    margin: 20px auto;
+    border-collapse: collapse;
+  }
+  th, td {
+      border: 1px solid #dddddd; /* Viền cho các ô */
+      padding: 8px; /* Khoảng cách nội dung từ viền */
+      text-align: center; /* Căn lề văn bản */
+    }
+  #img_usbPort, #img_usbTypeC{
+    display: flex;
+    width: 50%;
+    height: auto;
+    margin: 40px auto 0px auto;
+  }
+  #img_sg90{
+    display: flex;
+    width: 30%;
+    height: auto;
+    margin:40px auto 0px auto;
+  }
+  #list_1>li{
+    font-weight: bold;
+  }
+  .footer-20192{
+    top:100px;
+  }
+ </style>
+</head>
+<body>
+    <div id="wrapper_main">
+        <div id="header_main">
+            <nav class="container">
+                <a href="https://vi.wikipedia.org/wiki/Tr%C6%B0%E1%BB%9Dng_%C4%90%E1%BA%A1i_h%E1%BB%8Dc_T%C3%B4n_%C4%90%E1%BB%A9c_Th%E1%BA%AFng" id="logo"><img src="../static/Picture/Logo.png" alt="Logo"></a>
+                <ul id="main-menu">
+                  <li><a href="/main"><i class="fa-solid fa-house"></i></a></li>
+                  <li><a href="/templates/learn.html">Bài học <i class="fa-solid fa-book-open"></i></a>
+                      <!-- <ul class="sub-menu">
+                          <li><a href="">Bài 1</a></li>
+                          <li><a href="">Bài 2</a></li>
+                          <li><a href="">Bài 3</a></li>
+                          <li><a href="">Bài 4</a></li>
+                      </ul> -->
+                  </li>
+                  <li><a href="/templates/detect.html">Nhận diện vật <i class="fa-solid fa-camera"></i></a></li>
+                  <li><a href="/templates/jarvis.html">jarvis <i class="fa-solid fa-microphone-lines"></i></i></a></li>
+                  <li><a href="/templates/help.html">Trợ giúp <i class="fa-solid fa-circle-question"></i></a></li>
+                  <li><a href="/templates/about.html">Về chúng tôi</a></li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+  <div class="BG"></div>
+  <div class="content">
+    <div id="gr1">
+      <h1>Về phần cứng</h1>
+      <p>Nguyên lý làm việc cơ bản của phần cứng là giao tiếp giữa máy tính và vi điều khiển PIC18F4550 thông qua kết nối 
+      USB (Universal Serial Bus). Trong khi vi điều khiển chịu trách nhiệm giao tiếp trực tiếp với người dùng, điều khiển
+      các động cơ servo để hiển thị đúng với chữ nổi Braille thì máy tính chịu trách nhiệm chạy nền tảng web, xử lý âm thanh 
+      và nhận các yêu cầu từ vi điều khiển và gửi ngược thông tin hiển thị lại cho vi điều khiển PIC18F4550.</p>
+      <figure>
+        <img src="../static/img hardware/pic_lap.jpg" alt="comm" id="img_comm">
+        <figcaption>Kết nối giữa laptop và vi điều khiển PIC18F4550</figcaption>
+      </figure>
+    </div>
+    
+    <div id="gr2">
+      <h2><label>1</label> Vi điều khiển 18F4550</h2>
+      <div class="flex_box1">
+      <figure>
+        <img id="flex1" src="../static/img hardware/pic18f4550.jpg" alt="pic" id="img_pic">
+        <figcaption>Vi điều khiển PIC18F4550</figcaption>
+      </figure>
+      <figure>
+        <img id="flex2" src="../static/img hardware/pic18f4550_pinout.png" alt="pic1" id="img_picPinOut">
+        <figcaption>Sơ đồ chân vi điều khiển PIC18F4550</figcaption>
+      </figure>
+      </div>
+    <p>
+      PIC18F4550 là một vi điều khiển dòng PIC18F thuộc họ PIC Microcontroller, được sản xuất bởi Microchip Technology
+      . Đây là một trong những vi điều khiển 8-bit mạnh mẽ và phổ biến, thường được sử dụng trong nhiều ứng dụng nhúng 
+      khác nhau. Dưới đây là một số đặc điểm chính của PIC18F4550:
+    </p>
+      <ol>
+        <li>Kiến trúc và Bộ Xử lý:
+          <ul>
+            <li>PIC18F4550 sử dụng kiến trúc RISC (Reduced Instruction Set Computing), giúp tối ưu hóa tốc độ xử lý.</li>
+            <li>Bộ xử lý 8-bit, tuy nhiên, PIC18F4550 có một số tính năng mở rộng và khả năng xử lý tăng cường so với các dòng PIC18F khác.</li>
+          </ul>
+        </li>
+        <li>Bộ Nhớ:
+          <ul>
+            <li>Bộ xử lý 8-bit, tuy nhiên, PIC18F4550 có một số tính năng mở rộng và khả năng xử lý tăng cường so với các dòng PIC18F khác.</li>
+            <li>Bộ nhớ RAM: 2048 bytes.</li>
+            <li>Bộ nhớ EEPROM: 256 bytes.</li>
+          </ul>
+        </li>
+        <li>Chân Giao Tiếp:
+          <ul>
+            <li>PIC18F4550 có nhiều chân I/O kỹ thuật số và analog.</li>
+            <li>Hỗ trợ nhiều giao thức như UART, SPI, I2C.</li>
+            <li>Module USB 2.0 đầy đủ (Full-Speed USB), giúp thiết lập kết nối USB một cách thuận tiện.</li>
+          </ul>
+        </li>
+        <li>Ngắt và Timer:
+          <ul>
+            <li>Hỗ trợ nhiều bộ ngắt và bộ đếm, giúp quản lý thời gian và xử lý sự kiện ngoại vi.</li>
+            <li>Có nhiều bộ định thời (timer) và bộ đếm (counter) tích hợp.</li>
+          </ul>
+        </li>
+        <li>Giao Thức Truyền Thông:
+          <p>Hỗ trợ nhiều giao thức truyền thông như USART (Universal Synchronous Asynchronous Receiver Transmitter), 
+            SPI (Serial Peripheral Interface), I2C (Inter-Integrated Circuit).</p>
+        </li>
+        <li>Nguồn Năng Lượng:
+          <ul>
+            <li>Có khả năng điều chỉnh năng lượng để tiết kiệm điện.</li>
+            <li>Hỗ trợ chế độ sleep và chế độ low-power để giảm tiêu thụ năng lượng khi không sử dụng.</li>
+          </ul>
+        </li>
+        <li>Module USB:
+          <p>PIC18F4550 được trang bị một USB 2.0 đầy đủ (Full-Speed USB), giúp dễ dàng kết nối với máy tính 
+            và các thiết bị khác sử dụng USB.</p>
+        </li>
+        <li>Ứng Dụng:
+          <p>PIC18F4550 thích hợp cho nhiều ứng dụng nhúng như điều khiển thiết bị, đọc cảm biến, và giao tiếp với máy tính thông qua USB.</p>
+        </li>
+      </ol>
+        <p>PIC18F4550 là một lựa chọn phổ biến trong cộng đồng nhúng và thường được sử dụng trong các dự án yêu cầu khả năng xử lý 8-bit mạnh 
+          mẽ và khả năng kết nối USB.</p>
+        <ul>
+          <li>Giao diện USB 2.0 tốc độ đầy đủ (12Mbit/s)</li>
+          <li>RAM cổng kép 1K byte + RAM GP 1K byte</li>
+          <li>Bộ thu phát tốc độ đầy đủ</li>
+          <li>16 Điểm cuối (IN / OUT)</li>
+          <li>Cổng phát trực tuyến</li>
+          <li>Điện trở kéo lên bên trong (D + / D-)</li>
+          <li>Hiệu suất 48 MHz (12 MIPS)</li>
+          <li>Pin-to-pin tương thích với PIC16C7X5</li>
+        </ul>
+        <table id="table1">
+  
+          <tbody>
+            <tr>
+              <td>Standard Package</td>
+              <td>10</td>
+            </tr>
+            <tr>
+              <td>Category</td>
+              <td>Integrated Circuits (ICs)</td>
+            </tr>
+            </tr><tr>
+              <td>Family</td>
+              <td>Embedded - Microcontrollers</td>
+            </tr>
+            <tr>
+              <td>Series</td>
+              <td>PIC® 18F</td>
+            </tr><tr>
+              <td>Packaging</td>
+              <td>Tube</td>
+            </tr>
+            </tr><tr>
+              <td>Core Processor</td>
+              <td>PIC</td>
+            </tr>
+            </tr><tr>
+              <td>Core Size</td>
+              <td>8-Bit</td>
+            </tr>
+            </tr><tr>
+              <td>Speed</td>
+              <td>48MHz</td>
+            </tr>
+            </tr><tr>
+              <td>Connectivity</td>
+              <td>I²C, SPI, UART / USART, USB</td>
+            </tr>
+            </tr><tr>
+              <td>Peripherals</td>
+              <td>Brown-out Detect / Reset, HLVD, POR, PWM, WDT</td>
+            </tr>
+            </tr><tr>
+              <td>Number of I /O</td>
+              <td>35</td>
+            </tr>
+            </tr><tr>
+              <td>Program Memory Size</td>
+              <td>32KB (16K x 16)</td>
+            </tr>
+            </tr><tr>
+              <td>Program Memory Type</td>
+              <td>FLASH</td>
+            </tr>
+            </tr><tr>
+              <td>EEPROM Size</td>
+              <td>256 x 8</td>
+            </tr>
+            </tr><tr>
+              <td>RAM Size</td>
+              <td>2K x 8</td>
+            </tr>
+            </tr><tr>
+              <td>Voltage - Supply (Vcc/Vdd)</td>
+              <td>4.2 V ~ 5.5 V</td>
+            </tr>
+            </tr><tr>
+              <td>Data Converters</td>
+              <td>A/D 13x10b</td>
+            </tr>
+            </tr><tr>
+              <td>Oscillator Type</td>
+              <td>Internal</td>
+            </tr>
+            </tr><tr>
+              <td>Operating Temperature</td>
+              <td>-40°C ~ 85°C</td>
+            </tr>
+            </tr><tr>
+              <td>Package / Case</td>
+              <td>40-DIP (0.600", 15.24mm)</td>
+            </tr>
+            </tr><tr>
+              <td>Other Names</td>
+              <td>PIC18F4550IP</td>
+            </tr>
+              </tbody>
+            </table>
+      </div>
+  <div id="gr3">
+    <h2><label>2</label> Giao thức USB:</h2>  
+
+    <figure>
+      <img src="../static/img hardware/usb_port.jpg" alt="usb_port" id="img_usbPort">
+      <figcaption>Các kiểu chân của kết nối USB</figcaption>
+    </figure>
+    <ol id="list_1">
+      <li>Chuẩn tín hiệu</li>
+        <p>Chuẩn USB sử dụng 4 đường tín hiệu trong đó có 2 đường cấp nguồn DC (VBUS-5V và GND). 2 đường còn lại là một cặp tín hiệu vi 
+          sai (D+ và D-) cho phép truyền dữ liệu. Cặp dây tín hiệu này được nối xoắn ở bên trong nên có khả năng chống nhiễu tốt.
+          Lưu ý: cổng USB trên máy tính cho phép cấp nguồn nuôi ra bên ngoài với dòng lên tới 500mA. Như vậy, các thiết bị sử dụng 
+          ít điện năng như chuột, thẻ nhớ USB... đều có thể lấy trực tiếp nguồn từ cổng USB của máy tính mà không cần dùng thêm nguồn ngoài.
+        </p>
+        <figure>
+          <img src="../static/img hardware/usb_typeC.jpg" alt="usb_typeC" id="img_usbTypeC">
+          <figcaption>Kết nối giữa laptop và vi điều khiển PIC18F4550</figcaption>
+        </figure>
+      <li>Mô hình mạng</li>
+      <p>
+        Các thiết bị hoạt động theo chuẩn USB được kết nối với nhau theo đồ hình mạng hình sao phân cấp.  
+        Trung tâm của mỗi hình sao này là các Hub. Trong đồ hình như vậy, các thiết bị USB được chia làm 3 loại chính:
+        <ul>
+          <li>USB Host:thiết bị đóng vai trò điều khiển toàn bộ mạng USB (có thể lên tới tối đa 126 thiết bị). Ví dụ như trên máy tính, 
+            USB Host được gắn trên mainboard. Để giao tiếp và điều khiển các USB device, USB Host controller cần được thiết kế tích hợp 
+            với USB RootHub (Hub mức cao nhất). Vai trò của thiết bị USB Host:</li>
+            <ul>
+              <li>Trao đổi dữ liệu với các USB Device</li>
+              <li>Điều khiển USB Bus</li>
+              <li>Quản lý các thiết bị cắm vào hay rút ra khỏi Bus USB qua quá trình điểm danh (Enumeration)</li>
+              <li>Phân xử, quản lý luồng dữ liệu trên Bus, đảm bảo các thiết bị đều có cơ hội trao đổi dữ liệu tùy thuộc vào cấu hình của mỗi thiết bị.</li>
+            </ul>
+          <li>USB Device:là các thiết bị đóng vai trò như các slave giao tiếp với USB Host. Xin lưu ý một điều hết sức quan trọng đó là các thiết
+            bị này hoàn toàn đóng vai trò bị động, không bao giờ được tự ý gửi gói tin lên USB Host hay gửi gói tin giữa các USB Device với nhau,
+            tất cả đều phải thông qua quá trình điều phối của USB Host. Các bạn sẽ hiểu cơ chế này rõ hơn trong phần truyền thông của chuẩn USB.
+            Chức năng của thiết bị USB Device:</li>
+            <ul>
+              <li>Trao đổi dữ liệu với USB Host</li>
+              <li>Phát hiện gói tin hay yêu cầu từ USB Host theo giao thức USB.</li>
+              <li>USB Hub: đóng vai trò như các Hub trong mạng Ethernet của chúng ta. Cấp nguồn cho các thiết bị USB</li>
+            </ul>
+        </ul>
+      </p>
+      <li>Kịch bản hoạt động</li>
+        <p>Quá trình hoạt động của chuẩn USB có thể được chia làm hai giai đoạn chính</p>
+        <ul>
+          <li>Quá trình điểm danh: là quá trình USB Host phát hiện các thiết bị cắm vào và rút ra khỏi đường USB Bus. Mỗi khi một thiết bị 
+            tham gia vào Bus USB, USB Host sẽ tiến hành đọc các thông tin mô tả (Description) của USB Device, từ đó thiết lập địa chỉ (NodeID)
+             và chế độ hoạt động tương ứng cho thiết bị USB Device. Các địa chỉ sẽ được đánh từ 1->126 nên về lý thuyết, chuẩn USB cho phép kết
+              nối 126 thiết bị vào đường Bus. Khi thiết bị rút ra khỏi đường Bus, địa chỉ này sẽ được thu hồi.</li>
+          <li>Quá trình truyền dữ liệu: để hiểu quá trình truyền dữ liệu này, chúng ta phải hiểu được hai khái niệm có thể nói là khó và quan 
+            trọng nhất trong chuẩn USB, đó là khái niệm Interface và Endpoint (Xin lưu ý là chỉ thiết bị USB device mới có Endpoint, USB Host 
+            không có Endpoint). Một thiết bị USB sẽ có thể có nhiều Interface, một Interface có thể sử dụng nhiều Endpoint. Ví dụ:Thẻ nhớ USB chỉ 
+            sử dụng 1 Interface theo chuẩn USB Mass storage, interface này sử dụng 3 Endpoint.
+            Bộ USB 3G sử dụng các Interface khác nhau như: CD Room, Mass storage và Communication, mỗi interface lại sử dụng nhiều Endpoint khác 
+            nhau.
+            </li>
+            <p>
+            Như vậy, đứng ở góc độ mức hệ thống, các Interface chính là các dịch vụ khác nhau mà thiết bị đó cung cấp còn các Endpoint chính 
+            là các cổng cần thiết cho mỗi dịch vụ. Tương ứng với khái niệm trong kiến trúc TCP/IP, ví dụ giao thức FTP là giao thức sử dụng để 
+            truyền file sẽ sử dụng hai cổng 20,21. Trong khi đó giao thức HTTP lại sử dụng port 80, giao thức Telnet sử dụng port 23.
+            <br>Thực tế các Endpoint cũng như các Port trong chuẩn TCP/IP đóng vai trò như các bộ đệm truyền/nhận dữ liệu. Nhờ việc sử dụng nhiều 
+            bộ đệm mà các quá trình truyền thông được tiến hành song song và cho tốc độ cao hơn, bên cạnh đó giúp cho việc phân tách các dịch vụ 
+            khác nhau. Với chuẩn USB, các thiết bị được thiết kế với tối đa là 16 Enppoint. Các Endpoint được phân loại theo hướng truyền dữ liệu 
+            nhìn từ phía USB Host. Cụ thể:<br>
+            Các Endpoint truyền dữ liệu từ USB Device tới USB Host là endpoint IN<br>
+            Các Endoint truyền dữ liệu từ USB Host tới USB Device là endpoint OUT<br>
+            Đề truyền được dữ liệu theo chuẩn USB, các thiết bị USB Device phải được kết nối với USB Host thông qua các Pipe (đường ống).
+            Mỗi Pipe sẽ nối một Endpoint của USB Device với USB Host.
+            </p>
+        </ul>
+      <li>Chế độ truyền</li>
+        <p>Chuẩn USB cung cấp cho chúng ta tổng cộng là 4 chế độ truyền, đáp ứng nhiều mục đích khác nhau tùy thuộc vào cơ chế truyền cũng như 
+          tốc độ mà người thiết kế mong muốn.
+          <ul>
+            <li>Truyền điều khiển (Control transfer): là chế độ truyền được tất cả các thiết bị USB hỗ trợ để truyền các thông tin điều khiển 
+              với tốc độ tương đối chậm.</li>
+            <li>Truyền ngắt (Interrupt transfer): sử dụng cho các thiết bị cần truyền một lượng dữ liệu nhỏ, tuần hoàn theo thời gian ví dụ như 
+              chuột, bàn phím. Khi đó, ví dụ cứ 10s một lần USB Host sẽ gửi request xuống và USB Device sẽ trả dữ liệu về cho USB Host (với trường 
+              hợp Interrupt In Endpoint).</li>
+            <li>Truyền theo khối (Bulk transfer): sử dụng cho các thiết bị cần truyền một lượng dữ liệu lớn, yêu cầu độ chính xác tuyệt đối, không 
+              có ràng buộc quá chặt chẽ về thời gian thực ví dụ như thẻ nhớ USB, máy in. Cái này tương tự như giao thức TCP trong mạng Ethernet</li>
+            <li>Truyền đẳng thời (Isochronos transfer): sử dụng cho các thiết bị cần truyền một lượng dữ liệu lớn với tốc độ rất nhanh, đảm bảo 
+              ràng buộc về thời gian thực tuy nhiên chấp nhận hy sinh độ chính xác ở một mức nhất định như các thiết bị nghe nhạc, xem phim kết 
+              nối theo chuẩn USB. Chuẩn này tương tự giao thức UDP trong mạng Ethernet.</li>
+          </ul>
+          
+          </p>
+    </ol>
+    <h2><label>3</label> Động cơ servo:</h2>
+    <ol>
+      <li>Cấu tạo và phân loại:</li>
+        <p>
+          Động cơ servo là một thành phần trong hệ thống servo. Động cơ servo nhận tín hiệu từ bộ điều khiển và cung cấp lực chuyển động cần 
+          thiết cho các thiết bị máy móc khi vận hành với tốc độ và độ chính xác cực kỳ cao.<br>
+          Động cơ servo được chia thành 2 loại: động cơ servo AC, động cơ servo DC. AC servo có thể xử lý các dòng điện cao hơn và có xu hướng 
+          được sử dụng trong máy móc công nghiệp. DC servo không được thiết kế cho các dòng điện cao và thường phù hợp hơn cho các ứng dụng nhỏ 
+          hơn.<br>
+          Cấu tạo của động cơ AC servo bao gồm 3 phần: stator, rotor (thường là loại nam châm vĩnh cửu) và encoder.
+          <ul>
+            <li>Stator bao gồm một cuộn dây được quấn quanh lõi, được cấp nguồn để cung cấp lực cần thiết làm quay rotor.</li>
+            <li>Rotor được cấu tạo bởi nam châm vĩnh cửu có từ trường mạnh.</li>
+            <li>Encoder được gắn sau đuôi động cơ để phản hồi chính xác tốc độ và vị trí của động cơ về bộ điều khiển.</li>
+            <li>Bộ điều khiển (Servo drive) có nhiệm vụ nhận tín hiệu lệnh điều khiển (xung/analog) từ PLC và truyền lệnh đến động cơ 
+              servo để điều khiển động cơ servo hoạt động theo lệnh, đồng thời nhận tín hiệu phản hồi liên tục về vị trí và tốc độ hiện 
+              tại của động cơ servo từ encoder.</li>
+          </ul>
+          Động cơ DC servo được cấu tạo từ 2 bộ phận chính là stator và rotor ngoài ra động cơ còn được tích hợp thêm một số bộ phận khác.
+          <ul>
+            <li>Stator : phần đứng yên cấu tạo bởi nam châm vĩnh cửu</li>
+            <li>Rotor : phần chuyển động cấu tạo bởi các cuộn dây quấn quanh lõi thép</li>
+            <li>Cổ góp  : cấu tạo bằng đồng, để dẫn điện từ chổi than vào cuộn dây</li>
+            <li>Chổi than : dẫn điện vào cổ góp</li>
+            <li>Bộ dò : là bộ đọc xung encoder hoặc bộ cảm ứng điện từ </li>
+          </ul>
+          Động cơ DC servo gồm 2 loại:
+          <ul>
+            <li>Động cơ DC servo có chổi than</li>
+            <p>Là loại động cơ sản xuất với chi phí thấp, cấu trúc đơn giản, dễ điều khiển và cũng dễ bảo trì bảo dưỡng.</p>
+            <li>Động cơ DC servo không chổi than</li>
+            <p>Có kích thước nhỏ và trọng lượng nhỏ hơn. Tuy nhiên, loại động cơ này phả ứng rất nhanh, quán tính nhanh nhờ 
+              mô men xoắn ổn định hơn động cơ DC servo có chổi than. Nhờ chuyển mạch điện tử linh hoạt theo sóng vuông hoặc 
+              chuyển mạch sóng sin động cơ không chổi than hoạt động thông minh hơn.<br>
+              Động cơ không chổi than có ưu điểm tiết kiệm năng lượng do bức xạ điện từ thấp, ít sinh nhiệt dẫn đến tuổi thọ 
+              động cơ cao hơn rất nhiều so với loại có chổi than.</p>
+          </ul>
+          <figure>
+            <img src="../static/img hardware/sg90.jpg" alt="sg90" id="img_sg90">
+            <figcaption>Động cơ servo SG90</figcaption>
+          </figure>
+        </p>
+      <li>Nguyên lý hoạt động:</li>
+      <p>Về nguyên tắc, động cơ servo là một thiết bị độc lập. Tuy nhiên động cơ servo chỉ có ý nghĩa thực tiễn khi hoạt động 
+        trong hệ thống servo.<br>
+        Chế độ hoạt động servo được hình thành bởi những hệ thống hồi tiếp vòng kín. Động cơ servo nhận một tín hiệu xung điện 
+        (PWM) từ bộ điều khiển để hoạt động và được kiểm soát bằng bộ mã hóa (encoder).<br>
+        Khi động cơ vận hành thì vận tốc và vị trí sẽ được hồi tiếp về mạch điều khiển này thông qua bộ mã hóa (encoder). 
+        Khi đó bất kỳ lý do nào ngăn cản chuyển động và làm sai lệch tốc độ cũng như vị trí mong muốn, cơ cấu hồi tiếp sẽ phản hồi 
+        tín hiệu về bộ điều khiển. Từ tín hiệu phản hồi về, bộ điều khiển servo sẽ so sánh với tín hiệu lệnh và đưa ra điều chỉnh 
+        phù hợp, đảm bảo động cơ servo hoạt động đúng theo yêu cầu đạt được tốc độ và vị trí chính xác nhất.
+        </p>
+    </ol>
+    </div>
+  </div>
+</body>
+
+<footer class="footer-20192">
+    <div class="site-section">
+      <div class="container">
+        <div class="row">
+
+          <div class="col-sm">
+            <a href="/main" class="footer-logo">Trang chủ</a>
+            <p class="copyright">
+              <small>&copy; 2023</small>
+            </p>
+            <div class="col-lienhe">
+              <h3>Thông tin liên hệ</h3>
+              <ul class="list-contact">
+                <li><i class="fa-solid fa-phone"></i> 0342 938 651</li>
+                <li><iconify-icon icon="arcticons:zalo"></iconify-icon> 0342 938 651</i></li>
+                <li><i class="fa-solid fa-envelope"></i> khacquyettkd@gmail.com</li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-sm">
+            <h3>Quá trình hoàn thiện</h3>
+            <ul class="list-unstyled links">
+              <li><a href="/templates/hardware.html">Phần cứng</a></li>
+              <li><a href="/templates/software.html">Phần mềm</a></li>
+            </ul>
+          </div>
+          <div class="col-sm">
+            <h3>Về đồ án này</h3>
+            <ul class="list-unstyled links">
+              <li><a href="/templates/tonghop.html">Mục đích</a></li>
+              <li><a href="/templates/tonghop.html#Khatvong">Khát vọng</a></li>
+              <li><a href="/templates/tonghop.html#Ketqua">Kết quả</a></li>
+            </ul>
+          </div>
+          <div class="col-sm">
+            <h3>Thông tin thêm</h3>
+            <ul class="list-unstyled links">
+              <li><a href="/templates/info.html">Sinh viên &amp; thông tin khác</a></li>
+              <li><a href="/templates/this_product.html">Sản phẩm</a></li>
+            </ul>
+          </div>
+          <div class="col-md-3">
+            <h3>Follow us</h3>
+            <ul class="list-unstyled social">
+              <li><a href="https://www.facebook.com/khacquyettkd/"><i class="fa-brands fa-facebook"></i></a></i></li>
+              <li><a href="//www.tiktok.com/@quyettrankhac"><i class="fa-brands fa-tiktok"></i></a></i></li>
+              <li><a><i class="fa-brands fa-linkedin"></i></a></li>
+            </ul>
+          </div>
+        
+          
+        </div>
+      </div>
+    </div>
+  </footer>
+
+</html>

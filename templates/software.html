@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- icon libaray -->
+    <script src="https://kit.fontawesome.com/96bfdff5ee.js" crossorigin="anonymous"></script>
+    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+    <title>41901128.id.vn</title>
+    <!-- css style -->
+    <link rel="icon" type="image/x-icon" href="../static/Picture/favicon.ico">
+    <link rel="stylesheet" href="../static/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../static/css/footer.css">
+    <link rel="stylesheet" href="../static/css/main.css">
+    <style>
+      body{
+        background-image: none; 
+      }
+      .BG{
+        background-image:url("../static/Picture/BG_software.jpg");
+        background-size: 100%;
+        height: 100%;
+        width: 100%;
+        background-repeat: no-repeat;
+        position: fixed;
+        top:0px;
+        opacity: 0.9;
+        z-index: -1;
+      }
+      .content{
+        margin: 5% 5%;
+        color: black;
+        background-color: rgba(255,255,255,0.7);
+        padding: 20px;
+        border-radius: 10px;
+      }
+    </style>
+</head>
+<body>
+    <div id="wrapper_main">
+        <div id="header_main">
+            <nav class="container">
+                <a href="https://vi.wikipedia.org/wiki/Tr%C6%B0%E1%BB%9Dng_%C4%90%E1%BA%A1i_h%E1%BB%8Dc_T%C3%B4n_%C4%90%E1%BB%A9c_Th%E1%BA%AFng" id="logo"><img src="../static/Picture/Logo.png" alt="Logo"></a>
+                <ul id="main-menu">
+                  <li><a href="/main"><i class="fa-solid fa-house"></i></a></li>
+                  <li><a href="/templates/learn.html">Bài học <i class="fa-solid fa-book-open"></i></a>
+                      <!-- <ul class="sub-menu">
+                          <li><a href="">Bài 1</a></li>
+                          <li><a href="">Bài 2</a></li>
+                          <li><a href="">Bài 3</a></li>
+                          <li><a href="">Bài 4</a></li>
+                      </ul> -->
+                  </li>
+                  <li><a href="/templates/detect.html">Nhận diện vật <i class="fa-solid fa-camera"></i></a></li>
+                  <li><a href="/templates/jarvis.html">jarvis <i class="fa-solid fa-microphone-lines"></i></i></a></li>
+                  <li><a href="/templates/help.html">Trợ giúp <i class="fa-solid fa-circle-question"></i></a></li>
+                  <li><a href="/templates/about.html">Về chúng tôi</a></li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+  <div class="BG"></div>
+  <div class="content">
+    <div id="intro">
+      <h1 style="font-weight: bold;">Về phần mềm</h1>
+      <p>Trang web này được tạo ra từ 4 ngôn ngữ: Python, javascript, HTML và CSS. Bên cạnh đó, frame work được sử dụng ở đây là Flask. Vì vậy,
+        trong bài viết này tôi sẽ trình bày cái nhìn đầy đủ về 5 nội dung trên bao gồm: Web frame work, Python, HTML, Javascript và CSS.
+      </p>
+    </div>
+    <div id="Web_frame_work">
+      <h2>Web frame work</h2>
+      <h3>Web framework là gì?</h3>
+      <p>Các framework ứng dụng web hoặc đơn giản là web framework đại diện cho một tập hợp các thư viện và module cho phép các nhà phát triển 
+        ứng dụng web viết ứng dụng mà không cần lo lắng về các chi tiết cấp thấp như giao thức (protocol), quản lý luồng (thread management), 
+        v.v.</p>
+      <h3>Flask là gì?</h3>
+        <p>Flask là một framework ứng dụng web được viết bằng Python. Nó được phát triển bởi Armin Ronacher, người dẫn đầu một nhóm những người đam 
+          mê Python quốc tế có tên là Poocco. Flask dựa trên bộ công cụ Werkzeg WSGI và template engine Jinja2. Cả hai đều là các dự án của Pocco.<br>
+          Flask là một Web Framework rất nhẹ của Python, dễ dàng giúp người mới bắt đầu học Python có thể tạo ra website nhỏ. Flask cũng dễ mở 
+          rộng để xây dựng các ứng dụng web phức tạp.<br>
+          Flask có nền tảng là Werkzeug và Jinja2 và nó đã trở thành một trong những Web Framework phổ biến nhất của Python .<br>
+          Fask Framework là một bộ lưu trữ giúp các lập trình viên tạo ra các trang web dễ dàng hơn, có thể mở rộng, hiệu quả và có 
+          thể bảo trì bằng cách cung cấp code hoặc tiện ích mở rộng có thể sử dụng lại cho các nhiệm vụ phổ biến.
+          </p>
+      <h3>WSGI</h3>
+        <p>Giao diện cổng máy chủ web (Web Server Gateway Interface, WSGI) đã được sử dụng như một tiêu chuẩn để phát triển ứng dụng web Python. 
+          WSGI là đặc điểm kỹ thuật của giao diện chung giữa máy chủ web và ứng dụng web.</p>
+      <h3>Werkzeug</h3>
+        <p>Werkzeug là một bộ công cụ WSGI thực hiện các yêu cầu, đối tượng phản hồi và các chức năng tiện ích. Điều này cho phép một web 
+          framework được xây dựng trên đó. Flask framework sử dụng Werkzeg làm một trong những cơ sở của nó.</p>
+      <h3>jinja2</h3>
+        <p>jinja2 là một template engine phổ biến cho Python. Hệ thống web template kết hợp một template với một nguồn dữ liệu cụ thể để hiển thị một trang web động.
+          Điều này cho phép bạn chuyển các biến Python vào các HTML template:</p>
+            <code>
+              &lt;html&gt;<br>
+                  &lt;head&gt;<br>
+                      &lt;title&gt;{{ title }}&lt;/title&gt;<br>
+                  &lt;/head&gt;<br>
+                  &lt;body&gt;<br>
+                      &lt;h1&gt;Hello {{ username }}&lt;/h1&gt;<br>
+                  &lt;/body&gt;<br>
+              &lt;/html&gt;<br>
+            </code>
+        <p>
+          Giao diện cổng máy chủ web (Web Server Gateway Interface, WSGI) đã được sử dụng như một tiêu chuẩn để phát triển ứng dụng web Python. 
+          WSGI là đặc điểm kỹ thuật của giao diện chung giữa máy chủ web và ứng dụng web.
+        </p>
+      <h3>Tính năng của Flask Framework</h3>
+        <ul>
+          <li>Phát triển máy chủ</li>
+          <li>Phát triển trình gỡ lỗi</li>
+          <li>Hỗ trợ sẵn sàng để kiểm thử đơn vị</li>
+          <li>Jinja2 templates</li>
+          <li>RESTful request dispatch</li>
+          <li>Hỗ trợ bảo mật cookie</li>
+          <li>Full WSGI compliant</li>
+          <li>Tài liệu mở rộng</li>
+          <li>Dựa trên Unicode</li>
+          <li>Khả năng tương thích công cụ dựa trên ứng dụng Google</li>
+          <li>Nhiều tiện ích mở rộng cho các tính năng mong muốn</li>
+          <li>Tính modular và thiết kế gọn nhẹ</li>
+          <li>ORM-agnostic</li>
+          <li>Độ linh hoạt cao</li>
+          <li>Cung cấp xử lý HTTP request</li>
+          <li>API có độc đáo và mạch lạc</li>
+          <li>Dễ dàng triển khai</li>
+        </ul>
+    </div>
+    <div id="python">
+      <h2>Python</h2>
+      <h3>Python là gì?</h3>
+        <p>Python là một ngôn ngữ lập trình được sử dụng rộng rãi trong các ứng dụng web, phát triển phần mềm, khoa học dữ liệu và máy học (ML). 
+          Các nhà phát triển sử dụng Python vì nó hiệu quả, dễ học và có thể chạy trên nhiều nền tảng khác nhau. Phần mềm Python được tải xuống 
+          miễn phí, tích hợp tốt với tất cả các loại hệ thống và tăng tốc độ phát triển.</p>
+      <h3>Python mang lại những lợi ích gì?</h3>
+        <p>Python mang lại những lợi ích gì?</p>
+        <ul>
+          <li>Các nhà phát triển có thể dễ dàng đọc và hiểu một chương trình Python vì ngôn ngữ này có cú pháp cơ bản giống tiếng Anh. </li>
+          <li>Python giúp cải thiện năng suất làm việc của các nhà phát triển vì so với những ngôn ngữ khác, họ có thể sử dụng ít dòng mã hơn 
+            để viết một chương trình Python.</li>
+          <li>Python có một thư viện tiêu chuẩn lớn, chứa nhiều dòng mã có thể tái sử dụng cho hầu hết mọi tác vụ. Nhờ đó, các nhà phát triển 
+            sẽ không cần phải viết mã từ đầu..</li>
+          <li>Các nhà phát triển có thể dễ dàng sử dụng Python với các ngôn ngữ lập trình phổ biến khác như Java, C và C++.</li>
+          <li>Cộng đồng Python tích cực hoạt động bao gồm hàng triệu nhà phát triển nhiệt tình hỗ trợ trên toàn thế giới. Nếu gặp phải vấn 
+            đề, bạn sẽ có thể nhận được sự hỗ trợ nhanh chóng từ cộng đồng.</li>
+          <li>Trên Internet có rất nhiều tài nguyên hữu ích nếu bạn muốn học Python. Ví dụ: bạn có thể dễ dàng tìm thấy video, chỉ dẫn, tài 
+            liệu và hướng dẫn dành cho nhà phát triển.</li>
+          <li>Python có thể được sử dụng trên nhiều hệ điều hành máy tính khác nhau, chẳng hạn như Windows, macOS, Linux và Unix.</li>
+        </ul>
+      <h3>Python được sử dụng như thế nào?</h3>
+        <p>Ngôn ngữ Python được sử dụng nhiều trong lĩnh vực phát triển ứng dụng, bao gồm những ví dụ sau:</p>
+        <ul>
+          <li>Phát triển web phía máy chủ</li>
+            <ul>
+              <li>Phát triển web phía máy chủ bao gồm những hàm backend phức tạp mà các trang web thực hiện để hiển thị thông tin cho người dùng. 
+                Ví dụ: các trang web phải tương tác với cơ sở dữ liệu, giao tiếp với các trang web khác và bảo vệ dữ liệu khi truyền qua mạng. </li>
+              <li>Python hữu ích trong việc lập trình mã phía máy chủ bởi vì ngôn ngữ này cung cấp nhiều thư viện bao gồm mã viết sẵn cho các hàm 
+                backend phức tạp. Các nhà phát triển cũng sử dụng một loạt các khung Python cung cấp tất cả những công cụ cần thiết để xây dựng ứng 
+                dụng web một cách nhanh chóng và dễ dàng hơn. Ví dụ: các nhà phát triển có thể tạo ứng dụng web khung trong nháy mắt bởi vì họ không 
+                cần phải lập trình nó từ đầu. Sau đó, họ có thể kiểm tra ứng dụng web này bằng cách sử dụng các công cụ kiểm thử của khung, mà không 
+                cần phụ thuộc vào những công cụ kiểm thử bên ngoài.</li>
+            </ul>
+          <li>Tự động hóa bằng các tập lệnh Python</li>
+            <p>Ngôn ngữ tập lệnh là một ngôn ngữ lập trình tự động hóa các tác vụ mà thường được con người thực hiện. Các lập trình viên thường 
+              xuyên sử dụng các tập lệnh Python để tự động hóa nhiều tác vụ hàng ngày như:</p>
+            <ul>
+              <li>Đổi tên một số lượng lớn tệp cùng lúc</li>
+              <li>Chuyển đổi một tệp sang một loại tệp khác</li>
+              <li>Loại bỏ các từ trùng lặp trong tệp văn bản</li>
+              <li>Thực hiện các phép tính toán cơ bản</li>
+              <li>Gửi email</li>
+              <li>Tải xuống nội dung</li>
+              <li>Thực hiện phân tích nhật ký cơ bản</li>
+              <li>Tìm kiếm lỗi trong nhiều tệp</li>
+            </ul>
+          <li>Khoa học dữ liệu và máy học</li>
+            <p>Khoa học dữ liệu trích xuất thông tin quý giá từ dữ liệu và máy học (ML) dạy máy tính tự động học hỏi từ dữ liệu và đưa ra 
+              các dự đoán chính xác. Các nhà khoa học dữ liệu sử dụng Python cho các tác vụ khoa học dữ liệu sau:</p>
+            <ul>
+              <li>Sửa và loại bỏ dữ liệu không chính xác, hay còn được gọi là làm sạch dữ liệu </li>
+              <li>Trích xuất và chọn lọc các đặc điểm đa dạng của dữ liệu</li>
+              <li>Ghi nhãn dữ liệu gán tên có ý nghĩa cho dữ liệu</li>
+              <li>Tìm các số liệu thống kê khác nhau từ dữ liệu</li>
+              <li>Trực quan hóa dữ liệu bằng cách sử dụng các biểu đồ và đồ thị, chẳng hạn như biểu đồ đường, biểu đồ cột, biểu đồ tần suất 
+                và biểu đồ tròn</li>
+            </ul>
+            <p>Các nhà khoa học dữ liệu sử dụng những thư viện ML của Python để đào tạo các mô hình ML và xây dựng các công cụ phân loại 
+              giúp phân loại dữ liệu một cách chính xác. Các chuyên gia từ nhiều lĩnh vực sử dụng những công cụ phân loại dựa trên Python 
+              để thực hiện các tác vụ phân loại, chẳng hạn như phân loại hình ảnh, văn bản cũng như lưu lượng truy cập mạng, nhận dạng giọng 
+              nói và nhận diện khuôn mặt. Các nhà khoa học dữ liệu cũng sử dụng Python cho deep learning, một kỹ thuật ML nâng cao.</p>
+          <li>Phát triển phần mềm</li>
+            <p>Các nhà phát triển phần mềm thường sử dụng Python cho những tác vụ phát triển và ứng dụng phần mềm khác nhau, chẳng hạn như:</p>
+            <ul>
+              <li>Theo dõi lỗi trong mã của phần mềm</li>
+              <li>Tự động xây dựng phần mềm</li>
+              <li>Đảm nhận quản lý dự án phần mềm</li>
+              <li>Phát triển nguyên mẫu phần mềm</li>
+              <li>Phát triển các ứng dụng máy tính bằng cách sử dụng những thư viện Giao diện đồ họa người dùng (GUI)</li>
+              <li>Phát triển từ các trò chơi văn bản đơn giản cho đến những trò chơi điện tử phức tạp</li>
+            </ul>
+          <li>Tự động hóa kiểm thử phần mềm</li>
+            <p>Kiểm thử phần mềm là quy trình kiểm tra xem kết quả thực tế từ phần mềm có khớp với kết quả mong đợi không 
+              để đảm bảo rằng phần mềm không có lỗi. </p>
+            <ul>
+              <li>Các nhà phát triển sử dụng khung kiểm thử đơn vị Python, chẳng hạn như Unittest, Robot và PyUnit, để kiểm 
+                thử các hàm do họ viết. </li>
+              <li>Các kỹ sư kiểm thử phần mềm sử dụng Python để viết các trường hợp kiểm thử cho nhiều tình huống khác nhau. 
+                Ví dụ: họ sử dụng ngôn ngữ này để kiểm thử giao diện người dùng của một ứng dụng web, nhiều thành phần của phần 
+                mềm và những tính năng mới. </li>
+            </ul>
+            <p>Các nhà phát triển có thể sử dụng một số công cụ để tự động chạy tập lệnh kiểm thử. Những công cụ này có tên gọi 
+              là công cụ Tích hợp liên tục/Triển khai liên tục (CI/CD). Các kỹ sư kiểm thử phần mềm cũng như những nhà phát triển 
+              sử dụng các công cụ CI/CD như Travis CI và Jenkins để tự động hóa quy trình kiểm thử. Công cụ CI/CD tự động chạy các 
+              tập lệnh kiểm thử Python và báo cáo kết quả kiểm thử bất kỳ khi nào nhà phát triển thêm vào những dòng mã mới.</p>
+        </ul>
+      <h3>Python có những đặc điểm gì?</h3>
+        <p>Các đặc điểm sau tạo nên sự độc đáo của ngôn ngữ lập trình Python:</p>
+        <ul>
+          <li>Python là một ngôn ngữ thông dịch</li>
+            <p>Python là một ngôn ngữ thông dịch, điều này nghĩa là ngôn ngữ này trực tiếp chạy từng dòng mã. Nếu có lỗi trong mã chương 
+              trình, nó sẽ ngừng chạy. Do đó, lập trình viên có thể nhanh chóng tìm ra lỗi trong đoạn mã.</p>
+          <li>Python là một ngôn ngữ dễ sử dụng</li>
+            <p>Python sử dụng từ ngữ giống trong tiếng Anh. Không giống như các ngôn ngữ lập trình khác, Python không sử dụng dấu ngoặc ôm. 
+              Thay vào đó, ngôn ngữ này sử dụng thụt đầu dòng. </p>
+          <li>Python là một ngôn ngữ linh hoạt</li>
+            <p>Các lập trình viên không cần phải khai báo loại biến khi viết mã bởi vì Python sẽ xác định chúng vào thời điểm chạy. Vì vậy, 
+              bạn có thể viết các chương trình Python một cách nhanh chóng hơn.</p>
+          <li>Python là một ngôn ngữ cấp cao</li>
+            <p>Python gần gũi với ngôn ngữ con người hơn các ngôn ngữ lập trình khác. Do đó, các lập trình viên không cần phải lo lắng về 
+              những chức năng cơ bản của nó như kiến trúc và quản lý bộ nhớ.</p>
+          <li>Python là một ngôn ngữ lập trình hướng đối tượng</li>
+            <p>Python coi mọi thứ đều là đối tượng, nhưng ngôn ngữ này cũng hỗ trợ các phương thức lập trình khác như lập trình hàm và 
+              lập trình cấu trúc.</p>x
+        </ul>
+      <h3>Thư viện Python là gì?</h3>
+        <p>Thư viện là một tập hợp các mã thường xuyên được sử dụng mà các nhà phát triển có thể bao gồm trong những chương trình Python 
+          của họ để không phải lập trình từ đầu. Theo mặc định, Python đi kèm với Thư viện chuẩn, chứa rất nhiều các hàm có thể tái sử dụng. 
+          Ngoài ra, hơn 137.000 thư viện Python có sẵn cho các ứng dụng khác nhau, bao gồm phát triển web, khoa học dữ liệu và máy học (ML).</p>
+        <p>Thư viện Python nào phổ biến nhất?</p>
+        <ul>
+          <li>Matplotlib</li>
+            <p>Các nhà phát triển sử dụng Matplotlib để hiển thị dữ liệu dưới dạng đồ họa hai và ba chiều (2D và 3D) chất lượng cao. Thư viện 
+              này thường được sử dụng trong các ứng dụng khoa học. Với Matplotlib, bạn có thể trực quan hóa dữ liệu bằng cách hiển thị dữ liệu 
+              dưới dạng các biểu đồ khác nhau, chẳng hạn như biểu đồ cột và biểu đồ đường. Bạn cũng có thể hiển thị nhiều biểu đồ cùng lúc và 
+              các chi tiết đồ họa có thể được di chuyển qua mọi nền tảng.</p>
+          <li>Pandas</li>
+            <p>Pandas cung cấp cấu trúc dữ liệu được tối ưu hóa và linh hoạt mà bạn có thể sử dụng để thao tác với dữ liệu chuỗi thời gian và 
+              dữ liệu có cấu trúc, chẳng hạn như bảng và nhóm. Ví dụ, bạn có thể sử dụng Pandas để đọc, ghi, hợp nhất, lọc và nhóm dữ liệu. 
+              Thư viện này được nhiều người sử dụng cho các tác vụ khoa học dữ liệu, phân tích dữ liệu và ML.</p>
+          <li>NumPy</li>
+            <p>NumPy là một thư viện phổ biến mà các nhà phát triển sử dụng để dễ dàng tạo và quản lý nhóm, thao tác với các hình dạng logic 
+              và thực hiện các phép toán đại số tuyến tính. NumPy hỗ trợ tích hợp với nhiều ngôn ngữ như C và C ++.</p>
+          <li>Requests</li>
+            <p>Thư viện Requests cung cấp nhiều hàm hữu ích cần thiết để phát triển web. Bạn có thể sử dụng thư viện này để gửi các yêu cầu 
+              HTTP, bổ sung tiêu đề, thêm tham số URL, bổ sung dữ liệu và thực hiện nhiều tác vụ khác khi giao tiếp với các ứng dụng web. </p>
+          <li>OpenCV-Python</li>
+            <p>OpenCV-Python là một thư viện mà các nhà phát triển sử dụng để xử lý hình ảnh cho các ứng dụng thị giác máy tính. Thư viện này 
+              cung cấp nhiều hàm cho các tác vụ xử lý hình ảnh như đọc và ghi hình ảnh cùng lúc, xây dựng môi trường 3D từ môi trường 2D cũng 
+              như chụp và phân tích hình ảnh từ video.</p>
+          <li>Keras</li>
+            <p>Keras là thư viện mạng nơ-ron chuyên sâu của Python với khả năng hỗ trợ tuyệt vời cho việc xử lý dữ liệu, trực quan hóa và hơn 
+              thế nữa. Keras hỗ trợ nhiều mạng nơ-ron. Thư viện này có cấu trúc mô-đun mang lại sự linh hoạt cho việc lập trình các ứng dụng 
+              sáng tạo.</p>
+        </ul>
+      <h3>Khung Python là gì?</h3>
+        <p>Khung Python là tập hợp của các gói và mô-đun. Mô-đun là tập hợp của các mã liên quan và gói là tập hợp của các mô-đun. Các nhà 
+          phát triển có thể sử dụng khung Python để xây dựng các ứng dụng Python nhanh hơn vì họ không phải lo lắng về các chi tiết cấp thấp 
+          như cách giao tiếp trong ứng dụng web hoặc cách Python sẽ làm cho chương trình chạy nhanh hơn. Python có hai loại khung: </p>
+        <ul>
+          <li>Khung full-stack bao gồm hầu hết mọi thứ cần thiết để xây dựng một ứng dụng lớn.</li>
+          <li>Khung micro là một khung cơ bản cung cấp các chức năng tối thiểu để xây dựng những ứng dụng Python đơn giản. 
+            Nó cũng cung cấp các tiện ích mở rộng nếu ứng dụng cần các hàm phức tạp hơn.</li>
+        </ul>
+        <p>Các nhà phát triển có thể sử dụng nhiều khung Python để giúp hoạt động phát triển của họ hiệu quả hơn, bao gồm các khung sau:</p>
+        <ul>
+          <li>Django</li>
+            <p>Django là một trong những khung web Python full-stack được sử dụng rộng rãi nhất để phát triển các ứng dụng web trên quy mô lớn. 
+              Khung này cung cấp một số tính năng hữu ích, bao gồm một máy chủ web để phát triển và kiểm thử, một công cụ mẫu để xây dựng giao 
+              diện người dùng của trang web và nhiều cơ chế bảo mật khác.</p>
+          <li>Flask</li>
+            <p>Flask là một khung micro được sử dụng để phát triển các ứng dụng web nhỏ. Các đặc điểm của khung này bao gồm sự hỗ trợ nhiệt 
+              tình từ cộng đồng, tài liệu hữu ích, công cụ mẫu, tính năng kiểm thử đơn vị và máy chủ web được tích hợp sẵn. Nó cũng cung cấp 
+              các tiện ích mở rộng để hỗ trợ xác thực, các lớp ánh xạ cơ sở dữ liệu và bảo mật web.</p>
+          <li>TurboGears</li>
+            <p>TurboGears là một khung được thiết kế để xây dựng các ứng dụng web một cách nhanh chóng và dễ dàng hơn. Sau đây là một số đặc 
+              điểm nổi bật của khung này: </p>
+            <ul>
+              <li>Cấu trúc bảng cơ sở dữ liệu cụ thể</li>
+              <li>Các công cụ tạo và quản lý dự án</li>
+              <li>Một công cụ mẫu để xây dựng cơ sở dữ liệu</li>
+              <li>Một công cụ mẫu để tạo giao diện người dùng</li>
+              <li>Các cơ chế bảo mật web</li>
+            </ul>
+          <li>Apache MXNet</li>
+            <p>Apache MXNet là một khung học sâu nhanh, linh hoạt và có thể điều chỉnh quy mô được các nhà phát triển sử dụng để xây dựng 
+              những nguyên mẫu nghiên cứu và ứng dụng học sâu. Khung này hỗ trợ nhiều ngôn ngữ lập trình, bao gồm Java, C++, R và Perl. 
+              Nó cung cấp một bộ công cụ cũng như thư viện phong phú để hỗ trợ phát triển. Ví dụ: bạn có thể tìm thấy một cuốn sách tương 
+              tác về máy học (ML), bộ công cụ thị giác máy tính và các mô hình học sâu dành cho Xử lý ngôn ngữ tự nhiên (NLP) để xử lý ngôn 
+              ngữ tự nhiên, chẳng hạn như văn bản và lời nói.</p>
+          <li>PyTorch</li>
+            <p>PyTorch là một khung cho ML được xây dựng dựa trên thư viện Torch, một thư viện ML nguồn mở khác.  Các nhà phát triển sử dụng 
+              khung này cho những ứng dụng như NLP, robot và thị giác máy tính, tìm kiếm thông tin có ý nghĩa từ hình ảnh và video. Họ cũng 
+              sử dụng PyTorch để chạy những ứng dụng đó bằng CPU và GPU.</p>
+        </ul>
+    </div>
+    <div id="HTML">
+      <h2>HTML</h2>
+      <h3>HTML là gì?</h3>
+        <p>HTML viết tắt của Hypertext Markup Language là ngôn ngữ lập trình dùng để xây dựng và cấu trúc lại các thành phần có trong Website.<br>
+          HTML tạm dịch là ngôn ngữ đánh dấu siêu văn bản. Người ta thường sử dụng HTML trong việc phân chia các đoạn văn, heading, links, blockquotes,… <br>
+          Một Website thường chứa nhiều trang con và mỗi trang con này lại có một tập tin HTML riêng. Lưu ý, HTML không phải là ngôn ngữ lập trình. 
+          Điều này có nghĩa là nó không thể thực hiện các chức năng “động”. Hiểu một cách đơn giản hơn, cũng tương tự như phần mềm Microsoft Word, 
+          HTML chỉ có tác dụng bố cục và định dạng trang web. HTML khi kết hợp với CSS và JavaScript sẽ trở thành một nền tảng vững chắc cho thế giới mạng.
+          </p>
+      <h3>Lịch sử HTML</h3>
+        <p>
+          HTML được tạo ra bởi Tim Berners-Lee, một nhà vật lý học của trung tâm nghiên cứu CERN ở Thụy Sĩ. Hiện nay, HTML đã trở thành một chuẩn 
+          Internet được tổ chức W3C (World Wide Web Consortium) vận hành và phát triển. Bạn có thể tự tìm kiếm tình trạng mới nhất của HTML tại 
+          bất kỳ thời điểm nào trên Website của W3C.<br>
+          Phiên bản đầu tiên của HTML xuất hiện năm 1991, gồm 18 tag HTML. Phiên bản HTML 4.01 được xuất bản năm 1999. Sau đó, các nhà phát triển 
+          đã thay thế HTML bằng XHTML vào năm 2000.<br>
+          Đến năm 2014, HTML được nâng cấp lên chuẩn HTML5 với nhiều tag được thêm vào markup, mục đích là để xác định rõ nội dung thuộc loại là 
+          gì (ví dụ như: &lt;article&gt;, &lt;header&gt;, &lt;footer&gt;,…).<br>
+          Theo Mozilla Developer Network thì HTML Element Reference hiện nay có khoảng hơn 140 tag. Tuy nhiên một vài tag trong số đó đã bị tạm 
+          ngưng (do không được hỗ trợ bởi các trình duyệt hiện hành).
+        </p>
+      <h3>HTML hoạt động như thế nào?</h3>
+        <p>
+          HTML document có đuôi file dạng .html hoặc htm. Bạn có thể xem chúng bằng các trình duyệt web hiện hành như Google Chrome, Firefox, 
+          Safari,… Nhiệm vụ của trình duyệt là đọc những file HTML này và “biến đổi” chúng thành một dạng nội dung visual trên Internet sao cho 
+          người dùng có thể xem và hiểu được chúng.
+          Thông thường, một Website sẽ có nhiều HTML document (ví dụ: trang chủ, trang blog, trang liên hệ,…) và mỗi trang con như vậy sẽ có một 
+          tệp HTML riêng. Mỗi tài liệu HTML bao gồm 1 bộ tag (hay còn gọi là element). Nó tạo ra một cấu trúc tương tự như cây thư mục với các 
+          heading, section, paragraph,… và một số khối nội dung khác. Hầu hết tất cả các HTML element đều có một tag mở và một tag đóng với cấu 
+          trúc &lt;tag&gt;&lt;/tag&gt;.
+        </p>
+      <h3>Ưu điểm và nhược điểm của HTML là gì?</h3>
+        <p>HTML được sử dụng để tạo bố cục, cấu trúc trang web. Nó có một số ưu điểm sau:</p>
+        <ul>
+          <li>Có nhiều tài nguyên hỗ trợ với cộng đồng người dùng vô cùng lớn</li>
+          <li>Có thể hoạt động mượt mà trên hầu hết mọi trình duyệt hiện nay</li>
+          <li>Học HTML khá đơn giản</li>
+          <li>Các markup sử dụng trong HTML thường ngắn gọn, có độ đồng nhất cao</li>
+          <li>Sử dụng mã nguồn mở, hoàn toàn miễn phí</li>
+          <li>HTML là chuẩn web được vận hành bởi W3C</li>
+          <li>Dễ dàng để tích hợp với các loại ngôn ngữ backend (ví dụ như: PHP, Node.js,…)</li>
+        </ul>
+        <p>Bên cạnh ưu điểm, HTML cũng có các nhược điểm nhất định. Cụ thể như sau:</p>
+        <ul>
+          <li>Chỉ được áp dụng chủ yếu cho web tĩnh. Nếu muốn tạo các tính năng động, lập trình viên phải dùng thêm JavaScript hoặc ngôn ngữ 
+            backend của bên thứ 3 (ví dụ như: PHP)</li>
+          <li>Mỗi trang HTML cần được tạo riêng biệt, ngay có khi có nhiều yếu tố trùng lặp như header, footer.</li>
+          <li>Khó để kiểm soát cách đọc và hiển thị file HTML của trình duyệt (ví dụ, một số trình duyệt cũ không render được tag mới. 
+            Do đó, dù trong HTML document có sử dụng các tag này thì trình duyệt cũng không đọc được).</li>
+          <li>Một vài trình duyệt còn chậm cập nhật để hỗ trợ tính năng mới của HTML</li>
+        </ul>
+      <h3>Vai trò của HTML trong lập trình Web</h3>
+        <p>
+          HTML là một loại ngôn ngữ đánh dấu siêu văn bản. Như tôi đã đề cập ở trên, nó giúp cấu thành các cấu trúc cơ bản của một Website, 
+          làm cho trang Web trở thành một hệ thống hoàn chỉnh. Cụ thể, ngôn ngữ đánh dấu siêu văn bản này giúp bố cục, chia khung sườn các 
+          thành phần trang Web. Đồng thời, nó còn hỗ trợ khai báo các File kỹ thuật số như nhạc, Video, hình ảnh,…<br>
+          Nếu muốn Website có cấu trúc tốt, sử dụng nhiều loại yếu tố trong văn bản, bạn sẽ cần đến HTML. Theo quan điểm của tôi, lập trình 
+          viên có thể lựa chọn ngôn ngữ lập trình riêng cho Website tùy vào mục đích sử dụng. Nhưng HTML thực chất chứa những yếu tố cần thiết 
+          cho mọi thể loại Website. Trang Web của bạn sẽ cần đến ngôn ngữ HTML để hiển thị nội dung cho người truy cập. Điều này đúng dù trang 
+          của bạn xây dựng trên bất kỳ nền tảng nào, giao tiếp với bất kỳ ngôn ngữ lập trình nào để xử lý dữ liệu.<br>
+          Theo tôi được biết, trước khi bắt tay vào thiết kế, làm việc trên một trang Web thì nhà phát triển Web, lập trình viên đều phải học 
+          HTML như một loại ngôn ngữ cơ bản.
+        </p>
+      <h3>Các đặc điểm của HTML</h3>
+        <p>
+          HTML có nhiều thẻ định dạng, do đó bạn có thể trình bày trang Web dễ dàng, hiệu quả với ngôn ngữ đánh dấu siêu văn bản này. 
+          Với tôi, nó là một ngôn ngữ đánh dấu dễ dàng và đơn giản để sử dụng. Chúng ta có thể sử dụng nó để thiết kế trang Web cùng 
+          với văn bản một cách linh hoạt.<br>
+          Một đặc điểm theo tôi khá thú vị là HTML có thể liên kết đến các trang Web khác. Nhờ ngôn ngữ đánh dấu này, bạn có thể thêm 
+          các Video, hình ảnh, âm thanh vào để các Website hấp dẫn, đẹp mắt và dễ tương tác hơn.<br>
+          Đặc biệt, HTML có thể hiển thị trên bất kỳ nền tảng nào khác như Linux, Windows, và Max vì nó là một nền tảng độc lập
+        </p>
+      <h3>Hiểu các thuật ngữ HTML phổ biến</h3>
+        <ul>
+          <li>Elements: Là các chỉ định xác định nội dung, cấu trúc của các đối tượng trong một Website. Tên Element được bao quang, 
+            xác định bằng dấu ngoặc &lt; &gt;. Những yếu tố được sử dụng phổ biến là đoạn văn ( &lt;p&gt;), các cấp độ tiêu đề (từ &lt;h1&gt; 
+            đến &lt;h6&gt;),danh sách tiếp tục bao gồm &lt;a&gt;, &lt;div&gt;, &lt;span&gt;, &lt;strong&gt;, và &lt;em&gt;,…</li>;
+          <li>Tags: Một Element được bao quanh bởi các dấu ngoặc &lt; &gt; sẽ tạo ra các thẻ. Ví dụ thẻ mở là dấu hiệu cho bạn biết sự bắt 
+            đầu của một Element (ví dụ: &lt;div&gt;). Thẻ đóng sẽ đánh dấu vào cuối của một Element, có hình thức là dấu ngặc nhỏ + dấu chéo
+             + dấu ngoặc lớn (ví dụ: &lt;/div&gt;). Ở giữa thẻ mở và thẻ đóng là nội dung của Element. </li>
+          <li>Attributes: Là thuộc tính sử dụng để cung cấp thông tin bổ sung về một Element. Các Attributes bao gồm tên và giá trị, được xác 
+            định sau tên của một thành phần và trong thẻ mở. Attributes có định dạng như sau: tên thuộc tính + dấu bằng + giá trị thuộc tính 
+            được trích dẫn. Ví dụ Element &lt;a&gt; gồm một Attribute href: &lt;a href=”http://shayhowe.com/” &gt; Shay Howe &lt;/a&gt;. Một 
+            số thuộc tính mà tôi thường dùng là Attribute Class, ID, SRC, thuộc tính href,…</li>
+        </ul>
+      <h3>Bố cục HTML </h3>
+        <p>HTML có rất nhiều tag khác nhau. Mỗi thẻ sẽ có những tác dụng nhất định, giúp xây dựng nên một cấu trúc hoàn chỉnh cho Website.<br>
+          Để biết bố cục HTML của một trang web như thế nào, mời bạn xem ví dụ code bên dưới:</p>
+        <code>
+          <!DOCTYPE html>
+          <html>
+            <head>
+              <title>Page Title</title>
+            </head>
+            <body>
+              <h1>The Main Heading</h1>
+              <h2>A catchy subheading</h2>
+              <p>First paragraph</p>
+            </body>
+          </html>
+        </code>
+        Trong đó:
+        <ul>
+          <li>&lt;!DOCTYPE html&gt;: khai báo kiểu dữ liệu hiển thị</li>
+          <li>&lt;html&gt; và &lt;/html&gt;: cặp thẻ bắt buộc, element cấp cao nhất, có nhiệm vụ đóng gói tất cả nội dung của trang HTML</li>
+          <li>&lt;head&gt; và &lt;/head&gt;: khai báo các thông tin meta của trang web như: tiêu đề trang, charset</li>
+          <li>&lt;title&gt; và &lt;/title&gt;: cặp thẻ nằm bên trong thẻ &lt;head&gt;, dùng để khai báo tiêu đề của trang</li>
+          <li>&lt;body&gt; và &lt;/body&gt;: cặp thẻ dùng để đóng gói tất cả các nội dung sẽ hiển thị trên trang</li>
+          <li>&lt;h1&gt;&lt;/h1&gt;, &lt;h2&gt;&lt;/h2&gt;: định dạng dữ liệu dạng heading. Thông thường có 6 cấp độ heading trong HTML, 
+            trải dài từ &lt;h1&gt; tới &lt;h6&gt;. <br>
+            Trong đó, &lt;h1&gt; là cấp độ heading cao nhất và &lt;h6&gt; là cấp độ heading thấp nhất.</li>
+          <li>&lt;p&gt; và &lt;/p&gt;: cặp thẻ chứa các đoạn văn bản của trang web</li>
+        </ul>
+      <h3>HTML, CSS, và JavaScript liên quan với nhau như thế nào?</h3> 
+        <p>Tuy HTML được đánh giá là khá mạnh nhưng nó vẫn chưa đủ khả năng xây dựng một trang web chuyên nghiệp. 
+          Do đó, các lập trình viên thường chỉ sử dụng HTML để thêm các element dạng văn bản và xây dựng giao diện cấu trúc cho phần nội 
+          dung trên trang. Sau đó, họ dùng 2 ngôn ngữ frontend là CSS và Javascript để tạo nên một Website hoàn chỉnh.<br>
+          Với khả năng tương thích cao, HTML khi kết hợp cùng CSS và Javascript sẽ có thể giúp tăng trải nghiệm cho người dùng và thiết 
+          lập được các chức năng cao cấp khác. Cụ thể:</p>
+        <ul>
+          <li>CSS đóng vai trò chính trong việc thiết kế, xây dựng background, màu sắc và các hiệu ứng cho trang</li>
+          <li>Javascript có nhiệm vụ giúp tạo ra các chức năng động như: thư viện hình ảnh, slider, pop-up,…</li>
+        </ul>
+    </div>
+    <div id="javascript">
+      <h2>Javascript</h2>
+        <p>JavaScript là ngôn ngữ lập trình phổ biến nhất trên thế giới trong suốt 20 năm qua. Nó cũng là một trong số 3 ngôn ngữ chính của lập 
+          trình web:</p>
+        <ol>
+          <li>HTML: Giúp bạn thêm nội dung cho trang web.</li>
+          <li>CSS: Định dạng thiết kế, bố cục, phong cách, canh lề của trang web.</li>
+          <li>JavaScript: Cải thiện cách hoạt động của trang web.</li>
+        </ol>
+        <h3>JavaScript dùng để làm gì?</h3>
+          <p>
+            Trước đây, các trang web có dạng tĩnh, tương tự như các trang trong một cuốn sách. Một trang tĩnh chủ yếu hiển thị thông tin theo một 
+            bố cục cố định và không làm được mọi thứ mà chúng ta mong đợi như ở một trang web hiện đại. JavaScript dần được biết đến như một công 
+            nghệ phía trình duyệt để làm cho các ứng dụng web linh hoạt hơn. Sử dụng JavaScript, các trình duyệt có thể phản hồi tương tác của 
+            người dùng và thay đổi bố cục của nội dung trên trang web.<br>
+            Khi ngôn ngữ này phát triển hoàn thiện, các nhà phát triển JavaScript đã thiết lập các thư viện, khung và cách thức lập trình cũng như 
+            bắt đầu sử dụng ngôn ngữ này bên ngoài trình duyệt web. Ngày nay, bạn có thể sử dụng JavaScript để thực hiện hoạt động phát triển cả ở 
+            phía máy khách và máy chủ. Dưới đây là một số trường hợp sử dụng phổ biến:<br>
+            Trước đây, các trang web có dạng tĩnh, tương tự như các trang trong một cuốn sách. Một trang tĩnh chủ yếu hiển thị thông tin theo một 
+            bố cục cố định và không làm được mọi thứ mà chúng ta mong đợi như ở một trang web hiện đại. JavaScript dần được biết đến như một công 
+            nghệ phía trình duyệt để làm cho các ứng dụng web linh hoạt hơn. Sử dụng JavaScript, các trình duyệt có thể phản hồi tương tác của 
+            người dùng và thay đổi bố cục của nội dung trên trang web.<br>
+            Khi ngôn ngữ này phát triển hoàn thiện, các nhà phát triển JavaScript đã thiết lập các thư viện, khung và cách thức lập trình cũng 
+            như bắt đầu sử dụng ngôn ngữ này bên ngoài trình duyệt web. Ngày nay, bạn có thể sử dụng JavaScript để thực hiện hoạt động phát 
+            triển cả ở phía máy khách và máy chủ.
+          </p>
+        <h3>JavaScript hoạt động như thế nào?</h3>
+          <p>Tất cả các ngôn ngữ lập trình đều hoạt động bằng cách dịch cú pháp giống tiếng Anh thành mã máy, hệ điều hành sau đó sẽ chạy mã này. 
+            JavaScript được phân loại khái quát là một ngôn ngữ viết tập lệnh hoặc một ngôn ngữ diễn giải. Mã JavaScript được diễn giải, tức là được 
+            công cụ JavaScript dịch trực tiếp sang mã ngôn ngữ máy cơ bản. Với các ngôn ngữ lập trình khác, trình biên dịch sẽ biên dịch toàn bộ 
+            mã thành mã máy trong một bước riêng. Như vậy, tất cả các ngôn ngữ viết tập lệnh đều là ngôn ngữ lập trình, nhưng không phải tất cả 
+            các ngôn ngữ lập trình đều là ngôn ngữ viết tập lệnh.</p>
+          <h4>Công cụ JavaScript</h4>
+            <p>Công cụ JavaScript là một chương trình máy tính chạy mã JavaScript. Các công cụ JavaScript đầu tiên chỉ là bộ diễn giải, nhưng 
+              tất cả các công cụ hiện đại đều sử dụng biên dịch tại chỗ hoặc thời gian chạy để cải thiện hiệu suất.</p>
+          <h4>JavaScript phía máy khách</h4>
+              <p>JavaScript phía máy khách đề cập đến cách thức JavaScript hoạt động trong trình duyệt của bạn. Trong trường hợp này, công cụ 
+                JavaScript nằm trong mã trình duyệt. Tất cả các trình duyệt web phổ biến đều có các công cụ JavaScript tích hợp riêng.<br>
+                Các nhà phát triển ứng dụng web viết mã JavaScript với các hàm khác nhau được liên kết với nhiều loại sự kiện, chẳng hạn như 
+                nhấp chuột hoặc khi di chuột đến. Các hàm này thực hiện các thay đổi đối với HTML và CSS.<br>
+                Sau đây là tổng quan về cách thức hoạt động của JavaScript phía máy khách:
+                </p>
+              <ol>
+                <li>Trình duyệt tải một trang web khi bạn truy cập trang đó.</li>
+                <li>Trong khi tải, trình duyệt chuyển đổi trang và tất cả các phần tử của trang, chẳng hạn như các nút, nhãn và hộp thả xuống, 
+                  thành một cấu trúc dữ liệu được gọi là Mô hình đối tượng tài liệu (DOM).</li>
+                <li>Công cụ JavaScript của trình duyệt chuyển đổi mã JavaScript thành mã bytecode. Mã này đóng vai trò là trung gian giữa cú 
+                  pháp JavaScript và máy.</li>
+                <li>Các sự kiện khác nhau, chẳng hạn như nhấp vào nút, sẽ kích hoạt việc thực thi khối mã JavaScript được liên kết. Sau đó, 
+                  công cụ này sẽ diễn giải bytecode và thực hiện các thay đổi đối với DOM.</li>
+                <li>Trình duyệt hiển thị DOM mới.</li>
+              </ol>
+          <h4>JavaScript phía máy chủ</h4>
+              <p>JavaScript phía máy chủ đề cập đến việc sử dụng ngôn ngữ viết mã trong logic máy chủ back-end. 
+                Trong trường hợp này, công cụ JavaScript nằm trực tiếp trên máy chủ. Hàm JavaScript phía máy chủ có thể truy cập cơ sở dữ liệu, 
+                thực hiện các phép toán logic khác nhau và phản hồi nhiều loại sự kiện do hệ điều hành của máy chủ kích hoạt. Ưu điểm chính của 
+                viết tập lệnh phía máy chủ là bạn có khả năng tùy chỉnh linh hoạt phản hồi của trang web dựa trên yêu cầu và quyền truy cập của 
+                mình cũng như theo yêu cầu thông tin từ trang web.</p>
+          <h4>JavaScript phía máy chủ</h4>
+            <p>Từ linh hoạt đúng với cả JavaScript phía máy khách và phía máy chủ. Hành vi linh hoạt là khả năng cập nhật phần hiển thị của 
+              trang web để tạo nội dung mới theo yêu cầu. Sự khác biệt giữa JavaScript phía máy khách và phía máy chủ nằm ở cách chúng tạo ra 
+              nội dung mới. Mã phía máy chủ tạo nội dung mới một cách linh hoạt bằng cách sử dụng logic ứng dụng và sửa đổi dữ liệu từ cơ sở 
+              dữ liệu. Mặt khác, JavaScript phía máy khách tạo nội dung mới một cách linh hoạt bên trong trình duyệt thông qua sử dụng logic 
+              giao diện người dùng và sửa đổi nội dung trang web đã có trên máy khách. Ý nghĩa hơi khác biệt ở hai ngữ cảnh nhưng có sự liên 
+              quan đến nhau và cả hai cách tiếp cận này đều cùng nhau nâng cao trải nghiệm người dùng.<br>
+              Ngoài việc triển khai các tính năng linh hoạt, một điểm khác biệt nữa giữa hai cách sử dụng JavaScript là ở tài nguyên mà mã có 
+              thể truy cập. Về phía máy khách, trình duyệt kiểm soát môi trường thời gian chạy của JavaScript. Mã chỉ có thể truy cập những tài 
+              nguyên mà trình duyệt cho phép truy cập. Ví dụ: mã không thể ghi nội dung vào ổ cứng của bạn trừ khi bạn nhấp vào nút tải xuống. 
+              Mặt khác, các hàm phía máy chủ có thể truy cập tất cả các tài nguyên của máy chủ khi cần thiết.
+              </p>
+        <h3>Thư viện JavaScript là gì?</h3>
+          <p>Thư viện JavaScript là tập hợp các đoạn mã viết sẵn mà các nhà phát triển web có thể tái sử dụng để thực hiện các hàm JavaScript 
+            chuẩn. Mã thư viện JavaScript được gắn vào phần còn lại của mã dự án khi cần thiết. Nếu bạn coi mã ứng dụng JavaScript như một ngôi 
+            nhà thì các thư viện JavaScript sẽ giống như đồ nội thất làm sẵn mà các nhà phát triển có thể sử dụng để cải thiện chức năng của ngôi 
+            nhà.Sau đây là một số cách sử dụng thư viện JavaScript phổ biến:</p>
+          <h4>Trực quan hóa dữ liệu</h4>
+            <p>Trực quan hóa dữ liệu có ý nghĩa rất quan trọng để người dùng xem số liệu thống kê, chẳng hạn như trong bảng điều khiển quản trị, 
+              bảng thông tin và chỉ số hiệu suất.<br>
+              Các thư viện như Chart.js, ApexCharts và Algolia Places có các hàm tích hợp mà bạn có thể sử dụng để tạo các ứng dụng web hiển thị 
+              dữ liệu ở dạng biểu đồ và bản đồ.</p>
+          <h4>Điều chỉnh DOM</h4>
+            <p>Bạn có thể sử dụng các thư viện như jQuery và Umbrella JS để dễ dàng phát triển web vì những thư viện này cung cấp mã cho các chức 
+              năng tiêu chuẩn của trang web như hoạt ảnh menu, thư viện hình ảnh, nút, cửa sổ bật lên làm tối nền, v.v.</p>
+          <h4>Biểu mẫu</h4>
+            <p>Tất cả các công việc phát triển web đều sử dụng các biểu mẫu để khách truy cập trang web liên hệ với ai đó, đặt mua sản phẩm và 
+              đăng ký tham gia các sự kiện. Một số thư viện JavaScript, chẳng hạn như wForms, LiveValidation, Validanguage và qForms, đơn giản 
+              hóa các chức năng biểu mẫu, bao gồm xác thực biểu mẫu, bố cục, điều kiện và chuyển đổi.</p>
+          <h4>Các hàm toán học và văn bản</h4>
+            <p>Nhiều ứng dụng web phải giải các phương trình toán học và xử lý ngày, giờ cũng như văn bản. Thay vì gửi tất cả các yêu cầu đó 
+              đến máy chủ, việc xử lý một số yêu cầu ở phía máy khách sẽ hiệu quả hơn. Các nhà phát triển web thực hiện việc này bằng cách sử 
+              dụng các thư viện JavaScript như Date.js, Sylvester và JavaScript URL Library</p>
+        <h3>Khung JavaScript là gì?</h3>   
+          <p>Giống như các thư viện JavaScript, các khung JavaScript là một tập hợp các đoạn mã viết sẵn thực hiện các chức năng khác nhau và 
+            có thể được tái sử dụng. Tuy nhiên, trong khi các thư viện JavaScript là một công cụ chuyên biệt để sử dụng theo nhu cầu thì các 
+            khung JavaScript là một bộ công cụ hoàn chỉnh giúp định hình và tổ chức bất kỳ ứng dụng web nào. Nếu bạn coi mã ứng dụng JavaScript 
+            như một ngôi nhà thì khung JavaScript là kế hoạch chi tiết được sử dụng để xây dựng ngôi nhà đó.Dưới đây là một số ví dụ về trường 
+            hợp cần sử dụng các khung JavaScript:</p>
+          <h4>Phát triển ứng dụng web và di động</h4>
+            <p>AngularJS là một khung giúp đơn giản hóa việc phát triển và kiểm thử các ứng dụng web, chẳng hạn như ứng dụng thương mại điện tử, 
+              ứng dụng thời gian thực và ứng dụng video. React Native là một khung khác hỗ trợ phát triển ứng dụng di động dành cho iOS và Android 
+              được kết xuất trên chính nền tảng đó.</p>
+          <h4>Phát triển web có khả năng tương thích</h4>
+            <p>Các trang web có khả năng tương thích mang lại trải nghiệm người dùng nhất quán trên mọi thiết bị. Ví dụ: màn hình điện thoại di 
+              động và máy tính bảng nhỏ hơn màn hình máy tính để bàn và máy tính xách tay. Bạn muốn trang web hiển thị và trình bày dữ liệu chính 
+              xác ngay cả trên màn hình nhỏ hơn, chẳng hạn như không cắt bỏ phần cuối của trang web. Sử dụng các khung như Bootstrap và Ember.js, 
+              các nhà phát triển có thể hưởng lợi từ thiết kế có khả năng tương thích và dễ dàng tùy chỉnh diện mạo của trang web trên nhiều nền 
+              tảng khác nhau.</p>
+          <h4>Phát triển ứng dụng phía máy chủ</h4>
+            <p>Node.js là một khung JavaScript nguồn mở phía máy chủ chạy mã JavaScript bên ngoài trình duyệt. Các nhà phát triển sử dụng khung 
+              này để xây dựng các ứng dụng phía máy chủ dựa trên mạng hoạt động nhanh chóng, đáng tin cậy và có khả năng mở rộng. Khung này có 
+              thể xử lý các yêu cầu và luồng dữ liệu HTTP, hỗ trợ hệ thống tệp và quản lý đồng thời nhiều quy trình backend.</p>
+    </div>
+
+    <div id="CSS">
+      <h2>CSS</h2>
+      <h3>CSS là gì?</h3>
+        <p>CSS là chữ viết tắt của Cascading Style Sheets, nó là một ngôn ngữ được sử dụng để tìm và định dạng lại các phần tử được tạo ra bởi 
+          các ngôn ngữ đánh dấu (HTML). Nói ngắn gọn hơn là ngôn ngữ tạo phong cách cho trang web. Bạn có thể hiểu đơn giản rằng, nếu HTML đóng 
+          vai trò định dạng các phần tử trên website như việc tạo ra các đoạn văn bản, các tiêu đề, bảng,…thì CSS sẽ giúp chúng ta có thể thêm 
+          style vào các phần tử HTML đó như đổi bố cục, màu sắc trang, đổi màu chữ, font chữ, thay đổi cấu trúc…</p>
+        <p>CSS được phát triển bởi W3C (World Wide Web Consortium) vào năm 1996, vì HTML không được thiết kế để gắn tag để giúp định dạng trang web.</p>
+        <p>Phương thức hoạt động của CSS là nó sẽ tìm dựa vào các vùng chọn, vùng chọn có thể là tên một thẻ HTML, tên một ID, class hay nhiều kiểu
+          khác. Sau đó là nó sẽ áp dụng các thuộc tính cần thay đổi lên vùng chọn đó.</p>
+        <p>Mối tương quan giữa HTML và CSS rất mật thiết. HTML là ngôn ngữ markup (nền tảng của site) và CSS định hình phong cách (tất cả những gì 
+          tạo nên giao diện website), chúng là không thể tách rời.</p>
+      <h3>Bố cục và cấu trúc một đoạn CSS</h3>
+        <h4>Bố cục của một đoạn CSS</h4>
+          <p>Bố cục CSS thường chủ yếu dựa vào hình hộp và mỗi hộp đều chiếm những khoảng trống trên trang của bạn với các thuộc tính như:</p>
+          <ul>
+            <li>Padding: Gồm không gian xung quanh nội dung</li>
+            <li>Border: Là đường liền nằm ngay bên ngoài phần đệm.</li>
+            <li>Margin: Là khoảng cách xung quanh bên ngoài của phần tử.</li>
+          </ul>
+        <h4>Cấu trúc của một đoạn CSS</h4>
+          <p>Một đoạn CSS bao gồm các phần như thế này:</p>
+          <p class="code">vùng chọn {    thuộc tính : giá trị;    thuộc tính: giá trị;    ..... }</p>
+          <p>Nghĩa là nó sẽ được khai báo bằng vùng chọn, sau đó các thuộc tính và giá trị sẽ nằm bên trong cặp dấu ngoặc nhọn {}. 
+            Mỗi thuộc tính sẽ luôn có một giá trị riêng, giá trị có thể là dạng số, hoặc các tên giá trị trong danh sách có sẵn của CSS. 
+            Phần giá trị và thuộc tính phải được cách nhau bằng dấu hai chấm, và mỗi một dòng khai báo thuộc tính sẽ luôn có dấu chấm phẩy 
+            ở cuối. Một vùng chọn có thể sử dụng không giới hạn thuộc tính.</p>
+          <p>Định nghĩa của các phần này như sau: </p>
+          <ul>
+            <li>Bộ chọn (Selector): là mẫu để chọn phần tử HTML mà bạn muốn định nghĩa phong cách. Các selector được áp dụng cho các trường hợp sau:</li>
+              <ul>
+                <li>Tất cả phần tử theo một dạng cụ thể nào đó, ví dụ phần tử tiêu đề h1.</li>
+                <li>Thuộc tính id và class của các phần tử.</li>
+                <li>Các phần tử dựa vào mối liên quan với các phần tử khác trong cây phân cấp tài liệu.</li>
+              </ul>       
+            <li>Khai báo (Declaration): Khối khai báo chứa một hoặc nhiều khai báo, phân tách với nhau bằng các dấu chấm phẩy. Mỗi khai báo gồm 
+              tên và giá trị đặc tính CSS, phân tách bằng dấu phẩy. Khai báo CSS luôn kết thúc bằng dấu chấm phẩy, khối khai báo nằm trong các 
+              dấu ngoặc móc. Trong ví dụ dưới đây, các phần tử &lt;p&gt; sẽ được căn giữa, chữ màu đỏ.</li>
+              <p class="code"> p {   color: red;   text-align: center; }</p>
+            <li>Thuộc tính (Properties): Những cách mà bạn có thể tạo kiểu cho một phần tử HTML. (Với trường hợp này thì color được xem là một 
+              trong những  thuộc tính của phần tử p). Chính vì vậy, với CSS thì bạn chỉ cần lựa chọn thuộc tính mà chính bạn muốn tác động nhất 
+              trong bộ quy tắc của mình.</li>
+            <li>Giá trị thuộc tính: Ở bên phải của thuộc tính sau dấu hai chấm(:), chúng ta sẽ sở hữu giá trị thuộc tính mà việc lựa chọn trong 
+              số đó sẽ xuất hiện nhiều lần để có thể cho một thuộc tính cụ thể nào đó.</li>
+            <p>HTML được dùng để thêm nội dung và mô tả ý nghĩa của từng nội dung sử dụng các thẻ, tuy nhiên nó không quy định cách thức hiển 
+              thị các nội dung trên trang như thế nào.<br>
+              Ngược lại với HTML, CSS không được sử dụng để thêm nội dung hay mô tả ý nghĩa của nội dung trên trang. CSS được sử dụng để thiết 
+              lập cách trình bày hay hiển thị của nội dung trên trang web.</p> 
+          </ul>
+      <h3>Tại sao sử dụng CSS?</h3>
+      <ol>
+        <li>Giải quyết một vấn đề lớn</li>
+          <p>Trước khi có CSS, các thẻ như phông chữ, màu sắc, kiểu nền, các sắp xếp phần tử, đường viền và kích thước phải được lặp lại trên 
+            mọi trang web. Đây là một quá trình rất dài tốn thời gian và công sức. Ví dụ: Nếu bạn đang phát triển một trang web lớn nơi phông 
+            chữ và thông tin màu được thêm vào mỗi trang, nó sẽ trở thành một quá trình dài và tốn kém. CSS đã được tạo ra để giải quyết vấn 
+            đề này. Đó là một khuyến cáo của W3C.<br>
+            Nhờ CSS mà source code của trang Web sẽ được tổ chức gọn gàng hơn, trật tự hơn. Nội dung trang web sẽ được tách bạch hơn trong việc 
+            định dạng hiển thị. Từ đó, quá trình cập nhập nội dung sẽ dễ dàng hơn và có thể hạn chế tối thiểu làm rối cho mã HTML.
+            </p>
+        <li>Tiết kiệm rất nhiều thời gian</li>
+          <p>Trước khi có CSS, các thẻ như phông chữ, màu sắc, kiểu nền, các sắp xếp phần tử, đường viền và kích thước phải được lặp lại trên 
+            mọi trang web. Đây là một quá trình rất dài tốn thời gian và công sức. Ví dụ: Nếu bạn đang phát triển một trang web lớn nơi phông 
+            chữ và thông tin màu được thêm vào mỗi trang, nó sẽ trở thành một quá trình dài và tốn kém. CSS đã được tạo ra để giải quyết vấn 
+            đề này. Đó là một khuyến cáo của W3C. <br>
+            Nhờ CSS mà source code của trang Web sẽ được tổ chức gọn gàng hơn, trật tự hơn. Nội dung trang web sẽ được tách bạch hơn trong 
+            việc định dạng hiển thị. Từ đó, quá trình cập nhập nội dung sẽ dễ dàng hơn và có thể hạn chế tối thiểu làm rối cho mã HTML.
+            </p>
+        <li>Cung cấp thêm các thuộc tính</li>
+          <p>Trước khi có CSS, các thẻ như phông chữ, màu sắc, kiểu nền, các sắp xếp phần tử, đường viền và kích thước phải được lặp lại trên 
+            mọi trang web. Đây là một quá trình rất dài tốn thời gian và công sức. Ví dụ: Nếu bạn đang phát triển một trang web lớn nơi phông 
+            chữ và thông tin màu được thêm vào mỗi trang, nó sẽ trở thành một quá trình dài và tốn kém. CSS đã được tạo ra để giải quyết vấn đề 
+            này. Đó là một khuyến cáo của W3C.<br>
+            Nhờ CSS mà source code của trang Web sẽ được tổ chức gọn gàng hơn, trật tự hơn. Nội dung trang web sẽ được tách bạch hơn trong việc 
+            định dạng hiển thị. Từ đó, quá trình cập nhập nội dung sẽ dễ dàng hơn và có thể hạn chế tối thiểu làm rối cho mã HTML.
+            </p>
+      </ol>
+      <h3>Các phiên bản của CSS</h3>
+        <p>CSS được xuất hiện lần đầu tiên vào ngày 10/10/1994 bởi Håkon Wium Lie. Bắt đầu đó, các phiên bản của CSS dần được hình thành qua 
+          nhiều giai đoạn. Từ lúc xuất hiện đến nay, CSS đã có nhiều phiên bản khác nhau. Các phiên bản mới sẽ giúp vá các lỗi của phiên bản 
+          cũ và mang đến nhiều cải tiến hơn.</p>
+        <h4>Phiên bản 1</h4>
+          <p>Với phiên bản đầu tiên CSS có những đặc điểm cụ thể như: thuộc tính font chữ, màu văn bản, hình nền, các thuộc tính văn bản, căn 
+            lề, định vị cho các yếu tố, nhận dạng duy nhất và phân loại chung các nhóm thuộc tính.</p>
+        <h4>Phiên bản 2</h4>
+          <p>CSS phiên bản 2 được W3C phát triển vào tháng 5 năm 1998. Với những cải tiến từ phiên bản CSS đầu tiên và mang đến những cải 
+            tiến mới như định vị tuyệt đối, tương đối và cố định các yếu tố chỉ mục z. Khái niệm về các loại phương tiện, hỗ trợ cho các 
+            biểu định kiểu âm thanh và văn bản hai chiều. Xuất hiện các kiểu font chữ mới để định dạng văn bản.</p>
+          <h5>CSS 2.1</h5>
+            <p>Ngoài ra, sau phiên bản 2 còn có một sự nâng cấp khác là CSS 2.1 được release vào tháng 4 năm 2011. Nhằm mục đích sửa lỗi 
+              và loại bỏ những tính năng kém hoặc không tương thích cho người dùng.</p>
+          <h5>CSS3</h5>
+            <p>CSS3 là phiên bản thay thế cho CSS2 với sự thay đổi đáng chú ý là module. Các module có khả năng mở rộng các tính năng 
+              được xác định trong CSS2. Nhằm duy trì khả năng tương thích ngược.<br>
+              Đặc biệt, CSS3 mang đến các bộ chọn (selector) và thuộc tính (properties) mới cho phép linh hoạt hơn với bố cục và trình 
+              bày trang. Nhờ đó, người lập trình có thể tạo ra các hiệu ứng hình ảnh mà không cần tạo ra hình ảnh trước đó.
+              </p>
+          <h5>CSS 4</h5>
+            <p>CSS 4 là phiên bản kế thừa CSS 3 hiện vẫn đang được cập nhật, phát triển và được dự đoán sẽ có rất nhiều phương thức mới 
+              được thêm vào như: Mutability, Hyperlink…</p>
+      <h3>Cách nhúng CSS vào website</h3>  
+        <p>Để CSS có thể thực thi trên website hoặc HTML Documents thì phải tiến hành nhúng CSS vào website. Nếu không, các định dạng CSS 
+          sẽ không thực thi trên HTML. Có 3 cách nhúng CSS vào website:</p>
+        <ul>
+          <li>Inline CSS: Nhúng trực tiếp vào tài liệu HTML thông qua cặp thẻ &lt;style&gt; &lt;style&gt;.</li>
+          <li>Internal CSS: dùng thẻ &lt;style&gt; bên trong thẻ &lt;head&gt; của HTML để tạo ra nơi viết mã CSS.</li>
+          <li>External CSS: Tạo một tập tin .css riêng và nhúng vào tài liệu HTML thông qua cặp thẻ &lt;link&gt;.</li>
+        </ul>
+        <h4>Inline CSS</h4>
+          <p>Đặt thuộc tính style vào thẻ mở của phần tử HTML, giá trị của thuộc tính style là các cặp thuộc tính định dạng CSS. 
+            Mã CSS chỉ tác động nên chính phần tử đó.</p>
+        <h4>Internal CSS</h4>
+          <p>Đặt các cặp thuộc tính định dạng CSS vào bên trong cặp thẻ &lt;style type=”text/css”&gt;&lt;/style&gt;
+            Cặp thẻ &lt;style type=”text/css”&gt;&lt;/style&gt; thì được đặt bên trong cặp thẻ &lt;head&gt;&lt;/head&gt;
+            </p>
+        <h4>External CSS</h4>
+          <p>Với External CSS: Ta đặt các thuộc tính định dạng vào bên trong tập tin CSS. Đây là một tập tin hoàn toàn độc lập so 
+            với file (File này thường được đặt phần mở rộng là .css) sau đó dùng thẻ link &lt;link rel=”stylesheet” type=”text/css” href=”đường 
+            dẫn đến tập tin CSS”&gt; đặt ở phần head (cặp thẻ &lt;head&gt;&lt;/head&gt; của các tập tin HTML) để có thể thực hiện nhúng tập tin CSS vào 
+            trang web.</p>
+    </div>
+  </div>
+</body>
+
+<footer class="footer-20192">
+    <div class="site-section">
+      <div class="container">
+        <div class="row">
+
+          <div class="col-sm">
+            <a href="/main" class="footer-logo">Trang chủ</a>
+            <p class="copyright">
+              <small>&copy; 2023</small>
+            </p>
+            <div class="col-lienhe">
+              <h3>Thông tin liên hệ</h3>
+              <ul class="list-contact">
+                <li><i class="fa-solid fa-phone"></i> 0342 938 651</li>
+                <li><iconify-icon icon="arcticons:zalo"></iconify-icon> 0342 938 651</i></li>
+                <li><i class="fa-solid fa-envelope"></i> khacquyettkd@gmail.com</li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-sm">
+            <h3>Quá trình hoàn thiện</h3>
+            <ul class="list-unstyled links">
+              <li><a href="/templates/hardware.html">Phần cứng</a></li>
+              <li><a href="/templates/software.html">Phần mềm</a></li>
+            </ul>
+          </div>
+          <div class="col-sm">
+            <h3>Về đồ án này</h3>
+            <ul class="list-unstyled links">
+              <li><a href="/templates/tonghop.html">Mục đích</a></li>
+              <li><a href="/templates/tonghop.html#Khatvong">Khát vọng</a></li>
+              <li><a href="/templates/tonghop.html#Ketqua">Kết quả</a></li>
+            </ul>
+          </div>
+          <div class="col-sm">
+            <h3>Thông tin thêm</h3>
+            <ul class="list-unstyled links">
+              <li><a href="/templates/info.html">Sinh viên &amp; thông tin khác</a></li>
+              <li><a href="/templates/this_product.html">Sản phẩm</a></li>
+            </ul>
+          </div>
+          <div class="col-md-3">
+            <h3>Follow us</h3>
+            <ul class="list-unstyled social">
+              <li><a href="https://www.facebook.com/khacquyettkd/"><i class="fa-brands fa-facebook"></i></a></i></li>
+              <li><a href="//www.tiktok.com/@quyettrankhac"><i class="fa-brands fa-tiktok"></i></a></i></li>
+              <li><a><i class="fa-brands fa-linkedin"></i></a></li>
+            </ul>
+          </div>
+        
+          
+        </div>
+      </div>
+    </div>
+  </footer>
+
+</html>

@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- icon libaray -->
+    <script src="https://kit.fontawesome.com/96bfdff5ee.js" crossorigin="anonymous"></script>
+    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.1.3/socket.io.js"></script>
+    <title>Trợ giúp</title>
+    <!-- css style -->
+    <link rel="icon" type="image/x-icon" href="../static/Picture/favicon.ico">
+    <link rel="stylesheet" href="../static/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../static/css/footer.css">
+    <link rel="stylesheet" href="../static/css/main.css">
+ <style>
+  #wrapper_main{
+    position: fixed;
+    width: 100%;
+    z-index: 2;
+  }
+  body{
+    background-image: none;
+    background-color: #f3f3f3;
+  }
+  .bookmark{
+    position:fixed;
+    float: left;
+    height: 70%;
+    width: 20%;
+    padding-top: 10%;
+    padding-bottom: 90%;
+    top:-10%;
+    justify-content: center;
+    display:grid;
+    gap:5px;
+    /* overflow-y:scroll; */
+    background-color: rgba(72, 72, 72, 0.2);
+  }
+  .bookmark a{
+    font-weight: bold;
+    font-size: 14px;
+    padding: 2px 1px 1px 5px;
+    /* border: 1px solid rgb(215, 214, 214);  */
+    /* border: 1px solid blue;  */
+    color: black;
+    /* background-color: rgba(93, 93, 174, 0.2);  */
+    border-radius: 10px;
+    height: 30px;
+    }
+  .bookmark a:hover{
+    background-color: rgba(165, 163, 163, 0.8);
+  }
+  .content{
+    top:10%;
+    position: relative;
+    left: 20%;
+    margin-left: 1%;
+    width: 79%;
+  }
+  b{
+    background-color:rgba(112, 189, 108,0.5);
+    padding: 5px;
+    border-radius: 2px;
+  }
+  h1{
+    display: block;
+    overflow: hidden;
+    padding: 14px 24px;
+    font-size: 32px;
+    line-height: 155%;
+    font-weight: 600;
+    text-align: center;
+    background-color: rgb(50, 96, 47);
+    color: #fff;
+  }
+  h2{
+    display: block;
+    overflow: hidden;
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 155%;
+    padding: 14px 16px;
+    background-color: rgb(112, 189, 108);
+  }
+  p{
+    margin: 0px 20px;
+    text-align: justify;
+  }
+  img{
+    border-radius: 4px;
+  }
+  #img_chrome{
+    max-width: 50px;
+    height: auto;
+  }
+  #img_login, #img_login2, #img_firstMain, #img_st1, #img_st2, #img_st3, #img_st4 
+  ,#img_main,#img_learn, #img_detect, #img_left, #img_right, #img_upper, #img_top, #img_connect
+  {
+    width: 70%;
+    height: auto;
+    margin: 40px auto 0px auto;
+    display: flex;
+  }
+  #img_footer{
+    width: 70%;
+    height: auto;
+    margin: 40px auto 40px auto;
+    display: flex;
+    border: 4px solid red;
+  }
+  #img_st1,#img_st2,#img_st3,#img_st4{
+    border: 1px solid gray;
+  }
+  #img_navAbout{
+    width: 60%;
+    height: auto;
+    margin: 20px auto;
+    display: flex;
+  }
+  figcaption{
+    font-size: 14px;
+    font-style:italic;
+    text-align: center;
+  }
+  .gr1, .gr2{
+    display: block;
+    overflow: hidden;
+    margin-bottom: 16px;
+    background: #fff;
+    border-radius: 8px;
+    font-size: 18px;
+    line-height: 155%;
+  }
+  .Indent{
+    text-indent: 20px;
+  }
+  table{
+    width: 60%;
+    margin: 20px auto;
+    border-collapse: collapse;
+  }
+  th, td {
+      border: 1px solid #dddddd; /* Viền cho các ô */
+      padding: 8px; /* Khoảng cách nội dung từ viền */
+      text-align: center; /* Căn lề văn bản */
+    }
+  .footer-20192{
+    top: 200px;
+  }
+
+ </style>
+</head>
+<body>
+    <div id="wrapper_main">
+        <div id="header_main">
+            <nav class="container">
+                <a href="https://vi.wikipedia.org/wiki/Tr%C6%B0%E1%BB%9Dng_%C4%90%E1%BA%A1i_h%E1%BB%8Dc_T%C3%B4n_%C4%90%E1%BB%A9c_Th%E1%BA%AFng" id="logo"><img src="../static/Picture/Logo.png" alt="Logo"></a>
+                <ul id="main-menu">
+                  <li><a href="/main"><i class="fa-solid fa-house"></i></a></li>
+                  <li><a href="/templates/learn.html">Bài học <i class="fa-solid fa-book-open"></i></a>
+                      <!-- <ul class="sub-menu">
+                          <li><a href="">Bài 1</a></li>
+                          <li><a href="">Bài 2</a></li>
+                          <li><a href="">Bài 3</a></li>
+                          <li><a href="">Bài 4</a></li>
+                      </ul> -->
+                  </li>
+                  <li><a href="/templates/detect.html">Nhận diện vật <i class="fa-solid fa-camera"></i></a></li>
+                  <li><a href="/templates/jarvis.html">jarvis <i class="fa-solid fa-microphone-lines"></i></i></a></li>
+                  <li><a href="/templates/help.html">Trợ giúp <i class="fa-solid fa-circle-question"></i></a></li>
+                  <li><a href="/templates/about.html">Về chúng tôi</a></li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+  <div class="bookmark">
+    <b><i class="fa-solid fa-bookmark"></i> Bookmark Bar</b>
+    <a class="NoIndent" href="#section1"><i class="fa-solid fa-microchip"></i> Cách sử dụng máy hiện chữ</a>
+    <a class="Indent" href="#section1.1">  Các phím chức năng</a>
+    <a class="Indent" href="#section1.2">  Cách kết nối với máy tính</a>
+    <a class="NoIndent" href="#section2"><i class="fa-brands fa-uncharted"></i> Cách sử dụng phần mềm</a>
+    <a class="Indent" href="#section2.1">  Cách đăng nhập</a>
+    <a class="Indent" href="#section2.2">  Các thiết lập ban đầu</a>
+    <a class="Indent" href="#section2.3">  Trang bài học</a>
+    <a class="Indent" href="#section2.4">  Trang nhận diện</a>
+    <a class="NoIndent" href="#tableListFunction"><i class="fa-solid fa-wrench"></i> Bảng danh sách nút nhấn và chức năng</a>
+  </div>
+  <div class="content">
+    <div class="gr1">
+      <h1 id="section1">Cách sử dụng máy hiện chữ:</h1>
+      <p>
+        <ol>
+          <li id="section1.1" style="font-weight: bold;">Các phím chức năng
+            <ul>
+              <img src="../static/img guide/SP_upper.jpg" alt="Upper" id="img_upper">
+              <li> Nút 1: Sử dụng để chuyển sang câu trước.</li>
+              <li> Nút 2: Sử dụng để chuyển sang câu sau.</li>
+              <li> Nút 3: Sử dụng để chuyển sang trang "Bài học".</li>
+              <li> Nút 4: Sử dụng để chuyển sang trang "Nhận diện vật thể".</li>
+              <li> Nút 5: Sử dụng để chuyển sang trang "Trợ lý AI".</li>
+              <li> Nút 6: Sử dụng để Bật hoặc Tắt ghi trong các chức năng thu âm giọng nói và Bật tắt camera trong Nhận diện hình ảnh.</li>
+              <li> Nút 7 (sử dụng kết hợp): Nhấn đồng thời cùng nút số 1 hoặc nút số 2 để xem tiếp các ký tự còn phía sau.</li>
+              <li> Nút 8: Sử dụng để nghe lại.</li>
+              <li> Nhấn đồng thời nút số 3 và số 4: Chuyển đến trang màn hình chính.</li>
+              <li> Nhấn đồng thời nút số 5 và số 6: Chuyển đến trang trợ giúp.</li>
+            </ul>
+          </li>
+          <li id="section1.2" style="font-weight: bold;"> Cách kết nối với máy tính
+            <ul>
+              <li> Bật công tắc nguồn và kiểm tra đèn nguồn.</li>
+              <img src="../static/img guide/SP_top.jpg" alt="Top" id="img_top">
+              <li> Sử dụng cáp USB để kết nối với máy tính thông qua cổng UART.</li>
+              <img src="../static/img guide/SP_right.jpg" alt="right" id="img_right">
+              <li> Chọn đúng ổng COM mà bạn đã sử dụng để kết nối và click vào "Connect to COM Port". </li>
+              <img src="../static/img guide/Connect.png" alt="connect" id="img_connect">
+              <li> Sau khi nghe tiếng "ting ting" tức là kết nối đã hoàn thành.</li>
+              <li> Bạn cũng có thể sạc pin và sử dụng nguồn của nó cho các thiết bị sử dụng 5V khác.</li>
+              <img src="../static/img guide/SP_left.jpg" alt="left" id="img_left">
+            </ul>
+          </li>
+
+        </ol>
+      </p>
+    </div>
+    <div class="gr2">
+      <h1 id="section2">Cách sử dụng phần mềm:</h1>
+      <h2 id="section2.1">Cách đăng nhập:</h2>
+      <p>
+        <ol>
+          <li>Mở trình duyệt của bạn, nên sử dụng Chrome để có trải nghiệm tốt nhất <img src="../static/img guide/Chrome.png" alt="chrome" id="img_chrome"></li>
+          <li>Truy cập vào địa chỉ: http://127.0.0.1:5000/ hoặc http://localhost:5000/</li>
+          <li>Sử dụng tài khoản để đăng nhập </li>
+          <figure>
+            <img src="../static/img guide/Login.jpg" alt="login" id="img_login">
+            <figcaption>Trang login</figcaption>
+          </figure>
+          <figure>
+            <img src="../static/img guide/Login2.jpg" alt="login2" id="img_login2">
+            <figcaption>Nhập tài khoản và mật khẩu</figcaption>
+          </figure>
+        </ol>
+      </p>
+      
+      <h2 id="section2.2">Các thiết lập ban đầu:</h2>
+      <p>
+        <ol>
+          <li>Trang bắt đầu sau khi đăng nhập </li>
+          <figure>
+            <img src="../static/img guide/FirstMain.png" alt="firstMain" id="img_firstMain">
+            <figcaption>Thông báo cấp quyền sau khi đăng nhập</figcaption>
+          </figure>
+          <li>Sau khi đăng nhập, trang web yêu cầu phát âm thanh trong nền. 
+            Vì lý do bảo mật và bảo vệ trải nghiệm người dùng, Chrome không cho phép được tự động phát hoặc dẫn trực tiếp đến trang cài 
+            đặt mà người dùng phải thực hiện thủ công (thao tác này chỉ yêu cầu với người dùng mới, những lần sau không cần cài đặt)
+            </li>
+            <p>
+              <figure>
+                <img src="../static/img guide/Setting1.jpg" alt="st1" id="img_st1">
+                <figcaption>Vào trang cài đặt, chọn "Quyền riêng tư và bảo mật"</figcaption>
+              </figure>
+              <figure>
+                <img src="../static/img guide/Setting2.jpg" alt="st2" id="img_st2">
+                <figcaption>Chọn cài đặt trang web</figcaption>
+              </figure>
+              <figure>
+                <img src="../static/img guide/Setting3.jpg" alt="st3" id="img_st3">
+                <figcaption>Chọn đến trang web ...</figcaption>
+              </figure>
+              <figure>
+                <img src="../static/img guide/Setting4.jpg" alt="st4" id="img_st4">
+                <figcaption>Chọn "Cho phép"</figcaption>
+              </figure>
+              
+            </p>
+          <li>
+            Trở về màn hình chính, tại đây người dùng khiếm thị có thể thao tác trực tiếp với giao diện của website bằng các phím trên 
+            máy hiện chữ nổi. Các phím vật lý tương ứng bao gồm:
+            <ul>
+              <li> Nút 1: Sử dụng để chuyển sang câu trước.</li>
+              <li> Nút 2: Sử dụng để chuyển sang câu sau.</li>
+              <li> Nút 3: Sử dụng để chuyển sang trang "Bài học".</li>
+              <li> Nút 4: Sử dụng để chuyển sang trang "Nhận diện vật thể".</li>
+              <li> Nút 5: Sử dụng để chuyển sang trang "Trợ lý AI".</li>
+              <li> Nút 6: Sử dụng để Bật hoặc Tắt ghi trong các chức năng thu âm giọng nói và Bật tắt camera trong Nhận diện hình ảnh.</li>
+              <li> Nút 7 (sử dụng kết hợp): Nhấn đồng thời cùng nút số 1 hoặc nút số 2 để xem tiếp các ký tự còn phía sau.</li>
+              <li> Nút 8: Sử dụng để nghe lại.</li>
+              <li> Nhấn đồng thời nút số 3 và số 4: Chuyển đến trang màn hình chính.</li>
+              <li> Nhấn đồng thời nút số 5 và số 6: Chuyển đến trang trợ giúp.</li>
+            </ul>
+            Tuy nhiên người hướng dẫn cũng có thể trợ giúp người khiếm thị lựa chọn các chức năng “Bài học”, “Nhận diện” hoặc “Trợ giúp” 
+            và các chức năng khác trên thanh điều hướng.
+            <figure>
+              <img src="../static/img guide/Connect.png" alt="main" id="img_main">
+              <figcaption>Trang màn hình chính</figcaption>
+            </figure>
+          </li>
+        </ol>
+      </p>
+    
+      <h2 id="section2.3">Trang bài học</h2>
+        <p>
+          Bạn có thể dùng phím next và back (phím số 2 và số 1) để đi đến bài học mong muốn hoặc dùng chuột click đến trang bởi người hỗ trợ.
+          Phím chức năng:
+          <ul>
+            <li>Nút "Tiếp theo"(Nút nhấn số 2): Chuyển sang từ tiếp theo.</li>
+            <li>Nút "Quay lại" (Nút nhấn số 1): Chuyển sang từ trước đó.</li>
+            <li>Phím <a href="#"><i class="fa-solid fa-play"></i></a> (Nút nhấn số 8): Phát.</li>
+            <li>Khi số lượng ký tự lớn hơn 8 cần nhấn nút &lt (Nhấn đồng thời nút 7 và nút 1) hoặc &gt (Nhấn đồng thời nút 7 và nút 2) để đọc tiếp. </li>
+            <li>Để chuyển bài bằng yêu cầu giọng nói nhấn nút <i id="mic_icon" class="fa-solid fa-microphone-slash" aria-hidden="true" style="color: red;"></i> (Nút số 6)</li>
+            <li> Biểu tượng USB thể hiện tình trạng kết nối: màu xanh- kết nối thành công, màu đen-chưa kết nối</li>
+          </ul>
+          
+          <figure>
+            <img src="../static/img guide/Learn.png" alt="learn" id="img_learn">
+            <figcaption>Trang "Bài học"</figcaption>
+          </figure>
+        </p>
+      <h2 id="section2.4">Trang nhận diện</h2>
+        <p>
+          Sử dụng phím Start/Stop (Nút số 6): để bắt đầu hoặc dừng lại nhận diện.
+          Khi nhận diện thành công sẽ phát ra tiếp “Bíp bíp” và trả lời bằng giọng nói tên của vật.
+          <figure>
+            <img src="../static/img guide/Detect.png" alt="detect" id="img_detect">
+            <figcaption>Trang "Nhận diện"</figcaption>
+          </figure>
+          <p>Mọi thông tin thêm về sản phẩm, các bạn có thể xem ở các danh mục “Về chúng tôi” và các mục khác bên dưới Footer 
+            hoặc có các vấn đề khác, vui lòng liên hệ trực tiếp thông qua số điện thoại, Zalo và Email bên dưới.</p>
+          <img src="../static/img guide/Nav_about.jpg" alt="nav" id="img_navAbout">
+          <img src="../static/img guide/Footer.jpg" alt="footer" id="img_footer">
+        </p>
+        <h2 id="tableListFunction">Bảng danh sách nút nhấn và chức năng</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>STT</th>
+              <th>Nút nhấn</th>
+              <th>Chức năng</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1</td>
+              <td>Nút 1</td>
+              <td>Chuyển sang câu trước</td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td>Nút 2</td>
+              <td>Chuyển sang câu sau</td>
+            </tr>
+            <tr>
+              <td>3</td>
+              <td>Nút 3</td>
+              <td>Chuyển sang trang "Bài học</td>
+            </tr>
+            <tr>
+              <td>4</td>
+              <td>Nút 4</td>
+              <td>Chuyển sang trang "Nhận diện vật thể"</td>
+            </tr>
+            <tr>
+              <td>5</td>
+              <td>Nút 5</td>
+              <td>Chuyển sang trang "Trợ lý AI"</td>
+            </tr>
+            <tr>
+              <td>6</td>
+              <td>Nút 6</td>
+              <td>Bật hoặc Tắt ghi âm/ghi hình</td>
+            </tr>
+            <tr>
+              <td>7</td>
+              <td>Nút 7</td>
+              <td>Nhấn đồng thời cùng nút 1 hoặc nút 2 để xem các ký tự còn lại</td>
+            </tr>
+            <tr>
+              <td>8</td>
+              <td>Nút 8</td>
+              <td>Nghe lại</td>
+            </tr>
+            <tr>
+              <td>9</td>
+              <td>Nút 3 + nút 4</td>
+              <td>Chuyển đến trang màn hình chính</td>
+            </tr>
+            <tr>
+              <td>10</td>
+              <td>Nút 5 + nút 6</td>
+              <td>Chuyển đến trang trợ giúp.</td>
+            </tr>
+          </tbody>
+        </table>
+    </div>
+    
+    <audio id="audio1">
+      <source src="../static/Audio/nav/Trogiup1.mp3" type="audio/mp3">
+    </audio>
+  </div>
+    <script>
+      var socket = io.connect('http://127.0.0.1:5000');
+      var audio = document.getElementById("audio1");
+      socket.on('command', function(data) {
+        console.log('Received data:', data);
+        if(data=="1")
+          audio.currentTime -= 5;
+        if(data=="2")
+          audio.currentTime += 5;
+        if(data=="3")
+          window.location.href = "/templates/learn.html";
+        if(data=="3&4"||data=="4&3")
+          window.location.href = "/main";
+        if(data=="4")
+          window.location.href = "/templates/detect.html";
+        if(data=="5")
+          window.location.href = "/templates/jarvis.html";
+        if(data=="7")
+          togglePlayPause();
+        if(data=="8"){
+          audio.currentTime = 0;
+          audio.play();
+        } 
+      });
+      document.addEventListener("DOMContentLoaded", function() {
+        audio.play();
+      })
+      function togglePlayPause() {
+        if (audio.paused) {
+            audio.play();
+        } else {
+            audio.pause();
+        }}
+    </script>  
+</body>
+
+<footer class="footer-20192">
+    <div class="site-section">
+      <div class="container">
+        <div class="row">
+
+          <div class="col-sm">
+            <a href="/main" class="footer-logo">Trang chủ</a>
+            <p class="copyright">
+              <small>&copy; 2023</small>
+            </p>
+            <div class="col-lienhe">
+              <h3>Thông tin liên hệ</h3>
+              <ul class="list-contact">
+                <li><i class="fa-solid fa-phone"></i> 0342 938 651</li>
+                <li><iconify-icon icon="arcticons:zalo"></iconify-icon> 0342 938 651</i></li>
+                <li><i class="fa-solid fa-envelope"></i> khacquyettkd@gmail.com</li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-sm">
+            <h3>Quá trình hoàn thiện</h3>
+            <ul class="list-unstyled links">
+              <li><a href="/templates/hardware.html">Phần cứng</a></li>
+              <li><a href="/templates/software.html">Phần mềm</a></li>
+            </ul>
+          </div>
+          <div class="col-sm">
+            <h3>Về đồ án này</h3>
+            <ul class="list-unstyled links">
+              <li><a href="/templates/tonghop.html">Mục đích</a></li>
+              <li><a href="/templates/tonghop.html#Khatvong">Khát vọng</a></li>
+              <li><a href="/templates/tonghop.html#Ketqua">Kết quả</a></li>
+            </ul>
+          </div>
+          <div class="col-sm">
+            <h3>Thông tin thêm</h3>
+            <ul class="list-unstyled links">
+              <li><a href="/templates/info.html">Sinh viên &amp; thông tin khác</a></li>
+              <li><a href="/templates/this_product.html">Sản phẩm</a></li>
+            </ul>
+          </div>
+          <div class="col-md-3">
+            <h3>Follow us</h3>
+            <ul class="list-unstyled social">
+              <li><a href="https://www.facebook.com/khacquyettkd/"><i class="fa-brands fa-facebook"></i></a></i></li>
+              <li><a href="//www.tiktok.com/@quyettrankhac"><i class="fa-brands fa-tiktok"></i></a></i></li>
+              <li><a><i class="fa-brands fa-linkedin"></i></a></li>
+            </ul>
+          </div>
+        
+          
+        </div>
+      </div>
+    </div>
+  </footer>
+
+</html>

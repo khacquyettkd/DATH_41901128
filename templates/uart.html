@@ -1,0 +1,222 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Web Serial API Example</title>
+</head>
+<body>
+  <button id="connectButton">Connect to Serial</button>
+  <div id="output"></div>
+  <div id="SoLuong"></div>
+  <input type="text" id="messageInput" placeholder="Enter message">
+  <button id="sendButton">Send Signal</button>
+
+  <script>
+    var i=0;
+    document.getElementById('connectButton').addEventListener('click', async () => {
+      try {
+        const port = await navigator.serial.requestPort();
+        await port.open({ baudRate: 9600 });
+
+        const reader = port.readable.getReader();
+        let receivedData = '';
+
+        while (true) {
+          const { value, done } = await reader.read();
+          if (done) break;
+
+          // Xây dựng nội dung nhận được
+          receivedData += new TextDecoder().decode(value);
+
+          // Kiểm tra xem đã nhận đủ một dòng chưa
+          if (receivedData.includes('\n')) {
+            i++;
+            // Hiển thị nội dung nhận được lên đối tượng "output"
+            document.getElementById('output').innerHTML = `Received: ${receivedData.trim()}`;
+            document.getElementById('SoLuong').innerHTML = i;
+
+            // In nội dung nhận được ra console.log
+            console.log('Received:', receivedData.trim());
+
+            // Reset chuỗi nhận được để đọc dòng tiếp theo
+            receivedData = '';
+          }
+        }
+      } catch (error) {
+        console.error('Error:', error);
+      }
+    });
+    document.getElementById('sendButton').addEventListener('click', async () => {
+      try {
+        const message = document.getElementById('messageInput').value;
+
+        const port = await navigator.serial.requestPort();
+        await port.open({ baudRate: 9600 });
+
+        const writer = port.writable.getWriter();
+
+        // Gửi nội dung nhập từ ô input đến vi điều khiển
+        await writer.write(new TextEncoder().encode(message));
+
+        await writer.close();
+      } catch (error) {
+        console.error('Error:', error);
+      }
+    });
+  </script>
+</body>
+</html> -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UART Communication with PIC16F877A</title>
+  <style>
+    #connectionStatus {
+      color: red;
+    }
+    input{
+      width: 500px;
+    }
+  </style>
+</head>
+<body>
+  <div>
+    <div>
+      <button id="btn"> Connect to PIC</button>
+      <label for="receivedData">Received Data:</label>
+      <div id="receivedData"></div>
+    </div>
+    <div>
+      <label for="receiveCount">Receive Count:</label>
+      <div id="receiveCount">0</div>
+    </div>
+  </div>
+  <div>
+    <input type="text" id="inputData" placeholder="Enter data to send">
+    <button id="sendButton">Send Data</button>
+    <button id="end">End</button>
+  </div>
+  <div>
+    <span id="connectionStatus">Disconnected</span>
+  </div>
+  <div>
+    <button id="send48">Send 48</button>
+  </div>
+  <div>
+    <input type="text" id="nhapmang" placeholder="Enter string">
+    <button id="sendString">Send String</button>
+  </div>
+  <div>
+    <p id="check"></p>
+  </div>
+
+  <script>
+    const receivedDataElement = document.getElementById('receivedData');
+    const receiveCountElement = document.getElementById('receiveCount');
+    const inputDataElement = document.getElementById('inputData');
+    const sendButton = document.getElementById('sendButton');
+    const connectionStatusElement = document.getElementById('connectionStatus');
+    let receiveCount = 0;
+    let port;
+    let isConnected = false;
+    let receivedDatatext=""
+    async function connect() {
+      var i=0;
+      var receiveCount = 0;
+      try {
+        port = await navigator.serial.requestPort();
+        await port.open({ baudRate: 9600 });
+
+        const writer = port.writable.getWriter();
+        const reader = port.readable.getReader();
+        isConnected = true;
+        connectionStatusElement.innerText = 'Connected';
+        //gửi 48 ký tự lần lượt
+        document.getElementById('send48').addEventListener('click', async () => {
+          for (let index = 0; index < mang.length; index++) {
+            const currentChar = mang[index];
+            await writer.write(new TextEncoder().encode(currentChar));
+          }
+          await writer.write(new TextEncoder().encode('\n'));
+        });
+        //gửi ký tự được nhập
+        sendButton.addEventListener('click', async () => {
+          const inputData = inputDataElement.value;
+          // Gửi dữ liệu từ ô nhập liệu đến vi điều khiển
+          await writer.write(new TextEncoder().encode(inputData));
+        });
+        //gửi \n để kết thúc
+        document.getElementById('end').addEventListener('click', async () => {
+          await writer.write(new TextEncoder().encode('\n'));
+        });
+        //gửi mảng ký tự được nhập lần lượt
+        document.getElementById('sendString').addEventListener('click', async function(){
+          const inputString = document.getElementById('nhapmang').value;
+          for (let index = 0; index < inputString.length; index++) {
+            const currentChar = inputString[index];
+            await writer.write(new TextEncoder().encode(currentChar));
+          }
+          await writer.write(new TextEncoder().encode('\n'));
+        });
+        while (true) {
+          const { value, done } = await reader.read();
+
+          if (done) break;
+          receivedDatatext += new TextDecoder().decode(value);
+          if (receivedDatatext.includes('\n')) {
+            i++;
+            // Hiển thị nội dung nhận được lên đối tượng "output"
+            document.getElementById('receivedData').innerHTML = `Received: ${receivedDatatext.trim()}`;
+            document.getElementById('receiveCount').innerHTML = i;
+
+            // In nội dung nhận được ra console.log
+            console.log('Received:', receivedDatatext.trim());
+            //-----------test------------
+            if(receivedDatatext.trim()=="1")
+            {
+              document.getElementById('check').innerHTML = "true";
+            }else{
+              document.getElementById('check').innerHTML = "false";
+            }
+            // Reset chuỗi nhận được để đọc dòng tiếp theo
+            receivedDatatext = '';
+        }
+        }
+      } catch (error) {
+        console.error('Error:', error);
+        isConnected = false;
+        connectionStatusElement.innerText = 'Disconnected';
+      }
+    }
+
+    function disconnect() {
+      if (port && port.readable) {
+        port.readable.cancel();
+      }
+
+      if (port && port.writable) {
+        port.writable.getWriter().close();
+      }
+
+      if (port && port.readable && port.writable) {
+        port.close();
+        isConnected = false;
+        connectionStatusElement.innerText = 'Disconnected';
+        document.getElementById('receivedData').innerHTML = '';
+        document.getElementById('receiveCount').innerHTML = '0';
+      }
+    }
+    // Khi trang web được tải, kết nối đến cổng Serial
+     document.getElementById('btn').addEventListener('click', async () => {
+      if (isConnected) {
+        disconnect();
+      } else {
+        connect();
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- icon libaray -->
+    <script src="https://kit.fontawesome.com/96bfdff5ee.js" crossorigin="anonymous"></script>
+    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.1.3/socket.io.js"></script>
+
+    <title>Jarvis</title>
+    <!-- css style -->
+    <link rel="icon" type="image/x-icon" href="../static/Picture/favicon.ico">
+    <link rel="stylesheet" href="../static/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../static/css/footer.css">
+    <link rel="stylesheet" href="../static/css/main.css">
+  <style>
+    body{
+      background-image: url(../static/Picture/BG_explore.jpg);
+    }
+    .content{
+      position: relative;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      flex-direction: column;
+      align-content: center;
+      top:10%;
+    }
+    /* mic */
+    .mic {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    #speech {
+      border: none;
+      outline:none;
+      padding: 0;
+      border-radius: 100%;
+      width: 2em;
+      height: 2em;
+      font-size: 7em;
+      color: #fff;
+      padding: 0;
+      margin: 0;
+      position: relative;
+      z-index: 10;
+      text-align: center;
+      vertical-align: middle;
+      -ms-touch-action: manipulation;
+      touch-action: manipulation;
+      cursor: pointer;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+      background-image: none;
+    }
+    .speech_active{
+      background: #189BFF;
+    }
+    .speech_deactive{
+      background: transparent;
+    }
+    .pulse-ring-active{
+      content: '';
+      width: 2em;
+      height: 2em;
+      background: transparent;
+      border: 5px solid #189BFF;
+      border-radius: 50%;
+      position: absolute;
+      top: 0px;
+      left: 0px;       
+      animation: pulsate infinite 1.5s;
+    }
+    .pulse-ring-deactive{
+      color: transparent;
+    }
+
+    @keyframes pulsate {
+      0% {
+        -webkit-transform: scale(1, 1);
+        opacity: 1;
+      }
+      100% {
+        -webkit-transform: scale(1.5, 1.5);
+        opacity: 0;
+      }
+    }
+    #mic_icon{
+      position:relative;
+      z-index: 11;
+      font-size: 1em;
+    }
+    .fa-solid.fa-microphone-slash{
+      color:red;
+      border: none;
+    }
+    /* thanh thu âm */
+    .loader{
+      height: 70px;
+      align-items: center;
+      justify-content: space-around;
+      margin: 0px auto;
+    }
+    .loader_active{
+      display: flex;
+    }
+    .loader_deactive{
+      display: none;
+    }
+    .loader .stroke{
+      display: block;
+      position: relative;
+      background: #f1f1f1;
+      height: 100%;
+      width: 10px;
+      border-radius: 50px;
+      margin: 0 5px;
+      animation: animate 1.2s linear infinite;
+    }
+    @keyframes animate{
+      50%{
+        height: 20%;
+      }
+      100%{
+        height: 100%;
+      }
+    }
+    .stroke:nth-child(1){
+      animation-delay: 0.9s;
+    }
+    .stroke:nth-child(2){
+      animation-delay: 0.6s;
+    }
+    .stroke:nth-child(3){
+      animation-delay: 0.3s;
+    }
+    .stroke:nth-child(4){
+      animation-delay: 0s;
+    }
+    .stroke:nth-child(5){
+      animation-delay: 0s;
+    }
+    .stroke:nth-child(6){
+      animation-delay: 0.3s;
+    }
+    .stroke:nth-child(7){
+      animation-delay: 0.6s;
+    }
+    .stroke:nth-child(8){
+      animation-delay: 0.9s;
+    }
+    /* text frame */
+    #field {
+      border: 5px solid #616161;
+      border-radius: 10px;
+      height: auto;
+      min-height: 50px;
+      width: 800px;
+      background-color: #f1f1f1;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-content: center;
+    }
+    #question{
+      font-family: 'Courier New', monospace;
+      font-weight: bold;
+      margin: auto 0px;
+      border-right: 2px solid #000;
+    }
+    @keyframes typing {
+    from {
+        width: 0;
+    }}
+    /* footer */
+    .footer-20192{
+      top:600px;
+    }
+  </style>
+</head>
+<body>
+    <div id="wrapper_main">
+        <div id="header_main">
+            <nav class="container">
+                <a href="https://vi.wikipedia.org/wiki/Tr%C6%B0%E1%BB%9Dng_%C4%90%E1%BA%A1i_h%E1%BB%8Dc_T%C3%B4n_%C4%90%E1%BB%A9c_Th%E1%BA%AFng" id="logo"><img src="../static/Picture/Logo.png" alt="Logo"></a>
+                <ul id="main-menu">
+                  <li><a href="/main"><i class="fa-solid fa-house"></i></a></li>
+                  <li><a href="/templates/learn.html">Bài học <i class="fa-solid fa-book-open"></i></a></li>
+                  <li><a href="/templates/detect.html">Nhận diện vật <i class="fa-solid fa-camera"></i></a></li>
+                  <li><a href="/templates/jarvis.html">jarvis <i class="fa-solid fa-microphone-lines"></i></i></a></li>                  
+                  <li><a href="/templates/help.html">Trợ giúp <i class="fa-solid fa-circle-question"></i></a></li>
+                  <li><a href="/templates/about.html">Về chúng tôi</a></li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+    <div class="content">
+      <div class="mic">
+        <button id="speech" class="speech_deactive">
+          <div id="pulse-ring" class="pulse-ring-deactive"></div>
+          <i id="mic_icon" class="fa-solid fa-microphone-slash" aria-hidden="true"></i>
+        </button>
+        <audio id="audioOn">
+          <source src="../static/Audio/media/Starting.wav" type="audio/wav">
+        </audio>
+        <audio id="audioOff">
+          <source src="../static/Audio/media/End.wav" type="audio/wav">
+        </audio>
+        <audio id="speech_audio">
+          <source src="../static/Audio/speech/Output.mp3" type="audio/mp3">
+        </audio>
+        <audio id="audioProcessing">
+          <source src="../static/Audio/media/Processing.mp3" type="audio/mp3">
+        </audio>
+        <audio id="audioNav">
+          <source src="../static/Audio/nav/TrangTroLy.mp3" type="audio/mp3">
+        </audio>
+      </div>
+        
+      <div id="wave_bar"class="loader loader_deactive">
+        <span class="stroke"></span>
+        <span class="stroke"></span>
+        <span class="stroke"></span>
+        <span class="stroke"></span>
+        <span class="stroke"></span>
+        <span class="stroke"></span>
+        <span class="stroke"></span>
+        <span class="stroke"></span>
+      </div>
+
+      <!-- text frame -->
+      <div id="field">
+        <p id="question"></p>
+      </div>
+    </div>
+  <script>
+    var socket = io.connect('http://127.0.0.1:5000');
+      socket.on('command', function(data) {
+        console.log('Received data:', data);
+        if(data=="3")
+          window.location.href = "/templates/learn.html";
+        if(data=="3&4"||data=="4&3")
+          window.location.href = "/main";
+        if(data=="4")
+          window.location.href = "/templates/detect.html";
+        if(data=="5&6"||data=="6&5")
+          window.location.href = "/templates/help.html";
+        if(data=="6")
+          talk();
+      });
+    document.addEventListener("DOMContentLoaded", function() {document.getElementById("audioNav").play();});
+    document.addEventListener("DOMContentLoaded", function() {text_typing(text_in, 3000)});
+    var socket = io.connect('http://127.0.0.1:5000');
+    var isTextToSpeechInProgress = false;
+    var text_in="Hãy hỏi tôi mọi thứ"
+    function text_typing(text_typing, time_typing)
+    {
+      console.log("text to Type:"+text_typing);
+      let timePerChar = time_typing / text_typing.length;
+      for (let i = 0; i < text_typing.length; i++) {
+      setTimeout(function() {
+        if(i==0)
+          document.getElementById('question').innerHTML += text_typing[0].toUpperCase();
+        else
+          document.getElementById('question').innerHTML += text_typing[i];
+      }, i * timePerChar); 
+      }
+    }   
+    document.getElementById('speech').onclick=talk;
+    function talk() {
+        // Kiểm tra xem acctive-->deactive
+        if (document.getElementById('speech').classList.contains('speech_active')) {
+          document.getElementById('speech').classList.remove('speech_active');
+          document.getElementById('speech').classList.add('speech_deactive');
+
+          document.getElementById('pulse-ring').classList.remove('pulse-ring-active');
+          document.getElementById('pulse-ring').classList.add('pulse-ring-deactive');
+
+          document.getElementById('mic_icon').classList.remove('fa-microphone');
+          document.getElementById('mic_icon').classList.add('fa-microphone-slash');
+
+          document.getElementById("audioOff").play();
+          document.getElementById('wave_bar').classList.remove('loader_active');
+          document.getElementById('wave_bar').classList.add('loader_deactive');
+          document.getElementById('question').innerHTML=""
+
+          socket.emit('stop_recording');
+          document.getElementById("audioProcessing").play(); //waiting audio
+        }else {
+          document.getElementById('speech').classList.add('speech_active');
+          document.getElementById('speech').classList.remove('speech_deactive');
+          document.getElementById('pulse-ring').classList.add('pulse-ring-active');
+          document.getElementById('pulse-ring').classList.remove('pulse-ring-deactive');
+          document.getElementById('mic_icon').classList.add('fa-microphone');
+          document.getElementById('mic_icon').classList.remove('fa-microphone-slash');
+          document.getElementById("audioOn").play();
+          document.getElementById('wave_bar').classList.add('loader_active');
+          document.getElementById('wave_bar').classList.remove('loader_deactive');
+
+          socket.emit('start_recording');
+        }
+      };
+      socket.on('audio_saved', function(data) {
+            if (!isTextToSpeechInProgress) 
+            {
+              isTextToSpeechInProgress = true;
+              socket.emit('text_to_speech',data.message);
+              text_typing(data.message,3000);
+              console.log("data: "+data.message)
+              isTextToSpeechInProgress = false;
+            }});
+      socket.on('speech_created', function(data){
+          document.getElementById("speech_audio").src="../static/Audio/speech/Output"+data.timestamp+".mp3"
+          console.log("../static/Audio/speech/Output"+data.timestamp+".mp3");
+          //waiting audio
+          document.getElementById("audioProcessing").pause();
+          document.getElementById("audioProcessing").currentTime = 0;
+          //speech audio
+          document.getElementById("speech_audio").play();});
+  </script>
+</body>
+
+<footer class="footer-20192">
+    <div class="site-section">
+      <div class="container">
+        <div class="row">
+
+          <div class="col-sm">
+            <a href="/main" class="footer-logo">Trang chủ</a>
+            <p class="copyright">
+              <small>&copy; 2023</small>
+            </p>
+            <div class="col-lienhe">
+              <h3>Thông tin liên hệ</h3>
+              <ul class="list-contact">
+                <li><i class="fa-solid fa-phone"></i> 0342 938 651</li>
+                <li><iconify-icon icon="arcticons:zalo"></iconify-icon> 0342 938 651</i></li>
+                <li><i class="fa-solid fa-envelope"></i> khacquyettkd@gmail.com</li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-sm">
+            <h3>Quá trình hoàn thiện</h3>
+            <ul class="list-unstyled links">
+              <li><a href="/templates/hardware.html">Phần cứng</a></li>
+              <li><a href="/templates/software.html">Phần mềm</a></li>
+            </ul>
+          </div>
+          <div class="col-sm">
+            <h3>Về đồ án này</h3>
+            <ul class="list-unstyled links">
+              <li><a href="/templates/tonghop.html">Mục đích</a></li>
+              <li><a href="/templates/tonghop.html#Khatvong">Khát vọng</a></li>
+              <li><a href="/templates/tonghop.html#Ketqua">Kết quả</a></li>
+            </ul>
+          </div>
+          <div class="col-sm">
+            <h3>Thông tin thêm</h3>
+            <ul class="list-unstyled links">
+              <li><a href="/templates/info.html">Sinh viên &amp; thông tin khác</a></li>
+              <li><a href="/templates/this_product.html">Sản phẩm</a></li>
+            </ul>
+          </div>
+          <div class="col-md-3">
+            <h3>Follow us</h3>
+            <ul class="list-unstyled social">
+              <li><a href="https://www.facebook.com/khacquyettkd/"><i class="fa-brands fa-facebook"></i></a></i></li>
+              <li><a href="//www.tiktok.com/@quyettrankhac"><i class="fa-brands fa-tiktok"></i></a></i></li>
+              <li><a><i class="fa-brands fa-linkedin"></i></a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+</html>

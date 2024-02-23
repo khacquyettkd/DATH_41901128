@@ -1,0 +1,1047 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- icon libaray -->
+    <script src="https://kit.fontawesome.com/96bfdff5ee.js" crossorigin="anonymous"></script>
+    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.1.3/socket.io.js"></script>
+
+    <title>Bài học</title>
+    <!-- css style -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <link rel="icon" type="image/x-icon" href="../static/Picture/favicon.ico">
+    <link rel="stylesheet" href="../static/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../static/css/footer.css">
+    <link rel="stylesheet" href="../static/css/main.css">
+
+    <style>
+      body{
+        background-image: none;
+        background-color: white;
+      }
+      .content{
+        justify-content: flex-start;
+      }
+      .left-menu {
+        display:grid;
+        gap:5px;
+        float: left;
+        height: 730px;
+        width: 200px;
+        /* background-color: rgba(239, 241, 243, 0.7); */
+        background-color:#008374;
+        /* position: fixed; */
+        overflow-y:scroll;
+      }
+      .left-menu a{
+        padding: 2px 1px 1px 16px;
+        border: 2px solid rgba(255, 255, 255, 0.1);
+        color: white;
+        background-color: rgba(255, 255, 255, 0.1);
+        border-radius: 10px;
+        transition: 0.3s;
+      }
+      .left-menu a:hover{
+        /* background-color: rgb(189, 188, 188); */
+        border-color: rgba(255, 255, 255, 0.5);
+      }
+      .left-menu h5{
+        background-color: #00796b;
+        color: white;
+        font-weight: bold;
+        padding:5px;
+      }
+      .progress{
+        position: absolute;
+        padding: 10px;
+        bottom:5%;
+        margin: 0px auto;
+        font-size: larger;
+      }
+      .Chapter h2{
+        border-radius: 10px;
+        padding: 5px 10px;
+        border: 2px solid blue;
+      }
+      .image_area{
+        padding:30px 20px 20px 20px;
+        object-fit: cover;
+        background-color: rgba(200, 200, 200, 0.5);
+        border-radius: 20px;
+        margin-top:40px; 
+      }
+      .right-side{
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        align-content: center;
+        flex-wrap: wrap;
+        flex-direction: column;
+        top:10px;
+      }
+      .flex_1{
+        display: grid;
+        padding: 0px;
+        width: 50%;
+        justify-content: center;
+        align-items: center;
+      }
+      .flex_1>a{
+        display:flex;
+        justify-content: center;
+        font-size:xx-large;
+      }
+      .flex_1>h4{
+        font-size: small;
+      }
+      .flex_2{
+        display: flex;
+        padding: 0px;
+        width: 100%;
+        /* position: absolute;
+        left: 10%; */
+        justify-content: center;
+        align-items: center;
+      }
+      #list_2{
+        display:inline-flex;
+        list-style: none;
+        padding: 0px;
+        min-width: 90%;
+        justify-content: space-between;
+        align-items: center;
+        font-size: xx-large;
+      }
+      #list_2>li>a{
+        background-color: transparent;
+        border: 5px solid #008374;
+        padding:5px 10px;
+        border-radius: 50px;
+        color:#008374;
+      }
+   
+      #list_2>li>a:hover{
+        background-color: #008374;
+        border:5px solid #008374;
+        box-shadow: gray;
+        color: white;
+      }
+      #main_display{
+        height: 300px;
+        width: auto;
+        background-color: #ffffff;
+        border: none;
+      }
+      .active{
+        background-color: green !important;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+        box-shadow: 3px 3px 3px 3px rgba(70, 70, 71, 0.5);
+      }
+      #connection{
+        position:absolute;
+        display: flex;
+        top:590px;
+        right:5%;
+      }
+
+      .mic {
+        position: absolute;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        top:5%;
+        right:10%;
+      }
+      #speech {
+        border: none;
+        outline:none;
+        padding: 0;
+        border-radius: 100%;
+        width: 2em;
+        height: 2em;
+        font-size: 2em;
+        color: #fff;
+        padding: 0;
+        margin: 0;
+        position: relative;
+        z-index: 10;
+        text-align: center;
+        vertical-align: middle;
+        -ms-touch-action: manipulation;
+        touch-action: manipulation;
+        cursor: pointer;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        background-image: none;
+      }
+      .speech_active{
+        background: #189BFF;
+      }
+      .speech_deactive{
+        background: transparent;
+      }
+      .pulse-ring-active{
+        content: '';
+        width: 2em;
+        height: 2em;
+        background: transparent;
+        border: 5px solid #189BFF;
+        border-radius: 50%;
+        position: absolute;
+        top: 0px;
+        left: 0px;       
+        animation: pulsate infinite 1.5s;
+      }
+      .pulse-ring-deactive{
+        color: transparent;
+      }
+
+      @keyframes pulsate {
+        0% {
+          -webkit-transform: scale(1, 1);
+          opacity: 1;
+        }
+        100% {
+          -webkit-transform: scale(1.5, 1.5);
+          opacity: 0;
+        }
+      }
+      #mic_icon{
+        position:relative;
+        z-index: 11;
+        font-size: 1em;
+      }
+      .fa-solid.fa-microphone-slash{
+        color:red;
+        border: none;
+      }
+      #messagePlaceholder{
+        position: absolute;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        top: 20%;
+        border: black;
+        right: 10%;
+        font-size: 1em;
+        max-height: 5%;
+      }
+      #connection i::before{
+        font-size:x-large;
+      }
+      .connected{
+        color: blue;
+      }
+      .Disconnected{
+        color: black;
+      }
+      #braileRegion{
+        position: absolute;
+        top:95%;
+        right:30%;
+        display:flex;
+        justify-content: space-around;
+        align-items: center;
+        width: 40%;
+        height: auto;
+      }
+      #output {
+          background-color : #FFFFFF; /* White */
+          /* border : 1px solid #313030; Grey */
+          padding : 15px;
+          margin : 10px 0 10px 0;
+          font-size : 36px;
+          font-weight : 800;
+          color : #FF0000; /* Red */
+          width: 90%;
+          height: 80px;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+      }
+      .braille-char {
+          display: inline-block;
+          border: 1px solid #313030; /* Grey */
+          padding: 0px;
+          margin: 0px;
+      }
+      #myName {
+          padding : 3px 5px 3px 5px;
+          background-color : #f1f1f1;
+          font-size : 16px;
+          border : 1px solid #ccc; /* Light grey */
+      }
+      .footer-20192{
+        top: 150px;
+      }
+    </style>
+</head>
+<body>
+    <div id="wrapper_main">
+        <div id="header_main">
+            <nav class="container">
+                <a href="https://vi.wikipedia.org/wiki/Tr%C6%B0%E1%BB%9Dng_%C4%90%E1%BA%A1i_h%E1%BB%8Dc_T%C3%B4n_%C4%90%E1%BB%A9c_Th%E1%BA%AFng" id="logo"><img src="../static/Picture/Logo.png" alt="Logo"></a>
+                <ul id="main-menu">
+                  <li><a href="/main"><i class="fa-solid fa-house"></i></a></li>
+                  <li><a href="/templates/learn.html">Bài học <i class="fa-solid fa-book-open"></i></a>
+                  </li>
+                  <li><a href="/templates/detect.html">Nhận diện vật <i class="fa-solid fa-camera"></i></a></li>
+                  <li><a href="/templates/jarvis.html">jarvis <i class="fa-solid fa-microphone-lines"></i></i></a></li>
+                  <li><a href="/templates/help.html">Trợ giúp <i class="fa-solid fa-circle-question"></i></a></li>
+                  <li><a href="/templates/about.html">Về chúng tôi</a></li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+    
+    <div class="left-menu" >
+      <h5>Danh sách bài học</h5>
+      <a id='bai1'href="#" onclick="goToPage(1)"> Bài 1: Bảng chữ cái</a>
+      <a id='bai2'href="#" onclick="goToPage(2)"> Bài 2: Những bài học đầu tiên</a>
+      <a id='bai3'href="#" onclick="goToPage(3)"> Bài 3: Bé và bà</a>
+      <a id='bai4'href="#" onclick="goToPage(4)"> Bài 4: Đi chợ</a>
+      <a id='bai5'href="#" onclick="goToPage(5)"> Bài 5: Kỳ nghỉ</a>
+      <a id='bai6'href="#" onclick="goToPage(6)"> Bài 6: Ở nhà</a>
+      <a id='bai7'href="#" onclick="goToPage(7)"> Bài 7: Đi sở thú</a>
+      <a id='bai8'href="#" onclick="goToPage(8)"> Bài 8: Thể thao</a>
+      <a id='bai9'href="#" onclick="goToPage(9)"> Bài 9: Đồ chơi - trò chơi</a>
+      <a id='bai10'href="#" onclick="goToPage(10)"> Bài 10: Vui học</a>
+      <a id='bai11'href="#" onclick="goToPage(11)"> Bài 11: Ngày chủ nhật</a>
+      <a id='bai12'href="#" onclick="goToPage(12)"> Bài 12: Bạn bè</a>
+      <a id='bai13'href="#" onclick="goToPage(13)"> Bài 13: Trung thu</a>
+      <a id='bai14'href="#" onclick="goToPage(14)"> Bài 14: Thăm quê</a>
+      <a id='bai15'href="#" onclick="goToPage(15)"> Bài 15: Lớp em</a>
+      <a id='bai16'href="#" onclick="goToPage(16)"> Bài 16: Sinh nhật</a>
+      <a id='bai17'href="#" onclick="goToPage(17)"> Bài 17: Ước mơ</a>
+      <a id='bai18'href="#" onclick="goToPage(18)"> Bài 18: Vườn ươm</a>
+      <a id='bai19'href="#" onclick="goToPage(19)"> Bài 19: Ôn tập</a>
+    </div>
+    <div class="content">
+    <div class="right-side" style="margin-left: 220px;">
+      <div class="Chapter">
+        <!-- <h1>Chương</h1> -->
+        <h2 id="tenbaihoc">Tên bài học</h2>
+      </div>
+      <div class="progress">
+        <p id="outOf">1/10</p>
+      </div>
+      <div class="mic">
+        <button id="speech" class="speech_deactive">
+          <div id="pulse-ring" class="pulse-ring-deactive"></div>
+          <i id="mic_icon" class="fa-solid fa-microphone-slash" aria-hidden="true"></i>
+        </button>
+        <audio id="audioOn">
+          <source src="../static/Audio/media/Starting.wav" type="audio/wav">
+        </audio>
+        <audio id="audioOff">
+          <source src="../static/Audio/media/End.wav" type="audio/wav">
+        </audio>
+        <audio id="audioSai">
+          <source src="../static/Audio/nav/Yeu cau khong dung.wav" type="audio/wav">
+        </audio>
+        <audio id="audioWrong">
+          <source src="../static/Audio/media/Error.mp3" type="audio/mp3">
+        </audio>
+        <audio id="audioDung">
+          <source src="" type="audio/mp3">
+        </audio>
+      </div>
+      <div id="braileRegion">
+        <button id="back8" onclick="back8()">&lt;</button>
+        <div id="output"></div>
+        <button id="next8" onclick="next8()">&gt;</button>
+      </div>
+      <h2 id="messagePlaceholder"></h2>
+      <div id="connection" class="Disconnected">
+        <i class="bi bi-usb-plug-fill"></i>
+        <i class="bi bi-usb-c"></i>
+      </div>
+      <div class="image_area">
+        <!-- ảnh mac định -->
+        <img id="main_display" src=""> 
+      </div>
+      <div class="flex_1" id="play">
+        <a href="#"><i class="fa-solid fa-play"></i></a>
+        <h4>Phát</h4>
+      </div>
+      <div class="flex_2">
+        <ul id="list_2">
+          <li id="prev"><a href="#"><i class="fa-solid fa-backward"></i> Quay lại</a></li>
+          <li id="next"> <a href="#">Tiếp theo <i class="fa-solid fa-forward"></i></a></li>
+        </ul>
+      </div>
+    </div>
+    </div>
+    <audio id="audioNav">
+      <source src="../static/Audio/nav/Baihoc.mp3" type="audio/mp3">
+    </audio>
+    <audio id="al">
+      <source src="../static/db/Bai1/au/1.mp3" type="audio/mp3">
+    </audio>
+    <audio id="ended">
+      <source src="../static/Audio/media/ended.mp3" type="audio/mp3">
+    </audio>
+    <audio id="continue">
+      <source src="../static/Audio/media/continue.mp3" type="audio/mp3">
+    </audio>
+    <script>
+      var socket = io.connect('http://127.0.0.1:5000');//----------------Thiết lập giao tiếp----------------------------------------------------
+      var traDauSac=  /[áắấéếíóốớúứý]/i;
+      var traDauHuyen=/[àằầèềìòồờùừỳ]/i;
+      var traDauhHoi= /[ảẳẩẻểỉỏổởủửỷ]/i;
+      var traDauNang= /[ạặậẹệịọộợụựỵ]/i;
+      var traDauNga=  /[ãẵẫẽễĩõỗỡũữỹ]/i;
+      var cauHoanChinh;
+      var index8=0;
+      var l1;
+      var l2;
+      var myOutput = document.getElementById('output');
+      const image_change = document.getElementById('main_display');//lấy id hiện ảnh
+      const audio_change = document.getElementById('al'); //id của trình phát âm thanh
+      var start=2;
+      var bai=start;
+      var i=1;
+      const menuID=[0,'bai1', 'bai2', 'bai3', 'bai4', 'bai5', 'bai6', 'bai7', 'bai8', 'bai9', 'bai10', 'bai11', 'bai12', 'bai13', 'bai14', 'bai15', 'bai16', 'bai17', 'bai18', 'bai19']
+      const numberLessonEachChapter=[0,29,8,20,23,24,23,23,22,24,23,24,26,22,25,24,22,26,26,6];//số bài/mỗi bài học
+      const audio_direct=[0,'to 1','to 2','to 3','to 4','to 5','to 6','to 7','to 8','to 9','to 10','to 11','to 12','to 13','to 14','to 15','to 16','to 17','to 18','to 19']
+      var regexPattern = /bài\s([1-9][0-9]|[0-9])|bài\s*số\s*([1-9][0-9]|[0-9])\b/gi;//mẫu lọc keyword
+      var findNumberPattern=/([0-9]|[1-9][0-9])\b/gi; //mẫu tách number
+      var fix="0";
+      // var hienThiText=document.getElementById('resultText');
+// --------------------------------Các lệnh giao tiếp---------------------------------------------
+      socket.on('command', function(data) {
+        console.log('Received data:', data);
+        if(data=="1"){
+          previous();
+        }
+        if(data=="2"){
+          Next();
+        }
+        if(data=="3&4"||data=="4&3")
+          window.location.href = "/main";
+        if(data=="4")
+          window.location.href = "/templates/detect.html";
+        if(data=="5")
+          window.location.href = "/templates/jarvis.html";
+        if(data=="5&6"||data=="6&5")
+          window.location.href = "/templates/help.html";
+        if(data=="6")
+          talkToDirectLesson();
+        if(data=="1&7"||data=="7&1")
+          back8();
+        if(data=="2&7"||data=="7&2")
+          next8();
+        if(data=="8")
+          playAgain();
+      });
+      async function sendData(inputData) {
+            const response = await fetch('/send_data', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ data: inputData }),
+            });
+            const data = await response.json();
+            console.log(data);
+            return data.status
+        }
+      //------------------------------connection check-------------------------------
+      setInterval(function() {
+        socket.emit('checkCOMConnect');
+      }, 5000);
+      socket.on('ConStatusResponse', function(data) {
+        console.log(data);
+        if(data=="Connected"){
+          document.getElementById("connection").classList.remove("Disconnected");
+          document.getElementById("connection").classList.add("connected");
+        }
+        else if(data=="Disconnected")
+        {
+          document.getElementById("connection").classList.add("Disconnected");
+          document.getElementById("connection").classList.remove("connected");
+        }
+
+      });
+      //------------------------------các hàm chuyển đổi ký tự------------------------
+      function back8(){
+            let kq8="";
+            if(index8>8)
+            {
+                if(cauHoanChinh[index8]=="_")
+                {
+                    index8--;
+                }    
+                index8=index8-8;
+                kq8=cauHoanChinh.substring(index8-8,index8);
+                // document.getElementById("result8").innerHTML=kq8;
+                console.log("Result8: "+kq8);
+                l1="1-";
+                l2="2-";
+                for(let j=0;j<8;j++)
+                {   
+                  if(j==2 && charJson[kq8[j]].l1==105)
+                  {
+                    l1=l1+"100";
+                    console.log("Đã sửa lỗi cơ khí");
+                  }
+                  else{
+                    l1=l1+charJson[kq8[j]].l1;
+                  }
+                  l2=l2+charJson[kq8[j]].l2;
+
+                }
+                // //-------------------------------------fix lỗi cơ khí-----------------------------------------------------
+                // if(l1[8]=="1" && l1[9]=="0" && l1[10]=="5")
+                // {
+                //   l1=l1.substring(0,9)+"1"+l1.substring(11,l1.length);
+                //   console.log("Đã chỉnh sửa lỗi cơ khí");
+                // }
+                // //---------------------------------------------------------------------------------------------------------
+                
+                // document.getElementById("resultL1").innerHTML=l1;
+                console.log("line 1 : "+l1);
+                // document.getElementById("resultL2").innerHTML=l2;
+                console.log("line 2 :  "+l2);
+                sendData(l1).then(() => {
+                  console.log("sendData(L1) completed.");
+                  
+                  return sendData(l2);
+                }).then(() => {
+                  console.log("sendData(L2) completed.");
+                });
+                hienthi(kq8);
+            }else{
+                document.getElementById("ended").play();
+                console.log("End");
+            }
+        }
+        function next8(){
+            let kq8="";
+            if(index8<(cauHoanChinh.length))
+            {
+                if(cauHoanChinh[index8]=="_")
+                {
+                    index8++;
+                }    
+                kq8=cauHoanChinh.substring(index8,8+index8);
+                if((8+index8)>cauHoanChinh.length)
+                {
+                    kq8=kq8+'_'.repeat(8+index8-cauHoanChinh.length);
+                }
+                // document.getElementById("result8").innerHTML=kq8;
+                console.log("Result8: "+kq8);
+                l1="1-";
+                l2="2-";
+                for(let j=0;j<8;j++)
+                {   
+                  if(j==2 && charJson[kq8[j]].l1==105)
+                  {
+                    l1=l1+"100";
+                    console.log("Đã sửa lỗi cơ khí");
+                  }
+                  else{
+                    l1=l1+charJson[kq8[j]].l1;
+                  }
+                  l2=l2+charJson[kq8[j]].l2;
+                }
+                // document.getElementById("resultL1").innerHTML=l1;
+                // document.getElementById("resultL2").innerHTML=l2;
+
+                //-------------------------------------fix lỗi cơ khí-----------------------------------------------------
+                if(l1[8]=="1" && l1[9]=="0" && l1[10]=="5")
+                {
+                  // l1=l1.substring(0,9)+ "0" +l1.substring(11,l1.length);
+                  console.log("l10: "+l1[10]);
+                    l1[10]="0";
+                  
+                }
+                //---------------------------------------------------------------------------------------------------------
+
+                console.log("line 1 : "+l1);
+                console.log("line 2 :  "+l2);
+                sendData(l1).then(() => {
+                  console.log("sendData(L1) completed.");
+                  
+                  return sendData(l2);
+                }).then(() => {
+                  console.log("sendData(L2) completed.");
+                });
+                hienthi(kq8);
+                index8=index8+8;
+                if(index8<cauHoanChinh.length)
+                  {document.getElementById("continue").play();}
+            }else{
+                document.getElementById("ended").play();
+                console.log("End");
+            }
+            
+        }
+        function hienthi(chuoi){
+            myOutput.innerHTML = "";
+            for(let i=0;i<chuoi.length;i++)
+            {
+                let letter = chuoi.charAt( i );
+                let symbol = charJson[letter].code;
+                var brailleChar = document.createElement('div');
+                brailleChar.className = 'braille-char';
+                brailleChar.innerHTML = symbol;
+                output.appendChild(brailleChar);
+            }
+        }
+        function checkVietHoa(chuoi){
+            let tu=chuoi.split('_');
+            let hoanChinh="";
+            for(let i=0;i<tu.length;i++)
+            {   
+                let chu=tu[i];
+                if(chu === chu.toUpperCase()&&!(typeof chu[1] === 'undefined'))//viết hoa cả từ
+                {   
+                    if(chu[0]=="´"||chu[0]=="`"||chu[0]=="?"||chu[0]=="."||chu[0]=="~"||chu[0]=="*"||chu[0]=="^")//nếu ký tự đầu là dấu
+                        chu=chu[0]+"*"+chu.substring(1,chu.length).toLowerCase();
+                    else
+                        chu="*"+chu.toLowerCase();
+                }
+                else if(chu[0]===(chu[0].toUpperCase()))//viết hoa chữ cái đầu
+                {
+                    if(chu[0]=="´"||chu[0]=="`"||chu[0]=="?"||chu[0]=="."||chu[0]=="~"||chu[0]=="*"||chu[0]=="^")//nếu ký tự đầu là dấu
+                    {
+                        if(chu[1]===(chu[1].toUpperCase()))//thực sự là viết hoa
+                            chu=chu[0]+"^"+chu[1].toLowerCase()+chu.substring(2,chu.length);
+                        else
+                            chu=chu;
+                    }else{
+                        chu="^"+chu.toLowerCase();
+                    }
+                }    
+                hoanChinh=hoanChinh+chu;
+                if(i<tu.length-1)
+                hoanChinh=hoanChinh+"_";
+            }
+            return hoanChinh;
+        }
+        function kiemtradau(tu){
+            for(let i=0;i<tu.length;i++)
+            {   
+                let kq;
+                kq=traDauSac.test(tu[i]);
+                if(kq){
+                    return "´"
+                }
+                kq=traDauHuyen.test(tu[i]);
+                if(kq){
+                    return "`";
+                }
+                kq=traDauhHoi.test(tu[i]);
+                if(kq){
+                    return "?";
+                }
+                kq=traDauNang.test(tu[i]);
+                if(kq){
+                    return "!";
+                }
+                kq=traDauNga.test(tu[i]);
+                if(kq){
+                    return "~";
+                }
+            } 
+            return false;
+
+        }
+        function kiemTraPhuAm(tu){
+            let amDau=tu[0];
+            let haiAmDau=tu[0]+tu[1];
+            let traAmDau2Chu=/(ch|gh|kh|ph|th|tr|ng|nh)/i;
+            //kiểm tra nguyên âm
+            if(traDauSac.test(amDau)||traDauHuyen.test(amDau)||traDauhHoi.test(amDau)||traDauNang.test(amDau)||traDauNga.test(amDau)||/[uưeêoôơaăâiy]/i.test(amDau))
+            {
+    
+                return 0;    
+            }
+            else{
+                if(traAmDau2Chu.test(haiAmDau))
+                {
+                    return 2;
+                }
+                else{
+                    return 1;
+                }
+            }
+        }
+        function boDau(tu,dau,soPhuAm){
+            if(soPhuAm==0)
+                themdau=dau+tu;
+            if(soPhuAm==1)
+                if((tu[0]=="Q"||tu[0]=="q")&&tu[1]=="u")
+                    themdau=tu[0]+tu[1]+dau+tu.substring(2,tu.length);
+                else if((tu[0]=="G"||tu[0]=="g")&&tu[1]=="i")
+                    themdau=tu[0]+tu[1]+dau+tu.substring(2,tu.length);
+                else
+                    themdau=tu[0]+dau+tu.substring(1,tu.length);
+            if(soPhuAm==2)
+                themdau=tu.substring(0,2)+dau+tu.substring(2,tu.length);
+            return themdau
+        }
+        function xoaDau(tu) {
+            var diacriticsRegex = /[áắấéếíóốớúứýàằầèềìòồờùừỳảẳẩẻểỉỏổởủửỷạặậẹệịọộợụựỵãẵẫẽễĩõỗỡũữỹ]/g;
+            var stringWithoutDiacritics = tu.replace(diacriticsRegex, function(match) {
+                return bangXoaDau[match] || match;
+            });
+            return stringWithoutDiacritics;
+            }
+        function chuyenDoi(cau){
+        index8=0;
+        cauHoanChinh="";
+        let mangCacTu=cau.split(' ');
+        let complete;
+        for(let i=0;i< mangCacTu.length;i++)
+        {   
+            let dau=kiemtradau(mangCacTu[i]);//kiem tra dau
+            if(dau)//neu co dau thi kiem tra phu am
+            {
+                phuAm=kiemTraPhuAm(mangCacTu[i]);
+                complete=boDau(mangCacTu[i],dau,phuAm);//bo dau dua vao phu am
+            }
+            else
+            {
+                complete=mangCacTu[i];
+            }
+            cauHoanChinh=cauHoanChinh+complete;
+            if(i<mangCacTu.length-1)
+                cauHoanChinh=cauHoanChinh+"_";
+        }
+        cauHoanChinh=checkVietHoa(cauHoanChinh);//check viết hoa trong câu
+        cauHoanChinh=xoaDau(cauHoanChinh);//xoa het dau cu
+        // document.getElementById("resultMang").innerHTML=cauHoanChinh;
+        console.log("Câu hoàn chỉnh : "+cauHoanChinh);
+        next8();
+        return cauHoanChinh;
+        }
+      //âm thanh khi bắt đầu+lấy DL
+      document.addEventListener("DOMContentLoaded", function() {document.getElementById("audioNav").play();});
+      //--------------------------------------Chuyển đổi content khi bấm phím----------------------------------------------------------------
+        //preload
+      document.getElementById('outOf').textContent=i+'/'+numberLessonEachChapter[bai];//set quá trình
+      document.getElementById(menuID[bai]).classList.add('active');//active menu
+      document.getElementById('tenbaihoc').textContent='Bài: '+bai;//Set bài
+      audio_change.src= String('/static/db/Bai'+bai+'/au/'+i+'.mp3');//set âm thanh
+      image_change.src = String('/static/db/Bai'+bai+'/img/'+i+'.jpg');
+
+      document.addEventListener("DOMContentLoaded", function() {
+        // hienThiText.textContent=textBaiHoc["1"]["1"];
+        console.log("Câu: "+textBaiHoc["2"]["1"]);
+      });
+
+      //Quay lại
+      document.getElementById('prev').addEventListener('click', previous)
+      function previous() {
+        i--;
+        if(i<1)
+          {
+            bai--;
+            i=1;
+            if(bai<=0)
+              bai=1;
+            document.getElementById('tenbaihoc').textContent='Bài: '+bai;// reset tiêu đề
+            document.getElementById(menuID[bai+1]).classList.remove('active'); //deactive
+            document.getElementById(menuID[bai]).classList.add('active');//active
+          }
+        document.getElementById('outOf').textContent=i+'/'+numberLessonEachChapter[bai];//set qua trinh
+        image_change.src = String('/static/db/Bai'+bai+'/img/'+i+'.jpg');//reset ảnh
+        audio_change.src= String('/static/db/Bai'+bai+'/au/'+i+'.mp3');//reset âm thanh
+        console.log("Câu: "+textBaiHoc[bai][i]);
+        chuyenDoi(textBaiHoc[bai][i]);
+        audio_change.play();//phát âm thanh
+        };
+        //Tiếp theo
+      document.getElementById('next').addEventListener('click', Next)
+      function Next() {
+        i++;
+        if(i>numberLessonEachChapter[bai])
+        {
+          bai++;
+          i=1;
+          if(bai>19)
+            bai=19;
+          document.getElementById('tenbaihoc').textContent='Bài: '+bai;// reset tiêu đề
+          document.getElementById(menuID[bai-1]).classList.remove('active');//deactive
+          document.getElementById(menuID[bai]).classList.add('active');//active
+        }
+        document.getElementById('outOf').textContent=i+'/'+numberLessonEachChapter[bai];//set qua trinh 
+        image_change.src = String('/static/db/Bai'+bai+'/img/'+i+'.jpg');//reset ảnh
+        audio_change.src= String('/static/db/Bai'+bai+'/au/'+i+'.mp3');//reset âm thanh
+        // hienThiText.textContent=textBaiHoc[bai][i];
+        console.log("Câu: "+textBaiHoc[bai][i]);
+        chuyenDoi(textBaiHoc[bai][i]);
+        audio_change.play();//phát âm thanh
+      };
+        //Bấm phím play
+      document.getElementById('play').addEventListener('click', playAgain)
+      function playAgain() {
+        audio_change.play();
+      };
+      //chuyen trang bằng menu
+      function goToPage(page){
+        document.getElementById(menuID[bai]).classList.remove('active'); //deactive mục cũ
+        bai=page;
+        i=1;
+        document.getElementById(menuID[bai]).classList.add('active');//active mục mới
+        document.getElementById('outOf').textContent=i+'/'+numberLessonEachChapter[bai];//reset lại quá trình
+        document.getElementById('tenbaihoc').textContent='Bài: '+bai;//Set bài
+        image_change.src = String('/static/db/Bai'+bai+'/img/'+i+'.jpg');//reset ảnh
+        audio_change.src= String('/static/db/Bai'+bai+'/au/'+i+'.mp3');//reset âm thanh
+        audio_change.play();//phát âm thanh
+        // chuyenDoi(textBaiHoc[bai][i]);
+      }
+      const redirect_change = document.getElementById('audioDung');//lấy id âm thanh chuyển trang
+      //----------------------------------------------lệnh chuyển bài------------------------------------------------------------
+      document.getElementById('speech').addEventListener('click',talkToDirectLesson); 
+      function talkToDirectLesson() {
+        // Kiểm tra xem acctive-->deactive
+        if (document.getElementById('speech').classList.contains('speech_active')) {
+          document.getElementById('speech').classList.remove('speech_active');
+          document.getElementById('speech').classList.add('speech_deactive');
+          document.getElementById('pulse-ring').classList.remove('pulse-ring-active');
+          document.getElementById('pulse-ring').classList.add('pulse-ring-deactive');
+          document.getElementById('mic_icon').classList.remove('fa-microphone');
+          document.getElementById('mic_icon').classList.add('fa-microphone-slash');
+
+          document.getElementById("audioOff").play();
+          socket.emit('stop_recording');
+          //nhận lệnh lưu xong, nhận kèm text--->ktra text-->dịch sang giọng nói
+          socket.on('audio_saved', function(data) { 
+            document.getElementById('messagePlaceholder').innerText = data.message;
+            //lọc DL
+            console.log('Datatype of message:'+typeof data.message);
+            var matched_Text = JSON.stringify(data.message.match(regexPattern));
+            if(matched_Text)
+            {
+              var matched_Number = JSON.stringify(matched_Text.match(findNumberPattern));
+              
+              matched_Number = parseInt(matched_Number.slice(2, -2), 10);
+              console.log('Số tách được: '+matched_Number);
+              console.log('kiểu data: '+typeof(matched_Number));
+              if(!isNaN(matched_Number)&&(matched_Number>0)&&(matched_Number<20))
+              {
+                redirect_change.src = String('/static/Audio/media/Audio Redirect/'+audio_direct[matched_Number]+'.wav');//set âm thanh chuyển trang
+                document.getElementById("audioDung").play();
+                document.getElementById("audioDung").addEventListener('ended', function() {
+                  goToPage(matched_Number);
+                  document.getElementById("audioOff").play();
+                  document.getElementById('messagePlaceholder').innerText = "";
+                });
+              }else{
+                console.log('Dữ liệu bạn yêu cầu không đúng, xin hãy thử lại!');
+                document.getElementById("audioSai").play();
+                document.getElementById("audioSai").addEventListener('ended', function() {
+                  document.getElementById("audioWrong").play()});
+                
+              }
+            }else{
+              console.log('Dữ liệu bạn yêu cầu không đúng, xin hãy thử lại!');
+              document.getElementById("audioSai").play();
+              document.getElementById("audioSai").addEventListener('ended', function() {
+                document.getElementById("audioWrong").play()});
+            }
+          });
+
+        }else {
+          document.getElementById('speech').classList.add('speech_active');
+          document.getElementById('speech').classList.remove('speech_deactive');
+          document.getElementById('pulse-ring').classList.add('pulse-ring-active');
+          document.getElementById('pulse-ring').classList.remove('pulse-ring-deactive');
+          document.getElementById('mic_icon').classList.add('fa-microphone');
+          document.getElementById('mic_icon').classList.remove('fa-microphone-slash');
+
+          document.getElementById("audioOn").play();
+          socket.emit('start_recording');
+        }
+      }
+      
+      var bangXoaDau = {
+          'à': 'a', 'á': 'a', 'ả': 'a', 'ạ': 'a', 'ã': 'a',
+          'ắ': 'ă', 'ằ': 'ă', 'ẳ': 'ă', 'ẵ': 'ă', 'ặ': 'ă',
+          'ấ': 'â', 'ầ': 'â', 'ẩ': 'â', 'ẫ': 'â', 'ậ': 'â',
+          'é': 'e', 'è': 'e', 'ẻ': 'e', 'ẽ': 'e', 'ẹ': 'e',
+          'ế': 'ê', 'ề': 'ê', 'ể': 'ê', 'ễ': 'ê', 'ệ': 'ê',
+          'ì': 'i', 'í': 'i', 'ỉ': 'i', 'ĩ': 'i', 'ị': 'i',
+          'ò': 'o', 'ó': 'o', 'ỏ': 'o', 'õ': 'o', 'ọ': 'o',
+          'ố': 'ô', 'ồ': 'ô', 'ổ': 'ô', 'ỗ': 'ô', 'ộ': 'ô', 
+          'ớ': 'ơ', 'ờ': 'ơ', 'ở': 'ơ', 'ỡ': 'ơ', 'ợ': 'ơ',  
+          'ù': 'u', 'ú': 'u', 'ủ': 'u', 'ũ': 'u', 'ụ': 'u',
+          'ứ': 'ư', 'ừ': 'ư', 'ử': 'ư', 'ữ': 'ư', 'ự': 'ư',
+          'ý': 'y', 'ỳ': 'y', 'ỷ': 'y', 'ỹ': 'y', 'ỵ': 'y'
+      };
+
+      var charJson={
+      "a": {"l2":"175" ,"l1":"035","code":'&#10241;' },
+      "ă": {"l2":"055" ,"l1":"070","code":'&#10268;' },
+      "â": {"l2":"175" ,"l1":"175","code":'&#10273;' },
+      "b": {"l2":"105" ,"l1":"035","code":'&#10243;' },
+      "c": {"l2":"175" ,"l1":"055","code":'&#10249;' },
+      "d": {"l2":"175" ,"l1":"070","code":'&#10265;' },
+      "đ": {"l2":"070" ,"l1":"125","code":'&#10286;' },
+      "e": {"l2":"175" ,"l1":"150","code":'&#10257;' },
+      "ê": {"l2":"105" ,"l1":"175","code":'&#10275;' },
+      "f": {"l2":"105" ,"l1":"055","code":'&#10251;' },
+      "g": {"l2":"105" ,"l1":"070","code":'&#10267;' },
+      "h": {"l2":"105" ,"l1":"150","code":'&#10259;' },
+      "i": {"l2":"150" ,"l1":"055","code":'&#10250;' },
+      "j": {"l2":"150" ,"l1":"070","code":'&#10266;' },
+      "k": {"l2":"125" ,"l1":"035","code":'&#10245;' },
+      "l": {"l2":"085" ,"l1":"035","code":'&#10247;' },
+      "m": {"l2":"125" ,"l1":"055","code":'&#10253;' },
+      "n": {"l2":"125" ,"l1":"070","code":'&#10269;' },
+      "o": {"l2":"125" ,"l1":"150","code":'&#10261;' },
+      "ô": {"l2":"175" ,"l1":"085","code":'&#10297;' },
+      "ơ": {"l2":"150" ,"l1":"125","code":'&#10282;' },
+      "p": {"l2":"085" ,"l1":"055","code":'&#10255;' },
+      "q": {"l2":"085" ,"l1":"070","code":'&#10271;' },
+      "r": {"l2":"085" ,"l1":"150","code":'&#10263;' },
+      "s": {"l2":"070" ,"l1":"055","code":'&#10254;' },
+      "t": {"l2":"070" ,"l1":"070","code":'&#10270;' },
+      "u": {"l2":"125" ,"l1":"175","code":'&#10277;' },
+      "ư": {"l2":"105" ,"l1":"105","code":'&#10291;' },
+      "v": {"l2":"085" ,"l1":"175","code":'&#10279;' },
+      "w": {"l2":"150" ,"l1":"085","code":'&#10298;' },
+      "x": {"l2":"125" ,"l1":"125","code":'&#10285;' },
+      "y": {"l2":"125" ,"l1":"085","code":'&#10301;' },
+      "z": {"l2":"125" ,"l1":"105","code":'&#10293;' },
+      
+      "`": {"l1":"105" ,"l2":"035","code":'&#10288;' },//dấu huyền
+      "´": {"l1":"150" ,"l2":"055","code":'&#10260;' },//dấu sắc
+      "?": {"l1":"175" ,"l2":"150","code":'&#10274;' },//dấu hỏi
+      "!": {"l1":"175" ,"l2":"035","code":'&#10272;' },//dấu nặng
+      "~": {"l1":"175" ,"l2":"055","code":'&#10276;' },//dấu ngã
+      "_": {"l1":"035" ,"l2":"035","code":'&emsp;' },//dấu cách
+      "^": {"l1":"125" ,"l2":"035","code":'&#10280;'},//viết hoa
+      "*": {"l1":"085" ,"l2":"035","code":'&#10247;' },//viết hoa tất cả
+      ".": {"l1":"105" ,"l2":"150","code":'&#10290;' },//dấu chấm câu
+      ",": {"l1":"035" ,"l2":"150","code":'&#10242;' },//dấu chấm câu
+      "undefined": {"l1":"035" ,"l2":"035","code":'&emsp;' }
+      } 
+      var textBaiHoc={
+      "1": {"1":"a" ,"2":"ă","3":"â" ,"4":"b","5":"c" ,"6":"d","7":"đ" ,"8":"e","9":"ê" ,"10":"g","11":"h" ,"12":"i","13":"k" ,"14":"l","15":"m" ,"16":"n",
+        "17":"o" ,"18":"ô","19":"ơ" ,"20":"p","21":"q","22":"r" ,"23":"s","24":"t" ,"25":"u","26":"ư" ,"27":"v","28":"x" ,"29":"y"},
+      "2": {"1": "gà","2": "lá","3":"ba","4":"ca","5":"cà","6":"cá","7":"bò","8":"cỏ"},
+      "3":{
+        "1":"bơ","2":"cọ","3":"bờ","4":"bọ","5":"cá cờ","6":"cô","7":"cỗ","8":"ô","9":"cổ","10":"bố","11":"vở","12":"vỡ","13":"vỗ","14":"võ","15":"vỏ",
+        "16":"bé","17":"bế","18":"vẽ","19":"bê","20":"vé"},
+      "4":{
+        "1":"dế","2":"đỗ","3":"dê","4":"dẻ","5":"bờ đê","6":"bi","7":"kệ","8":"dì","9":"kê","10":"bí đỏ","11":"ví da","12":"lá","13":"hẹ","14":"lọ",
+        "15":"lê","16":"hồ","17":"le le","18":"chợ","19":"khế","20":"chả cá","21":"cá kho","22":"cá khô","23":"chà là"},
+      "5":{
+        "1":"nơ","2":"me","3":"na","4":"mơ","5":"ca nô","6":"cá mè","7":"mũ","8":"chữ","9":"cá mú","10":"đỏ lừ","11":"đu đủ","12":"cá hú","13":"gà",
+        "14":"ghế","15":"ga","16":"gà gô","17":"ghẹ","18":"ghi","19":"cá ngừ","20":"củ nghệ","21":"ngủ","22":"nghĩ","23":"ngô","24":"nghé"},
+      "6":{
+        "1":"tủ","2":"thỏ","3":"nhà","4":"tê tê","5":"cá thu","6":"nho đỏ","7":"rổ","8":"tre","9":"rá","10":"gà tre","11":"cá rô","12":"cá trê",
+        "13":"mía","14":"nĩa","15":"tía tô","16":"chả chìa","17":"cá lia thia","18":"đũa","19":"dừa","20":"rùa","21":"cửa","22":"cua","23":"lúa"},
+      "7":{"1":"pa nô","2":"phi ngựa","3":"phở","4":"phố","5":"cà phê","6":"pa tê","7":"sư tử","8":"xe ngựa","9":"sẻ","10":"chó xù","11":"su su","12":"xô nhựa",
+        "13":"quà","14":"y sĩ","15":"que","16":"dã quỳ","17":"quạ","18":"quả lê","19":"giá vẽ","20":"gió","21":"giò lụa","22":"cụ già","23":"giỏ tre"},
+      "8":{
+        "1":"chào","2":"chèo","3":"sào","4":"kéo co","5":"đi cà kheo","6":"báo Thể thao","7":"bà cháu","8":"đi đều","9":"lau","10":"lều","11":"đau",
+        "12":"cao kều","13":"đá cầu","14":"đấu thủ","15":"thi đá cầu","16":"đấu cờ","17":"rìu","18":"cừu","19":"níu","20":"sơ cứu","21":"địu bé","22":"xe cứu hộ"},
+      "9":{
+        "1":"lái xe","2":"cái còi","3":"voi","4":"gà mái","5":"xe tải","6":"sỏi màu","7":"rối que","8":"xe hơi","9":"ngôi sao","10":"đồ bơi","11":"bộ nồi","12":"đồ chơi câu cá",
+        "13":"túi vải","14":"gửi quà","15":"ngửi","16":"lau chùi","17":"khu vui chơi","18":"nơi gửi đồ","19":"đôi giày","20":"sợi dây","21":"nhảy dây","22":"cầu mây","23":"nhảy bao bố","24":"máy bay giấy"},
+      "10":{
+        "1":"lạc đà","2":"quả gấc","3":"vạc","4":"nhấc tạ","5":"sa mạc","6":"sợi bấc","7":"mắc áo","8":"bắc cầu","9":"khắc chữ","10":"tắc kè","11":"cây ngũ sắc","12":"sóc đỏ",
+        "13":"gốc cây","14":"cá lóc","15":"ốc đá","16":"học bài","17":"hộc tủ","18":"bụi trúc","19":"lọ mực","20":"thể dục","21":"lực sĩ","22":"mục lục","23":"bức vẽ"},
+      "11":{
+        "1":"ca hát","2":"cắt giấy","3":"bật ti vi","4":"xúc cát","5":"máy giặt","6":"chủ nhật","7":"đất sét","8":"tết tóc","9":"quả mít","10":"bồ kết","11":"vịt bầu","12":"vẹt mỏ đỏ",
+        "13":"cái sọt","14":"lá lốt","15":"cái thớt","16":"quả ớt","17":"bột mì","18":"rót trà","19":"bút chì","20":"mứt dừa","21":"rau rút","22":"gạo lứt","23":"vết nứt","24":"voi ma mút"},
+      "12":{
+        "1":"bạn học","2":"thợ lặn","3":"sân chơi","4":"gần gũi","5":"ân cần","6":"bàn bạc","7":"gắn bó","8":"cái kèn","9":"cây nến","10":"đèn pin","11":"thân mến","12":"khen ngợi",
+        "13":"bền chặt","14":"tin vui","15":"nón lá","16":"thủ môn","17":"bàn tròn","18":"ghế đôn","19":"bòn bon","20":"nhào lộn","21":"xà đơn","22":"áo thun","23":"sơn ca","24":"mèo mun","25":"đơn ca","26":"nhặt giấy vụn"},
+      "13":{
+        "1":"cá vàng","2":"măng tre","3":"nhà tầng","4":"lá bàng","5":"măng cụt","6":"vầng trăng","7":"sao vàng","8":"chong chóng","9":"đèn lồng","10":"khủng long","11":"mứt gừng",
+        "12":"tưng bừng","13":"vui mừng","14":"trống tùng tùng","15":"cùng vui chơi","16":"bìa sách","17":"trống ếch","18":"tờ lịch","19":"vui thích","20":"vòng ngọc bích","21":"kẹo mạch nha","22":"mắt xếch"},
+      "14":{
+        "1":"quả cam","2":"cá trắm","3":"nấm mối","4":"rau sam","5":"tăm tre","6":"con tằm","7":"thổ cẩm","8":"nem chua","9":"tấm nệm","10":"que kem","11":"têm trầu","12":"con tem","13":"mắm nêm",
+        "14":"đom đóm","15":"con tôm","16":"cây rơm","17":"lom khom","18":"nấu cơm","19":"vàng rộm","20":"chim sáo","21":"chùm khế","22":"quả sim","23":"tôm hùm","24":"bìm bìm","25":"cái chum"},
+      "15":{
+        "1":"múa sạp","2":"lắp ráp","3":"tập thể dục","4":"giấy nháp","5":"ngăn nắp","6":"cao thấp","7":"tập chép","8":"xếp hàng","9":"kẹp giấy","10":"đèn xếp","11":"giày dép","12":"nhà bếp", 
+        "13":"họp tổ","14":"nộp bài","15":"lớp học","16":"cửa chớp","17":"tốp ca","18":"chóp núi","19":"bắt nhịp","20":"giúp bạn","21":"cúp vàng","22":"bìm bịp","23":"múp míp","24":"búp sen"},
+      "16":{
+        "1":"bánh kem","2":"bập bênh","3":"bình","4":"chụp ảnh","5":"công kênh","6":"gia đình","7":"hươu sao","8":"khướu","9":"ốc bươu","10":"bướu lạc đà","11":"hạt điều","12":"yêu quý","13":"bảng hiệu",
+        "14":"yểu điệu","15":"thả diều","16":"gia đình thân yêu","17":"nải chuối","18":"trái bưởi","19":"chuỗi hạt","20":"tươi cười","21":"buổi sáng","22":"tưới cây"},
+      "17":{
+        "1":"xiếc","2":"đuốc","3":"dược sĩ","4":"thầy thuốc","5":"đậu biếc","6":"lược vàng","7":"chiết cành","8":"yết hầu","9":"chuột máy tính","10":"cầu trượt","11":"sáng suốt","12":"yết thị","13":"vượt khó","14":"thiết kế",
+        "15":"biển","16":"chim yến","17":"bóng điện","18":"yên xe","19":"thư viện","20":"thiếu niên","21":"uốn dẻo","22":"bay lượn","23":"chuồn chuồn","24":"vườn rau","25":"cuộn len","26":"mượn sách"},
+      "18":{
+        "1":"sầu riêng","2":"con yểng","3":"cái giếng","4":"riềng đỏ","5":"gõ chiêng","6":"dáng nghiêng","7":"chuông vàng","8":"phượng vĩ","9":"rau muống","10":"đậu tương","11":"xương rồng","12":"buồng chuối","13":"dừa xiêm",
+        "14":"cái yếm","15":"cánh buồm","16":"con bướm","17":"cái liềm","18":"yếm ghẹ","19":"muỗm leo","20":"hạt cườm","21":"diếp cá","22":"cướp cờ","23":"tấm liếp","24":"nườm nượp","25":"điệp vàng","26":"mướp hương"},
+      "19":{
+        "1":"Có một chú rùa con đi tìm nhà của mình.","2":"Chú đến hỏi cô ong, bác thỏ.","3":"Họ đều lắc đầu không biết.",
+        "4":"Rùa bơi xuống sông nhưng vẫn chẳng thấy.","5":"Cuối cùng, nhờ chị ốc sên, rùa biết được nhà của mình.","6":"Đó chính là chiếc mai chú trên lưng."}
+      }      
+    document.addEventListener("DOMContentLoaded", function() {chuyenDoi(textBaiHoc[bai][i]);});
+    </script>
+    
+</body>
+
+<footer class="footer-20192">
+    <div class="site-section">
+      <div class="container">
+        <div class="row">
+
+          <div class="col-sm">
+            <a href="/main" class="footer-logo">Trang chủ</a>
+            <p class="copyright">
+              <small>&copy; 2023</small>
+            </p>
+            <div class="col-lienhe">
+              <h3>Thông tin liên hệ</h3>
+              <ul class="list-contact">
+                <li><i class="fa-solid fa-phone"></i> 0342 938 651</li>
+                <li><iconify-icon icon="arcticons:zalo"></iconify-icon> 0342 938 651</i></li>
+                <li><i class="fa-solid fa-envelope"></i> khacquyettkd@gmail.com</li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-sm">
+            <h3>Quá trình hoàn thiện</h3>
+            <ul class="list-unstyled links">
+              <li><a href="/templates/hardware.html">Phần cứng</a></li>
+              <li><a href="/templates/software.html">Phần mềm</a></li>
+            </ul>
+          </div>
+          <div class="col-sm">
+            <h3>Về đồ án này</h3>
+            <ul class="list-unstyled links">
+              <li><a href="/templates/tonghop.html">Mục đích</a></li>
+              <li><a href="/templates/tonghop.html#Khatvong">Khát vọng</a></li>
+              <li><a href="/templates/tonghop.html#Ketqua">Kết quả</a></li>
+            </ul>
+          </div>
+          <div class="col-sm">
+            <h3>Thông tin thêm</h3>
+            <ul class="list-unstyled links">
+              <li><a href="/templates/info.html">Sinh viên &amp; thông tin khác</a></li>
+              <li><a href="/templates/this_product.html">Sản phẩm</a></li>
+            </ul>
+          </div>
+          <div class="col-md-3">
+            <h3>Follow us</h3>
+            <ul class="list-unstyled social">
+              <li><a href="https://www.facebook.com/khacquyettkd/"><i class="fa-brands fa-facebook"></i></a></i></li>
+              <li><a href="//www.tiktok.com/@quyettrankhac"><i class="fa-brands fa-tiktok"></i></a></i></li>
+              <li><a><i class="fa-brands fa-linkedin"></i></a></li>
+            </ul>
+          </div>
+          <div>
+            <a href="/templates/test_com.html">Test UART</a>
+          </div>
+          
+        </div>
+      </div>
+    </div>
+  </footer>
+
+</html>

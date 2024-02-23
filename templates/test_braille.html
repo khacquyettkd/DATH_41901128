@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+  padding : 25px;
+}
+
+#output {
+  background-color : #FFFFFF; /* White */
+  border : 1px solid #313030; /* Grey */
+  padding : 15px;
+  margin : 10px 0 10px 0;
+  font-size : 36px;
+  font-weight : 800;
+  color : #FF0000; /* Red */
+}
+.braille-char {
+            display: inline-block;
+            border: 1px solid #313030; /* Grey */
+            padding: 5px;
+            margin: 5px;
+        }
+#myName {
+  padding : 3px 5px 3px 5px;
+  background-color : #f1f1f1;
+  font-size : 16px;
+  border : 1px solid #ccc; /* Light grey */
+}
+    </style>
+</head>
+<body>
+    <!-- Heading -->
+<h1>Braille Maker</h1>
+
+<!-- Description -->
+<p>Type your name below!</p>
+
+<!-- Input Text Box -->
+<input type="text" id="myName" placeholder="E.g. John Smith" />
+
+<!-- Output -->
+<div id="output"></div>
+<script>
+    /// When window has loaded...
+window.onload = function() {
+
+//  Input text box element
+var myName = document.getElementById('myName');
+
+//  Output element (where Braille is shown)
+var myOutput = document.getElementById('output');
+
+/*
+ * Array that maps English letters
+ * to Braille symbols. 
+ * http://symbolcodes.tlt.psu.edu/bylanguage/braillechart.html
+*/
+var map ={
+  'a' : '&#10241;',
+  'ă' : '&#10268;',
+  'â' : '&#10273;',
+  'b' : '&#10243;',
+  'c' : '&#10249;',
+  'd' : '&#10265;',
+  'đ' : '&#10286;',
+  'e' : '&#10257;',
+  'ê' : '&#10275;',
+  'f' : '&#10251;',
+  'g' : '&#10267;',
+  'h' : '&#10259;',
+  'i' : '&#10250;',
+  'j' : '&#10266;',
+  'k' : '&#10245;',
+  'l' : '&#10247;',
+  'm' : '&#10281;',
+  'n' : '&#10269;',
+  'o' : '&#10261;',
+  'ô' : '&#10297;',
+  'ơ' : '&#10282;',
+  'p' : '&#10255;',
+  'q' : '&#10271;',
+  'r' : '&#10263;',
+  's' : '&#10254;',
+  't' : '&#10270;',
+  'u' : '&#10277;',
+  'ư' : '&#10291;',
+  'v' : '&#10300;',
+  'w' : '&#10298;',
+  'x' : '&#10285;',
+  'y' : '&#10301;',
+  'z' : '&#10293;',
+  '_': '&emsp;',
+  '^':'&#10280;',
+  '*':'&#10247;',
+  "`": '&#10288;',
+  "´": '&#10260;',
+  "?": '&#10274;',
+  ".": '&#10272;',
+  "~": '&#10276;',
+};
+
+//  When something is typed...
+myName.onkeyup = function() {
+  //  Clear output
+  output.innerHTML = "";
+  //  Get input value, convert to lower case
+  var theInput = myName.value.toLowerCase();
+  //  Loop through characters in input string
+  for (var i = 0; i < theInput.length; i++) {
+    //  Store character in variable
+    var letter = theInput.charAt( i );
+    //  Check character is letter (between a - z) or space
+    // if( letter.match(/[a-z\s]/i) ) {
+      //  Match letter to Braille Symbol
+      var symbol = map[ letter ];
+      //  Add Braille symbol to output element
+    //   output.innerHTML += symbol;
+    var brailleChar = document.createElement('div');
+                    brailleChar.className = 'braille-char';
+                    brailleChar.innerHTML = symbol;
+                    // Add Braille symbol to output element
+                    output.appendChild(brailleChar);
+    // }//   End if
+  }// End for loop
+}// End myName.onkeyup
+
+}// End window.onload
+
+</script>
+</body>
+</html>

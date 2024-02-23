@@ -1,0 +1,143 @@
+@media (max-width: 1920px) {
+    .flex-container {
+        top:200px;
+        flex-direction: row;
+        justify-content: space-between;
+        position: absolute;
+        align-items: center;
+    }
+    body{
+        background-image: url(../Picture/BG_main.jpeg);
+        background-size:cover;
+        background-repeat: no-repeat;
+        height: 1000px;
+        position: relative;
+    }
+}
+@media (max-width: 1000px) {
+    .flex-container {
+        top:100px;
+        flex-direction: column;
+        flex-wrap:wrap;
+        align-items: center;
+    }
+    body{
+        background-image: url(../Picture/BG_main.jpeg);
+        background-size:auto;
+        background-repeat: no-repeat;
+        min-height: 80vh;
+    }
+}
+
+#wrapper-main{
+    position: fixed;
+    top:0;
+}
+.container{
+    max-width: 1200px;
+    margin: 0px auto;
+    justify-content:space-between;
+}
+#header_main{
+    background-color: #131921;
+}
+nav{
+    display: flex;
+    justify-content: space-between;
+    justify-items: center;
+}
+#logo{
+    padding:5px 0px;
+    display: flex;
+    float:left;
+    align-items: center;
+}
+#logo img{
+    max-width: 75px;
+    height: auto;
+}
+#main-menu{
+    display: flex;
+    list-style: none;
+    margin:0;
+    padding:0;
+    justify-content: end;
+}
+#main-menu li{
+    position: relative;
+    z-index: 1;
+}
+#main-menu li a{
+    color: #f8f8f8;
+    display:block;
+    padding: 18px 20px;
+    text-decoration: none;
+}
+/* #main-menu ul.sub-menu{
+    position:absolute;
+    background-color: #131921;
+    padding: 15px 0px;
+    list-style: none;
+    width: 100px;
+    border-bottom: 1px solid #434343;
+    display: none;
+} */
+/* #main-menu li:hover ul.sub-menu{
+    display:block;
+} */
+#main-menu ul.sub-menu a{
+    padding: 8px 15px;
+    border-bottom: 1px solid #434343;
+}
+#main-menu ul.sub-menu li:hover a{
+    border-bottom: 1px solid #585858;
+}
+#main-menu ul.sub-menu li:last-child a{
+    border: none;
+}
+/* thiết lập border khi hover */
+#main-menu>li>a{
+    position: relative;
+}
+#main-menu>li>a::before{
+    content:"";
+    height: 4px;
+    width: 100%;
+    background: #f00;
+    position: absolute;
+    bottom: 0px;
+    left:0px;
+    display: none;
+}
+#main-menu>li:hover>a::before{
+    display:block;
+}
+.flex-container{
+    position: relative;
+    display: flex;
+    max-width: 800px;
+    height: 200px;
+    margin: 0px auto;
+}
+
+#bt1, #bt2, #bt3{
+    padding:30px;
+    text-align: center;
+    width: 30%;
+    border-radius: 30px;
+    color: white;
+    border: 3px solid white;
+    /* border: none; */
+    background-color: black;
+    font-weight: bold;
+    transition: ease-in-out;
+}
+#bt1:hover, #bt2:hover, #bt3:hover{
+    background-color: white;
+    color: black;
+    box-shadow: 3px 3px 3px 3px rgba(46, 88, 195, 0.5);
+    font-size: larger;
+    padding: 33px;
+} 
+
+

@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TestChar</title>
+    <style>
+        body {
+            padding : 25px;
+        }
+
+        #output {
+            background-color : #FFFFFF; /* White */
+            border : 1px solid #313030; /* Grey */
+            padding : 15px;
+            margin : 10px 0 10px 0;
+            font-size : 36px;
+            font-weight : 800;
+            color : #FF0000; /* Red */
+        }
+        .braille-char {
+            display: inline-block;
+            border: 1px solid #313030; /* Grey */
+            padding: 5px;
+            margin: 5px;
+        }
+        #myName {
+            padding : 3px 5px 3px 5px;
+            background-color : #f1f1f1;
+            font-size : 16px;
+            border : 1px solid #ccc; /* Light grey */
+        }
+    </style>
+</head>
+<body>
+    <h1>Test ký tự</h1>
+
+    <input type="text" id="inputData" placeholder="Nhập chữ">
+    <button onclick="chuyenDoi()">Tao mang</button>
+    <button onclick="back()">Back</button>
+    <button onclick="next()">Next</button>
+    <p id="resultMang"></p>  
+    <p id="result8"></p>  
+    <p id="resultL1"></p> 
+    <p id="resultL2"></p>
+    <div id="output"></div>
+    <script>
+        var traDauSac=  /[áắấéếíóốớúứý]/i;
+        var traDauHuyen=/[àằầèềìòồờùừỳ]/i;
+        var traDauhHoi= /[ảẳẩẻểỉỏổởủửỷ]/i;
+        var traDauNang= /[ạặậẹệịọộợụựỵ]/i;
+        var traDauNga=  /[ãẵẫẽễĩõỗỡũữỹ]/i;
+        var cauHoanChinh;
+        var index8=0;
+        var L1;
+        var L2;
+        var myOutput = document.getElementById('output');
+        function back(){
+            let kq8="";
+            if(index8>8)
+            {
+                if(cauHoanChinh[index8]=="_")
+                {
+                    index8--;
+                }    
+                index8=index8-8;
+                kq8=cauHoanChinh.substring(index8-8,index8);
+                document.getElementById("result8").innerHTML=kq8;
+                l1="1-";
+                l2="2-";
+                for(let j=0;j<8;j++)
+                {   
+                    l1=l1+charJson[kq8[j]].l1;
+                    l2=l2+charJson[kq8[j]].l2;
+                }
+                document.getElementById("resultL1").innerHTML=l1;
+                document.getElementById("resultL2").innerHTML=l2;
+                hienthi(kq8);
+            }else{
+                console.log("End");
+            }
+        }
+        function next(){
+            let kq8="";
+            if(index8<(cauHoanChinh.length))
+            {
+                if(cauHoanChinh[index8]=="_")
+                {
+                    index8++;
+                }    
+                kq8=cauHoanChinh.substring(index8,8+index8);
+                if((8+index8)>cauHoanChinh.length)
+                {
+                    kq8=kq8+'_'.repeat(8+index8-cauHoanChinh.length);
+                }
+                document.getElementById("result8").innerHTML=kq8;
+                l1="1-";
+                l2="2-";
+                for(let j=0;j<8;j++)
+                {   
+                    l1=l1+charJson[kq8[j]].l1;
+                    l2=l2+charJson[kq8[j]].l2;
+                }
+                document.getElementById("resultL1").innerHTML=l1;
+                document.getElementById("resultL2").innerHTML=l2;
+                hienthi(kq8);
+                index8=index8+8;
+            }else{
+                console.log("End");
+            }
+            
+        }
+        function hienthi(chuoi){
+            myOutput.innerHTML = "";
+            for(let i=0;i<chuoi.length;i++)
+            {
+                let letter = chuoi.charAt( i );
+                console.log(letter);
+                let symbol = charJson[letter].code;
+                var brailleChar = document.createElement('div');
+                brailleChar.className = 'braille-char';
+                brailleChar.innerHTML = symbol;
+                output.appendChild(brailleChar);
+            }
+        }
+        function chuyenDoi(){
+            index8=0;
+            let cau="";
+            cauHoanChinh="";
+            cau = document.getElementById('inputData').value;
+            let mangCacTu=cau.split(' ');
+            let complete;
+            for(let i=0;i< mangCacTu.length;i++)
+            {   
+                let dau=kiemtradau(mangCacTu[i]);//kiem tra dau
+                if(dau)//neu co dau thi kiem tra phu am
+                {
+                    phuAm=kiemTraPhuAm(mangCacTu[i]);
+                    complete=boDau(mangCacTu[i],dau,phuAm);//bo dau dua vao phu am
+                }
+                else
+                {
+                    complete=mangCacTu[i];
+                }
+                cauHoanChinh=cauHoanChinh+complete;
+                if(i<mangCacTu.length-1)
+                    cauHoanChinh=cauHoanChinh+"_";
+            }
+            cauHoanChinh=checkVietHoa(cauHoanChinh);//check viết hoa trong câu
+            cauHoanChinh=xoaDau(cauHoanChinh);//xoa het dau cu
+            document.getElementById("resultMang").innerHTML=cauHoanChinh;
+            return cauHoanChinh;
+        }
+        function checkVietHoa(chuoi){
+            let tu=chuoi.split('_');
+            let hoanChinh="";
+            for(let i=0;i<tu.length;i++)
+            {   
+                let chu=tu[i];
+                if(chu === chu.toUpperCase()&&!(typeof chu[1] === 'undefined'))//viết hoa cả từ
+                {   
+                    if(chu[0]=="´"||chu[0]=="`"||chu[0]=="?"||chu[0]=="."||chu[0]=="~"||chu[0]=="*"||chu[0]=="^")//nếu ký tự đầu là dấu
+                        chu=chu[0]+"*"+chu.substring(1,chu.length).toLowerCase();
+                    else
+                        chu="*"+chu.toLowerCase();
+                }
+                else if(chu[0]===(chu[0].toUpperCase()))//viết hoa chữ cái đầu
+                {
+                    if(chu[0]=="´"||chu[0]=="`"||chu[0]=="?"||chu[0]=="."||chu[0]=="~"||chu[0]=="*"||chu[0]=="^")//nếu ký tự đầu là dấu
+                    {
+                        if(chu[1]===(chu[1].toUpperCase()))//thực sự là viết hoa
+                            chu=chu[0]+"^"+chu[1].toLowerCase()+chu.substring(2,chu.length);
+                        else
+                            chu=chu;
+                    }else{
+                        chu="^"+chu.toLowerCase();
+                    }
+                }    
+                hoanChinh=hoanChinh+chu;
+                if(i<tu.length-1)
+                hoanChinh=hoanChinh+"_";
+            }
+            return hoanChinh;
+        }
+        function kiemtradau(tu){
+            for(let i=0;i<tu.length;i++)
+            {   
+                let kq;
+                kq=traDauSac.test(tu[i]);
+                if(kq){
+                    return "´"
+                }
+                kq=traDauHuyen.test(tu[i]);
+                if(kq){
+                    return "`";
+                }
+                kq=traDauhHoi.test(tu[i]);
+                if(kq){
+                    return "?";
+                }
+                kq=traDauNang.test(tu[i]);
+                if(kq){
+                    return ".";
+                }
+                kq=traDauNga.test(tu[i]);
+                if(kq){
+                    return "~";
+                }
+            } 
+            return false;
+
+        }
+        function kiemTraPhuAm(tu){
+            let amDau=tu[0];
+            let haiAmDau=tu[0]+tu[1];
+            let traAmDau2Chu=/(ch|gh|kh|ph|th|tr|ng|nh)/i;
+            //kiểm tra nguyên âm
+            if(traDauSac.test(amDau)||traDauHuyen.test(amDau)||traDauhHoi.test(amDau)||traDauNang.test(amDau)||traDauNga.test(amDau)||/[uưeêoôơaăâiy]/i.test(amDau))
+            {
+    
+                return 0;    
+            }
+            else{
+                if(traAmDau2Chu.test(haiAmDau))
+                {
+                    return 2;
+                }
+                else{
+                    return 1;
+                }
+            }
+        }
+        function boDau(tu,dau,soPhuAm){
+            if(soPhuAm==0)
+                themdau=dau+tu;
+            if(soPhuAm==1)
+                if((tu[0]=="Q"||tu[0]=="q")&&tu[1]=="u")
+                    themdau=tu[0]+tu[1]+dau+tu.substring(2,tu.length);
+                else if((tu[0]=="G"||tu[0]=="g")&&tu[1]=="i")
+                    themdau=tu[0]+tu[1]+dau+tu.substring(2,tu.length);
+                else
+                    themdau=tu[0]+dau+tu.substring(1,tu.length);
+            if(soPhuAm==2)
+                themdau=tu.substring(0,2)+dau+tu.substring(2,tu.length);
+            return themdau
+        }
+        function xoaDau(tu) {
+            var diacriticsRegex = /[áắấéếíóốớúứýàằầèềìòồờùừỳảẳẩẻểỉỏổởủửỷạặậẹệịọộợụựỵãẵẫẽễĩõỗỡũữỹ]/g;
+            var stringWithoutDiacritics = tu.replace(diacriticsRegex, function(match) {
+                return bangXoaDau[match] || match;
+            });
+            return stringWithoutDiacritics;
+            }
+        var bangXoaDau = {
+            'à': 'a', 'á': 'a', 'ả': 'a', 'ạ': 'a', 'ã': 'a',
+            'ắ': 'ă', 'ằ': 'ă', 'ẳ': 'ă', 'ẵ': 'ă', 'ặ': 'ă',
+            'ấ': 'â', 'ầ': 'â', 'ẩ': 'â', 'ẫ': 'â', 'ậ': 'â',
+            'é': 'e', 'è': 'e', 'ẻ': 'e', 'ẽ': 'e', 'ẹ': 'e',
+            'ế': 'ê', 'ề': 'ê', 'ể': 'ê', 'ễ': 'ê', 'ệ': 'ê',
+            'ì': 'i', 'í': 'i', 'ỉ': 'i', 'ĩ': 'i', 'ị': 'i',
+            'ò': 'o', 'ó': 'o', 'ỏ': 'o', 'õ': 'o', 'ọ': 'o',
+            'ố': 'ô', 'ồ': 'ô', 'ổ': 'ô', 'ỗ': 'ô', 'ộ': 'ô', 
+            'ớ': 'ơ', 'ờ': 'ơ', 'ở': 'ơ', 'ỡ': 'ơ', 'ợ': 'ơ',  
+            'ù': 'u', 'ú': 'u', 'ủ': 'u', 'ũ': 'u', 'ụ': 'u',
+            'ứ': 'ư', 'ừ': 'ư', 'ử': 'ư', 'ữ': 'ư', 'ự': 'ư',
+            'ý': 'y', 'ỳ': 'y', 'ỷ': 'y', 'ỹ': 'y', 'ỵ': 'y'
+        };
+
+        var charJson={
+        "a": {"l2":"175" ,"l1":"035","code":'&#10241;' },
+        "ă": {"l2":"055" ,"l1":"070","code":'&#10268;' },
+        "â": {"l2":"175" ,"l1":"175","code":'&#10273;' },
+        "b": {"l2":"105" ,"l1":"035","code":'&#10243;' },
+        "c": {"l2":"175" ,"l1":"055","code":'&#10249;' },
+        "d": {"l2":"175" ,"l1":"070","code":'&#10265;' },
+        "đ": {"l2":"070" ,"l1":"125","code":'&#10286;' },
+        "e": {"l2":"175" ,"l1":"150","code":'&#10257;' },
+        "ê": {"l2":"105" ,"l1":"175","code":'&#10275;' },
+        "f": {"l2":"105" ,"l1":"055","code":'&#10251;' },
+        "g": {"l2":"105" ,"l1":"070","code":'&#10267;' },
+        "h": {"l2":"105" ,"l1":"150","code":'&#10259;' },
+        "i": {"l2":"150" ,"l1":"055","code":'&#10250;' },
+        "j": {"l2":"150" ,"l1":"070","code":'&#10266;' },
+        "k": {"l2":"125" ,"l1":"035","code":'&#10245;' },
+        "l": {"l2":"085" ,"l1":"035","code":'&#10247;' },
+        "m": {"l2":"125" ,"l1":"055","code":'&#10281;' },
+        "n": {"l2":"125" ,"l1":"070","code":'&#10269;' },
+        "o": {"l2":"125" ,"l1":"150","code":'&#10261;' },
+        "ô": {"l2":"175" ,"l1":"085","code":'&#10297;' },
+        "ơ": {"l2":"150" ,"l1":"125","code":'&#10282;' },
+        "p": {"l2":"085" ,"l1":"055","code":'&#10255;' },
+        "q": {"l2":"085" ,"l1":"070","code":'&#10271;' },
+        "r": {"l2":"085" ,"l1":"150","code":'&#10263;' },
+        "s": {"l2":"070" ,"l1":"055","code":'&#10254;' },
+        "t": {"l2":"070" ,"l1":"070","code":'&#10270;' },
+        "u": {"l2":"125" ,"l1":"175","code":'&#10277;' },
+        "ư": {"l2":"105" ,"l1":"105","code":'&#10291;' },
+        "v": {"l2":"085" ,"l1":"175","code":'&#10300;' },
+        "w": {"l2":"150" ,"l1":"085","code":'&#10298;' },
+        "x": {"l2":"125" ,"l1":"125","code":'&#10285;' },
+        "y": {"l2":"125" ,"l1":"085","code":'&#10301;' },
+        "z": {"l2":"125" ,"l1":"105","code":'&#10293;' },
+        
+        "`": {"l1":"105" ,"l2":"035","code":'&#10288;' },
+        "´": {"l1":"150" ,"l2":"055","code":'&#10260;' },
+        "?": {"l1":"175" ,"l2":"150","code":'&#10274;' },
+        ".": {"l1":"175" ,"l2":"035","code":'&#10272;' },
+        "~": {"l1":"175" ,"l2":"055","code":'&#10276;' },
+        "_": {"l1":"035" ,"l2":"035","code":'&emsp;' },//dấu cách
+        "^": {"l1":"125" ,"l2":"035","code":'&#10280;'},//viết hoa
+        "*": {"l1":"085" ,"l2":"035","code":'&#10247;' },//viết hoa tất cả
+        "undefined": {"l1":"035" ,"l2":"035","code":'&emsp;' }
+        }
+    </script>
+</body>
+</html>
