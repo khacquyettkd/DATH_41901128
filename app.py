@@ -33,12 +33,12 @@ os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "key_text_to_speech.json"
 client_texttospeech = texttospeech.TextToSpeechClient()
 #client openAI
 # client_openAI = OpenAI(api_key="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",)
-client_openAI = OpenAI(api_key="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",)
+client_openAI = OpenAI(api_key="your API key here",)
 ###----------------------------------------------FLASK----------------------------------------------------
 app = Flask(__name__)
 socketio = SocketIO(app)
 CORS(app)
-app.secret_key = 'nánkackanckkakndc1297'
+app.secret_key = 'your secret key here '
 USER_CONST='Quyet'
 PASS_CONST='41901128'
 #### --------sound const------------
@@ -47,8 +47,8 @@ samplerate=44100 #wav
 isTextToSpeechInProgress=False
 # samplerate=16000 #mp3
 #### --------yolo------------
-path='D:\\A.1.Kien thuc+slide cac mon\\4.senior\\ĐATN\\Web_demo\\yolov5'
-path_to_model = 'D:\\A.1.Kien thuc+slide cac mon\\4.senior\\ĐATN\\Web_demo\\yolov5\\weight\\best.pt'
+path='path to your yolov5'
+path_to_model = 'path to your model'
 device = '0'  # Chọn device GPU, nếu có
 recording=None
 cap=None
@@ -290,23 +290,6 @@ def jarvis():
 @app.route('/templates/test_com.html')
 def index():
     return render_template('test_com.html')
-# @app.route('/send_data', methods=['POST'])
-# def send_data():
-#     global ser
-#     try:
-#         data = request.json['data']
-#         data='('+data+')'
-#         if ser and check_message(data):
-#             data_bytes = data.encode('utf-8')
-#             for byte in data_bytes:
-#                 ser.write(bytes([byte]))
-#             # ser.write(b'\n')
-#             print("sent: "+data)
-#             return jsonify({'status': 'success', 'message': f'Data sent: {data}'})
-#         else:
-#             return jsonify({'status': 'error', 'message': 'COM port not open'})
-#     except Exception as e:
-#         return jsonify({'status': 'error', 'message': str(e)})
 
 uart_lock = Lock()
 @app.route('/send_data', methods=['POST'])
